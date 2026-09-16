@@ -33,6 +33,10 @@ jobs:
 
       # build:static, not next build: it also runs tooling/post-export.js,
       # which rewrites lang="en" to nl/de on the localized pages.
+      # Repo variables, not hardcoded, so moving domains is a settings change.
+      # NEXT_PUBLIC_BASE_PATH must be UNSET to serve from the domain root: the
+      # API rejects an empty-string variable, and an absent one expands to "".
+      # Set it (e.g. /optavius.com) only to serve from a project-pages subpath.
       - name: Build static export
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH }}
