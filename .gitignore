@@ -1,0 +1,33 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+
+# next.js build output
+/.next/
+/out/
+/build
+
+# static export tooling
+*.tsbuildinfo
+
+# environment
+.env
+.env.*
+!.env.example
+
+# deployment
+.vercel
+
+# os / editor
+.DS_Store
+Thumbs.db
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# certs
+*.pem

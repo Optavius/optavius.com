@@ -1,0 +1,14 @@
+{
+  "name": "Optavius",
+  "short_name": "Optavius",
+  "description": "AI voice agents for specialty care.",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#006838",
+  "icons": [
+    { "src": "icon.png", "sizes": "64x64", "type": "image/png" },
+    { "src": "apple-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

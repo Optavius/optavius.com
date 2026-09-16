@@ -1,0 +1,36 @@
+# Optavius
+
+> Optavius builds AI voice agents for specialty care practices: ophthalmology, optometry, dermatology and veterinary. The agent answers every patient call, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol. Pricing follows results, starting from $299 per month. Offices in Houston and Amsterdam. Site in English, Dutch and German.
+
+## Product
+
+- [Product overview](https://www.optavius.com/product): the voice agent, every channel, trust and safety
+- [Console](https://www.optavius.com/product/console): morning brief, every call and booking, plain-language commands
+- [Ask Optavius](https://www.optavius.com/product/ask-optavius): free answers over the practice's own data for 90 days
+- [Agents](https://www.optavius.com/product/agents): front desk, booking, order status, recall, no-show recovery and more
+- [Integrations](https://www.optavius.com/product/integrations): phone systems, calendars, EHR and practice management systems
+- [Pricing](https://www.optavius.com/pricing): outcome-based pricing, no results no cost
+
+## Specialties
+
+- [Ophthalmology](https://www.optavius.com/specialties/ophthalmology)
+- [Optometry](https://www.optavius.com/specialties/optometry)
+- [Dermatology](https://www.optavius.com/specialties/dermatology)
+- [Veterinary](https://www.optavius.com/specialties/veterinary)
+
+## Customers
+
+- [Customer stories](https://www.optavius.com/customers): OMC Amstelland, North Texas Eye Specialists, Cubitts
+
+## Company
+
+- [About](https://www.optavius.com/about)
+- [Resources](https://www.optavius.com/resources): guides and comparisons on AI voice agents in eye care
+- [Book a demo](https://www.optavius.com/demo)
+
+## Optional
+
+- [Privacy policy](https://www.optavius.com/privacy)
+- [Terms and conditions](https://www.optavius.com/terms)
+- [Dutch site](https://www.optavius.com/nl)
+- [German site](https://www.optavius.com/de)
