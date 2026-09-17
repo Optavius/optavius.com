@@ -6,11 +6,11 @@ import { BASE as BASE_PATH, SITE_URL } from "@/lib/base";
 import { FAQS } from "@/content/faqs";
 import { existsSync } from "fs";
 import { join } from "path";
-import { AboutPage, AgentsPage, ArticlePage, ARTICLES, AskPage, CareersPage, ConsolePage, CustomersPage, DemoPage, HomePage, IntegrationsPage, PricingRoute, PrivacyPage, ProductPage, ResourcesPage, SpecialtiesIndex, SpecialtyPage, StoryPage, TermsPage } from "@/components/site/Pages";
+import { AboutPage, AgentsPage, ArticlePage, ARTICLES, AskPage, CareersPage, ConsolePage, CustomersPage, DemoPage, HomePage, IntegrationsPage, PricingRoute, PrivacyPage, ProductPage, ResourcesPage, SpecialtiesIndex, SpecialtyPage, StoryPage, TermsPage, SafetyPage, CookiesPage } from "@/components/site/Pages";
 
 type Params = { slug?: string[] };
 
-const STATIC = ["", "product", "product/console", "product/ask-optavius", "product/agents", "product/integrations", "pricing", "specialties", "customers", "about", "resources", "careers", "demo", "privacy", "terms"];
+const STATIC = ["", "product", "product/console", "product/ask-optavius", "product/agents", "product/integrations", "pricing", "specialties", "customers", "about", "resources", "careers", "demo", "privacy", "terms", "safety-compliance", "cookies"];
 
 export const dynamicParams = false;
 
@@ -36,20 +36,28 @@ function resolve(slug: string[] = []) {
   return { lang, path, site };
 }
 
-export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
-  const { slug } = await params;
-  const { lang, path, site } = resolve(slug);
+/** Title and description for a path, shared by the metadata and the structured data. */
+function metaFor(path: string, lang: string, site: ReturnType<typeof getSite>) {
   const seg = path.split("/").filter(Boolean);
   let m: { title: string; description: string } = site.home.meta;
   const map: Record<string, { title: string; description: string }> = {
     "/product": site.product.meta, "/product/console": site.consolePage.meta, "/product/ask-optavius": site.askOptavius.meta, "/product/agents": site.agentsPage.meta, "/product/integrations": site.integrations.meta,
     "/pricing": site.pricing.meta, "/specialties": site.specialties.meta, "/customers": site.customers.meta, "/about": site.about.meta, "/resources": site.resources.meta, "/careers": site.careers.meta, "/demo": site.demo.meta,
     "/privacy": { title: site.legal.privacy.title + site.meta.titleSuffix, description: site.meta.description }, "/terms": { title: site.legal.terms.title + site.meta.titleSuffix, description: site.meta.description },
+    "/safety-compliance": { title: site.legal.safety.title + site.meta.titleSuffix, description: site.legal.safety.description || site.meta.description }, "/cookies": { title: site.legal.cookies.title + site.meta.titleSuffix, description: site.legal.cookies.description || site.meta.description },
   };
   if (map[path]) m = map[path];
   else if (seg[0] === "specialties") m = site.specialties.pages.find((p) => p.slug === seg[1])?.meta || m;
   else if (seg[0] === "customers") m = site.customers.stories.find((p) => p.slug === seg[1])?.meta || m;
   else if (seg[0] === "resources") { const a = (ARTICLES[lang] || ARTICLES.en).find((x) => x.slug === seg[1]); if (a) m = { title: a.title + site.meta.titleSuffix, description: a.description }; }
+  return m;
+}
+
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+  const { slug } = await params;
+  const { lang, path, site } = resolve(slug);
+  const seg = path.split("/").filter(Boolean);
+  const m = metaFor(path, lang, site);
   const languages: Record<string, string> = {};
   for (const l of LOCALES) languages[l] = `${SITE_URL}${l === "en" ? path || "/" : `/${l}${path === "/" ? "" : path}`}`;
   languages["x-default"] = languages.en;
@@ -67,8 +75,13 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 const BASE = SITE_URL;
 /** Structured data: the organisation on every page, the FAQ on pricing, the service on product pages. */
 function jsonLd(path: string, lang: string, site: ReturnType<typeof getSite>) {
-  const org = { "@type": "Organization", "@id": `${BASE}/#org`, name: "Optavius", url: BASE, logo: `${BASE}/og/${lang}.png`, contactPoint: [{ "@type": "ContactPoint", telephone: "+1-937-729-2674", contactType: "sales", areaServed: "US", availableLanguage: ["en"] }, { "@type": "ContactPoint", telephone: "+31-97-006-532689", contactType: "sales", areaServed: "NL", availableLanguage: ["nl", "en"] }], sameAs: ["https://www.linkedin.com/company/optavius"] };
-  const graph: Record<string, unknown>[] = [org];
+  const org = { "@type": "Organization", "@id": `${BASE}/#org`, name: "Optavius", url: BASE, logo: `${BASE}/og/${lang}.png`, contactPoint: [{ "@type": "ContactPoint", telephone: "+1-937-729-2674", contactType: "sales", areaServed: "US", availableLanguage: ["en"] }, { "@type": "ContactPoint", telephone: "+31-97-006-532689", contactType: "sales", areaServed: "NL", availableLanguage: ["nl", "en"] }], sameAs: ["https://www.linkedin.com/company/optavius"], description: "Optavius provides AI voice agents for specialty care practices: ophthalmology, optometry, dermatology and veterinary clinics in the United States and Europe. The agent answers patient calls, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol.", founder: [{ "@id": `${BASE}/about#yves-prevoo` }, { "@id": `${BASE}/about#paul-sabou` }], address: [{ "@type": "PostalAddress", addressLocality: "Houston", addressRegion: "TX", addressCountry: "US" }, { "@type": "PostalAddress", addressLocality: "Amsterdam", addressCountry: "NL" }], areaServed: ["US", "NL", "DE", "EU"] };
+  const pageUrl = `${BASE}${lang === "en" ? "" : "/" + lang}${path === "/" ? "/" : path}`;
+  const meta = metaFor(path, lang, site);
+  const website = { "@type": "WebSite", "@id": `${BASE}/#website`, url: BASE, name: "Optavius", publisher: { "@id": `${BASE}/#org` }, inLanguage: ["en", "nl", "de"] };
+  const webpage: Record<string, unknown> = { "@type": "WebPage", "@id": pageUrl, url: pageUrl, name: meta.title, description: meta.description, inLanguage: lang, isPartOf: { "@id": `${BASE}/#website` }, about: { "@id": `${BASE}/#org` } };
+  const founders = site.about.founders.people.map((f) => ({ "@type": "Person", "@id": `${BASE}/about#${f.name.toLowerCase().replace(/\s+/g, "-")}`, name: f.name, jobTitle: f.role, description: f.text, image: `${BASE}${f.image.src}`, worksFor: { "@id": `${BASE}/#org` }, url: `${BASE}${lang === "en" ? "" : "/" + lang}/about` }));
+  const graph: Record<string, unknown>[] = [org, website, webpage, ...founders];
   const seg = path.split("/").filter(Boolean);
   const prefix = lang === "en" ? "" : "/" + lang;
   const label = (i: number): string => {
@@ -80,12 +93,14 @@ function jsonLd(path: string, lang: string, site: ReturnType<typeof getSite>) {
     if (seg[0] === "resources" && i === 1) return (ARTICLES[lang] || ARTICLES.en).find((x) => x.slug === seg[1])?.title || seg[1];
     return seg[i];
   };
-  if (seg.length) graph.push({ "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Optavius", item: `${BASE}${prefix}/` }, ...seg.map((_, i) => ({ "@type": "ListItem", position: i + 2, name: label(i), item: `${BASE}${prefix}/${seg.slice(0, i + 1).join("/")}` }))] });
+  if (seg.length) { webpage.breadcrumb = { "@id": `${pageUrl}#breadcrumb` }; }
+  if (seg.length) graph.push({ "@type": "BreadcrumbList", "@id": `${pageUrl}#breadcrumb`, itemListElement: [{ "@type": "ListItem", position: 1, name: "Optavius", item: `${BASE}${prefix}/` }, ...seg.map((_, i) => ({ "@type": "ListItem", position: i + 2, name: label(i), item: `${BASE}${prefix}/${seg.slice(0, i + 1).join("/")}` }))] });
   if (seg[0] === "resources" && seg[1]) { const a = (ARTICLES[lang] || ARTICLES.en).find((x) => x.slug === seg[1]); if (a) graph.push({ "@type": "Article", headline: a.title, description: a.description, inLanguage: lang, datePublished: "2026-09-01", dateModified: "2026-09-11", author: { "@id": `${BASE}/#org` }, publisher: { "@id": `${BASE}/#org` }, mainEntityOfPage: `${BASE}${prefix}${path}`, image: `${BASE}/og/${lang}.png` }); }
   const faq = FAQS[lang]?.[path];
   if (faq) graph.push({ "@type": "FAQPage", mainEntity: faq.items.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) });
   if (path === "/pricing") graph.push({ "@type": "FAQPage", mainEntity: site.pricing.faq.items.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) });
   if (path === "/" || path.startsWith("/product") || path === "/pricing") graph.push({ "@type": "Service", "@id": `${BASE}/#service`, name: "Optavius AI voice agents", provider: { "@id": `${BASE}/#org` }, serviceType: "AI voice agent for healthcare practices", areaServed: ["US", "NL", "DE"], description: site.home.meta.description, offers: { "@type": "Offer", price: "299", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "299", priceCurrency: "USD", unitText: "MONTH" } } });
+  if (path === "/" || path.startsWith("/product") || path === "/pricing") graph.push({ "@type": "SoftwareApplication", "@id": `${BASE}/#app`, name: "Optavius", applicationCategory: "BusinessApplication", applicationSubCategory: "AI voice agent for healthcare practices", operatingSystem: "Web", url: `${BASE}${lang === "en" ? "" : "/" + lang}/product`, description: meta.description, provider: { "@id": `${BASE}/#org` }, offers: { "@type": "Offer", price: lang === "en" ? "299" : "279", priceCurrency: lang === "en" ? "USD" : "EUR", url: `${BASE}${lang === "en" ? "" : "/" + lang}/pricing`, description: site.pricing.from } });
   return JSON.stringify({ "@context": "https://schema.org", "@graph": graph });
 }
 
@@ -116,6 +131,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     case "/demo": return <DemoPage {...ctx} />;
     case "/privacy": return <PrivacyPage {...ctx} />;
     case "/terms": return <TermsPage {...ctx} />;
+    case "/safety-compliance": return <SafetyPage {...ctx} />;
+    case "/cookies": return <CookiesPage {...ctx} />;
   }
   if (seg[0] === "specialties" && seg[1]) { const p = site.specialties.pages.find((x) => x.slug === seg[1]); if (p) return <SpecialtyPage {...ctx} page={p} />; }
   if (seg[0] === "customers" && seg[1]) { const s = site.customers.stories.find((x) => x.slug === seg[1]); if (s) return <StoryPage {...ctx} story={s} />; }

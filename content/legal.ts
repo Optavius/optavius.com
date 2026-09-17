@@ -1,7 +1,7 @@
 /** Privacy policy and customer terms, one document per language. Structured like the policies of comparable US healthcare AI vendors,
  *  adjusted for an EU and US company that acts as a processor and business associate for practices. */
 export type LegalSection = { id: string; title: string; paragraphs: string[]; items?: string[] };
-export type LegalDoc = { title: string; updated: string; intro: string; sections: LegalSection[] };
+export type LegalDoc = { title: string; updated: string; intro: string; description?: string; sections: LegalSection[] };
 
 const PRIVACY_EMAIL = "privacy@optavius.com";
 

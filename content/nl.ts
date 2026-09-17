@@ -1,5 +1,6 @@
 import type { Site, SpecialtyPage, Story } from "./types";
 import { LEGAL } from "./legal";
+import { COOKIES, SAFETY } from "./policies";
 import en from "./en";
 import { BADGES, CALENDLY, CUSTOMER_LOGOS, EMAIL, INTEGRATION_LOGOS, PEOPLE, PHOTOS, SIGN_IN, TEL_NL as TEL, TEL_NL_DISPLAY as TEL_DISPLAY, VIDEOS } from "./shared";
 
@@ -354,15 +355,17 @@ const nl: Site = {
     },
     footer: {
       tagline: "AI voice agents voor specialistische zorg. Uw praktijk draait door. Ook als u er niet bent.",
+      about: "Optavius levert AI-spraakagenten voor specialistische praktijken: oogheelkunde, optometrie, dermatologie en dierenklinieken in de Verenigde Staten en Europa. De agent beantwoordt patiëntgesprekken, plant en verzet afspraken, geeft orderstatus en escaleert urgente klachten volgens het protocol van de praktijk. Opgericht door Yves Prevoo en Paul Sabou, met kantoren in Houston en Amsterdam.",
       groups: [
         { title: "Product", items: [{ label: "Productoverzicht", href: "/product" }, { label: "Console", href: "/product/console" }, { label: "Ask Optavius", href: "/product/ask-optavius" }, { label: "Agents", href: "/product/agents" }, { label: "Koppelingen", href: "/product/integrations" }, { label: "Prijzen", href: "/pricing" }] },
         { title: "Specialismen", items: [{ label: "Alle specialismen", href: "/specialties" }, { label: "Oogheelkunde", href: "/specialties/ophthalmology" }, { label: "Optometrie", href: "/specialties/optometry" }, { label: "Dermatologie", href: "/specialties/dermatology" }, { label: "Diergeneeskunde", href: "/specialties/veterinary" }] },
         { title: "Klanten", items: [{ label: "Klantverhalen", href: "/customers" }, { label: "OMC Amstelland", href: "/customers/omc-amstelland" }, { label: "North Texas Eye Specialists", href: "/customers/north-texas-eye-specialists" }, { label: "Cubitts", href: "/customers/cubitts" }] },
-        { title: "Bedrijf", items: [{ label: "Over ons", href: "/about" }, { label: "Kennisbank", href: "/resources" }, { label: "Werken bij", href: "/careers" }, { label: "Demo aanvragen", href: "/demo" }, { label: "Inloggen", href: SIGN_IN, external: true }] },
+        { title: "Bedrijf", items: [{ label: "Over ons", href: "/about" }, { label: "Veiligheid en compliance", href: "/safety-compliance" }, { label: "Kennisbank", href: "/resources" }, { label: "Werken bij", href: "/careers" }, { label: "Demo aanvragen", href: "/demo" }, { label: "Inloggen", href: SIGN_IN, external: true }] },
       ],
-      legal: [{ label: "Privacybeleid", href: "/privacy" }, { label: "Algemene voorwaarden", href: "/terms" }],
+      legal: [{ label: "Privacybeleid", href: "/privacy" }, { label: "Algemene voorwaarden", href: "/terms" }, { label: "Cookiebeleid", href: "/cookies" }],
       copyright: "© 2026 Optavius",
     },
+    consent: {"text":"We gebruiken één analysetool (PostHog, gehost in de EU) om te zien welke pagina's bezoekers helpen. Die draait alleen als u akkoord gaat. Geen advertentiecookies.","accept":"Analyse accepteren","decline":"Weigeren","policy":"Cookiebeleid"},
     common: {
       bookDemo: "Demo aanvragen", callDemo: "Bel de demolijn", demoNote: "Spreek met onze oprichter. Vrijblijvend.", learnMore: "Meer informatie", readStory: "Lees het verhaal", readMore: "Lees meer", discoverMore: "Ontdek meer", fullStory: "Volledig verhaal", getStarted: "Aan de slag", contactSales: "Neem contact op", mostPopular: "Meest gekozen", perMonth: "/maand", playVideo: "Video afspelen", pauseVideo: "Video pauzeren", customerStories: "Klantverhalen", allSpecialties: "Alle specialismen", openRoles: "Vacatures", search: "Zoeken", skip: "Ga naar de inhoud",
     },
@@ -686,7 +689,7 @@ const nl: Site = {
   about: {
     meta: { title: "Over ons | Optavius", description: "Optavius vermindert wrijving in specialistische zorg: voor patiënten, voor medewerkers en voor artsen." },
     title: "Wie we zijn\nen waarom we hier zijn.",
-    lede: "Over Optavius.",
+    lede: "Optavius levert AI-spraakagenten voor specialistische praktijken: oogheelkunde, optometrie, dermatologie en dierenklinieken in de Verenigde Staten en Europa. De agent beantwoordt patiëntgesprekken, plant en verzet afspraken, geeft orderstatus en escaleert urgente klachten volgens het protocol van de praktijk.",
     image: { src: PHOTOS.examroom, alt: "Onderzoekskamer van een oogkliniek" },
     statement: { title: "Optavius vermindert wrijving in specialistische zorg: voor patiënten, voor medewerkers en voor artsen.", text: "De voorkant van het patiënttraject is vaak het meest frustrerende deel. Lange wachttijden, wisselende intake en overbelaste medewerkers. We hebben Optavius gebouwd om dat op te lossen, te beginnen bij de telefoon." },
     values: [
@@ -753,7 +756,7 @@ const nl: Site = {
     booking: { title: "Kies een tijdslot", text: "30 minuten met Yves. We horen uw belvolume en laten zien wat Optavius met uw oproepen zou doen.", fallback: { label: "Kies een moment", href: CALENDLY, external: true }, note: "Vrijblijvend." },
   },
 
-  legal: LEGAL.nl,
+  legal: { ...LEGAL.nl, cookies: COOKIES.nl, safety: SAFETY.nl },
 };
 
 export default nl;

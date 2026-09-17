@@ -413,6 +413,12 @@ export function PrivacyPage({ site, lang, path }: Ctx) {
 export function TermsPage({ site, lang, path }: Ctx) {
   return <Shell site={site} lang={lang} path={path}><LegalPage doc={site.legal.terms} contentsLabel={CONTENTS[lang] || CONTENTS.en} /></Shell>;
 }
+export function SafetyPage({ site, lang, path }: Ctx) {
+  return <Shell site={site} lang={lang} path={path}><LegalPage doc={site.legal.safety} contentsLabel={CONTENTS[lang] || CONTENTS.en} /></Shell>;
+}
+export function CookiesPage({ site, lang, path }: Ctx) {
+  return <Shell site={site} lang={lang} path={path}><LegalPage doc={site.legal.cookies} contentsLabel={CONTENTS[lang] || CONTENTS.en} /></Shell>;
+}
 export function NotFound({ site, lang, path }: Ctx) {
   return (
     <Shell site={site} lang={lang} path={path}>

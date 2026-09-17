@@ -1,5 +1,6 @@
 import type { Site, SpecialtyPage, Story } from "./types";
 import { LEGAL } from "./legal";
+import { COOKIES, SAFETY } from "./policies";
 import en from "./en";
 import { BADGES, CALENDLY, CUSTOMER_LOGOS, EMAIL, INTEGRATION_LOGOS, PEOPLE, PHOTOS, SIGN_IN, TEL, VIDEOS } from "./shared";
 
@@ -354,15 +355,17 @@ const de: Site = {
     },
     footer: {
       tagline: "KI-Sprachagenten für Facharztpraxen. Ihre Praxis läuft. Auch wenn Sie nicht da sind.",
+      about: "Optavius bietet KI-Sprachagenten für Facharztpraxen: Augenheilkunde, Optometrie, Dermatologie und Tierkliniken in den USA und Europa. Der Agent beantwortet Patientenanrufe, bucht und verschiebt Termine, gibt Auskunft zum Bestellstatus und eskaliert dringende Beschwerden nach dem Protokoll der Praxis. Gegründet von Yves Prevoo und Paul Sabou, mit Büros in Houston und Amsterdam.",
       groups: [
         { title: "Produkt", items: [{ label: "Produktübersicht", href: "/product" }, { label: "Konsole", href: "/product/console" }, { label: "Ask Optavius", href: "/product/ask-optavius" }, { label: "Agenten", href: "/product/agents" }, { label: "Integrationen", href: "/product/integrations" }, { label: "Preise", href: "/pricing" }] },
         { title: "Fachgebiete", items: [{ label: "Alle Fachgebiete", href: "/specialties" }, { label: "Augenheilkunde", href: "/specialties/ophthalmology" }, { label: "Optometrie", href: "/specialties/optometry" }, { label: "Dermatologie", href: "/specialties/dermatology" }, { label: "Tiermedizin", href: "/specialties/veterinary" }] },
         { title: "Kunden", items: [{ label: "Kundengeschichten", href: "/customers" }, { label: "OMC Amstelland", href: "/customers/omc-amstelland" }, { label: "North Texas Eye Specialists", href: "/customers/north-texas-eye-specialists" }, { label: "Cubitts", href: "/customers/cubitts" }] },
-        { title: "Unternehmen", items: [{ label: "Über uns", href: "/about" }, { label: "Ressourcen", href: "/resources" }, { label: "Karriere", href: "/careers" }, { label: "Demo buchen", href: "/demo" }, { label: "Anmelden", href: SIGN_IN, external: true }] },
+        { title: "Unternehmen", items: [{ label: "Über uns", href: "/about" }, { label: "Sicherheit und Compliance", href: "/safety-compliance" }, { label: "Ressourcen", href: "/resources" }, { label: "Karriere", href: "/careers" }, { label: "Demo buchen", href: "/demo" }, { label: "Anmelden", href: SIGN_IN, external: true }] },
       ],
-      legal: [{ label: "Datenschutz", href: "/privacy" }, { label: "AGB", href: "/terms" }],
+      legal: [{ label: "Datenschutz", href: "/privacy" }, { label: "AGB", href: "/terms" }, { label: "Cookie-Richtlinie", href: "/cookies" }],
       copyright: "© 2026 Optavius",
     },
+    consent: {"text":"Wir nutzen ein Analysetool (PostHog, in der EU gehostet), um zu sehen, welche Seiten Besuchern helfen. Es läuft nur, wenn Sie zustimmen. Keine Werbe-Cookies.","accept":"Analysen akzeptieren","decline":"Ablehnen","policy":"Cookie-Richtlinie"},
     common: {
       bookDemo: "Demo buchen", callDemo: "Demo-Hotline anrufen", demoNote: "Mit einem Gründer sprechen. Unverbindlich.", learnMore: "Mehr erfahren", readStory: "Geschichte lesen", readMore: "Mehr lesen", discoverMore: "Mehr entdecken", fullStory: "Ganze Geschichte", getStarted: "Jetzt starten", contactSales: "Vertrieb kontaktieren", mostPopular: "Am beliebtesten", perMonth: "/Monat", playVideo: "Video abspielen", pauseVideo: "Video pausieren", customerStories: "Kundengeschichten", allSpecialties: "Alle Fachgebiete", openRoles: "Offene Stellen", search: "Suchen", skip: "Zum Inhalt springen",
     },
@@ -684,7 +687,7 @@ const de: Site = {
   about: {
     meta: { title: "Über uns | Optavius", description: "Optavius nimmt Reibung aus der fachärztlichen Versorgung: für Patienten, für Personal und für Ärzte." },
     title: "Wer wir sind\nund warum wir hier sind.",
-    lede: "Über Optavius.",
+    lede: "Optavius bietet KI-Sprachagenten für Facharztpraxen: Augenheilkunde, Optometrie, Dermatologie und Tierkliniken in den USA und Europa. Der Agent beantwortet Patientenanrufe, bucht und verschiebt Termine, gibt Auskunft zum Bestellstatus und eskaliert dringende Beschwerden nach dem Protokoll der Praxis.",
     image: { src: PHOTOS.examroom, alt: "Untersuchungsraum einer Augenklinik" },
     statement: { title: "Optavius nimmt Reibung aus der fachärztlichen Versorgung: für Patienten, für Personal und für Ärzte.", text: "Der Anfang des Patientenwegs ist oft der frustrierendste Teil. Lange Wartezeiten, uneinheitliche Aufnahme und überlastetes Personal. Wir haben Optavius gebaut, um das zu ändern, angefangen beim Telefon." },
     values: [
@@ -751,7 +754,7 @@ const de: Site = {
     booking: { title: "Zeitfenster wählen", text: "30 Minuten mit Yves. Wir hören uns Ihr Anrufvolumen an und zeigen, was Optavius mit Ihren Anrufen tun würde.", fallback: { label: "Termin wählen", href: CALENDLY, external: true }, note: "Unverbindlich." },
   },
 
-  legal: LEGAL.de,
+  legal: { ...LEGAL.de, cookies: COOKIES.de, safety: SAFETY.de },
 };
 
 export default de;

@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import VideoBehaviors from "./VideoBehaviors";
 import Enhancer from "./Enhancer";
 import CalBooking from "./CalBooking";
+import Consent from "./Consent";
 import type { Site } from "@/content/types";
 import type { Lang } from "@/lib/i18n";
 
@@ -24,6 +25,7 @@ export default function Shell({ children, site, lang, path, navVariant = "defaul
       <VideoBehaviors />
       <Enhancer />
       <CalBooking lang={lang} />
+      <Consent lang={lang} ui={site.ui.consent} policyHref={(lang === "en" ? "" : "/" + lang) + "/cookies"} />
     </div>
   );
 }

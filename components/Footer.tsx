@@ -16,6 +16,7 @@ export default function Footer({ site, lang, path }: { site: Site; lang: Lang; p
               <Logo className="h-9 xl:h-11" />
             </a>
             <p className="max-w-[30ch] text-label-md text-secondary md:pl-2 xl:pl-0">{f.tagline}</p>
+            <p className="max-w-[44ch] text-body-sm text-secondary md:pl-2 xl:pl-0">{f.about}</p>
           </div>
           <div className="col-span-12 grid grid-cols-subgrid gap-y-12 md:col-span-8">
             {f.groups.map((g) => (

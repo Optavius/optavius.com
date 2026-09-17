@@ -5,7 +5,7 @@ import { ARTICLES } from "@/components/site/Pages";
 
 import { SITE_URL } from "@/lib/base";
 export const BASE = SITE_URL;
-const STATIC = ["", "product", "product/console", "product/ask-optavius", "product/agents", "product/integrations", "pricing", "specialties", "customers", "about", "resources", "careers"];
+const STATIC = ["", "product", "product/console", "product/ask-optavius", "product/agents", "product/integrations", "pricing", "specialties", "customers", "about", "resources", "careers", "safety-compliance", "cookies"];
 
 export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {

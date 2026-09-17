@@ -1,5 +1,6 @@
 import type { Site, SpecialtyPage, Story } from "./types";
 import { LEGAL } from "./legal";
+import { COOKIES, SAFETY } from "./policies";
 import { BADGES, CALENDLY, CUSTOMER_LOGOS, EMAIL, INTEGRATION_LOGOS, LINKEDIN, PEOPLE, PHOTOS, SIGN_IN, TEL, TEL_DISPLAY, VIDEOS } from "./shared";
 
 const callDemo = { label: "Call the demo line", href: TEL };
@@ -380,6 +381,7 @@ const en: Site = {
     },
     footer: {
       tagline: "AI voice agents for specialty care. Your clinic, running. Even when you aren't.",
+      about: "Optavius provides AI voice agents for specialty care practices: ophthalmology, optometry, dermatology and veterinary clinics in the United States and Europe. The agent answers patient calls, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol. Founded by Yves Prevoo and Paul Sabou, with offices in Houston and Amsterdam.",
       groups: [
         { title: "Product", items: [
           { label: "Product overview", href: "/product" }, { label: "Console", href: "/product/console" }, { label: "Ask Optavius", href: "/product/ask-optavius" }, { label: "Agents", href: "/product/agents" }, { label: "Integrations", href: "/product/integrations" }, { label: "Pricing", href: "/pricing" },
@@ -388,11 +390,12 @@ const en: Site = {
           { label: "All specialties", href: "/specialties" }, { label: "Ophthalmology", href: "/specialties/ophthalmology" }, { label: "Optometry", href: "/specialties/optometry" }, { label: "Dermatology", href: "/specialties/dermatology" }, { label: "Veterinary", href: "/specialties/veterinary" },
         ] },
         { title: "Customers", items: [{ label: "Customer stories", href: "/customers" }, { label: "OMC Amstelland", href: "/customers/omc-amstelland" }, { label: "North Texas Eye Specialists", href: "/customers/north-texas-eye-specialists" }, { label: "Cubitts", href: "/customers/cubitts" }] },
-        { title: "Company", items: [{ label: "About", href: "/about" }, { label: "Resources", href: "/resources" }, { label: "Careers", href: "/careers" }, { label: "Book a demo", href: "/demo" }, { label: "Sign in", href: SIGN_IN, external: true }] },
+        { title: "Company", items: [{ label: "About", href: "/about" }, { label: "Safety & Compliance", href: "/safety-compliance" }, { label: "Resources", href: "/resources" }, { label: "Careers", href: "/careers" }, { label: "Book a demo", href: "/demo" }, { label: "Sign in", href: SIGN_IN, external: true }] },
       ],
-      legal: [{ label: "Privacy Policy", href: "/privacy" }, { label: "Terms & Conditions", href: "/terms" }],
+      legal: [{ label: "Privacy Policy", href: "/privacy" }, { label: "Terms & Conditions", href: "/terms" }, { label: "Cookie Policy", href: "/cookies" }],
       copyright: "© 2026 Optavius",
     },
+    consent: {"text":"We use one analytics tool (PostHog, hosted in the EU) to see which pages help visitors. It runs only if you agree. No advertising cookies.","accept":"Accept analytics","decline":"Decline","policy":"Cookie policy"},
     common: {
       bookDemo: "Book a demo", callDemo: "Call the demo line", demoNote: "Talk to a founder. No obligations.", learnMore: "Learn more", readStory: "Read the story", readMore: "Read more", discoverMore: "Discover more", fullStory: "Full story", getStarted: "Get started", contactSales: "Contact sales", mostPopular: "Most popular", perMonth: "/month", playVideo: "Play video", pauseVideo: "Pause video", customerStories: "Customer stories", allSpecialties: "All specialties", openRoles: "Open roles", search: "Search", skip: "Skip to main content",
     },
@@ -721,7 +724,7 @@ const en: Site = {
   about: {
     meta: { title: "About | Optavius", description: "Optavius reduces friction in specialty care: for patients, for staff and for clinicians." },
     title: "Who we are\nand why we're here.",
-    lede: "About Optavius.",
+    lede: "Optavius provides AI voice agents for specialty care practices: ophthalmology, optometry, dermatology and veterinary clinics in the United States and Europe. The agent answers patient calls, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol.",
     image: { src: PHOTOS.examroom, alt: "Eye clinic exam room" },
     statement: { title: "Optavius reduces friction in specialty care: for patients, for staff and for clinicians.", text: "The front end of the patient journey is often the most frustrating part. Long hold times, inconsistent intake and overwhelmed staff. We built Optavius to fix that, starting with the phone." },
     values: [
@@ -788,7 +791,7 @@ const en: Site = {
     booking: { title: "Choose a slot", text: "30 minutes with Yves. We hear your call volume and show what Optavius would do with your calls.", fallback: { label: "Pick a time", href: CALENDLY, external: true }, note: "No obligations." },
   },
 
-  legal: LEGAL.en,
+  legal: { ...LEGAL.en, cookies: COOKIES.en, safety: SAFETY.en },
 };
 
 export default en;
