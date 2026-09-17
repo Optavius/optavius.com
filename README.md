@@ -100,7 +100,19 @@ the right third of the frame, and regenerate the poster and the inline thumbnail
   colours and the forced light theme are in `components/CalBooking.tsx`.
 - **Fonts**: GT America (Standard and Mono) from Grilli Type needs a web licence for the domain before launch; Fraunces
   (logo) is open source.
-- No analytics or cookie banner yet. Adding one means a consent tool plus the script in `app/layout.tsx`.
+- **Analytics**: PostHog (EU) loads only after the visitor accepts the banner in `components/Consent.tsx`; the choice is
+  stored in localStorage, never in a cookie. The Cookie Policy (`content/policies.ts`) describes exactly this.
+
+## Migration from the previous site (September 2026)
+
+The previous Astro site had different URLs. `docs/redirect-map.csv` lists every old URL, its destination and the verified
+result. `tooling/redirects.js` (part of `npm run build:static`) turns the map into redirect pages inside `out/`: an old URL
+such as `/learn/x` gets `out/learn/x.html` with an instant meta refresh, a canonical pointing at the new page, a script
+redirect and a plain link, which GitHub Pages serves at the exact old path. Old non-HTML paths (`/sitemap-index.xml`,
+`/.well-known/llm.md`, `/og-image.jpg`) get a copy of the current file. Keep the map when URLs change again: add a row,
+never redirect to the homepage, never chain. `docs/old-site-export.csv` holds the old titles, descriptions, H1s and word
+counts for comparison; `tooling/seo-audit.js` writes `docs/new-site-audit.csv` from the build (titles, descriptions,
+canonicals, H1 count, noindex, word counts, structured data types, links through redirects or to missing pages).
 
 ## Checks
 
