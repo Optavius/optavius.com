@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build:static": "next build && node tooling/post-export.js",
+    "build:static": "next build && node tooling/post-export.js && node tooling/redirects.js",
     "css:mockups": "node scripts-build-mockups-css.mjs",
     "preview": "node tooling/serve-out.js out",
     "check": "node tooling/opsweep.js"
