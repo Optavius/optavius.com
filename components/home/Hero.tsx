@@ -38,13 +38,15 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
   const [shown, setShown] = useState(0);
   const [narrow, setNarrow] = useState(false);
   const [bubbleH, setBubbleH] = useState(300);
+  /* the bubble column gets its phone height from a measurement after mount; it stays invisible until then so the resize is not a layout shift */
+  const [mounted, setMounted] = useState(false);
   /* the next clip and its poster are fetched only once the first clip has been playing a while, so they never compete with the first paint */
   const [warm, setWarm] = useState(false);
   useEffect(() => { const t = setTimeout(() => setWarm(true), 4000); return () => clearTimeout(t); }, []);
   const noteRef = useRef<HTMLParagraphElement>(null);
   useEffect(() => {
     const measure = () => { const n = noteRef.current; const hd = n?.closest("header"); if (!n || !hd) return; setBubbleH(Math.max(180, Math.round(hd.getBoundingClientRect().bottom - n.getBoundingClientRect().bottom - 6))); };
-    measure(); window.addEventListener("resize", measure); return () => window.removeEventListener("resize", measure);
+    measure(); setMounted(true); window.addEventListener("resize", measure); return () => window.removeEventListener("resize", measure);
   }, []);
   useEffect(() => { const mq = window.matchMedia("(max-width: 767px)"); const upd = () => setNarrow(mq.matches); upd(); mq.addEventListener("change", upd); return () => mq.removeEventListener("change", upd); }, []);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -88,7 +90,7 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
             <div className="mx-auto w-full max-w-[1160px] px-container-margin relative z-10">
               {active === i && (
                 <div className="absolute bottom-0 left-0 w-full min-[600px]:right-0 min-[600px]:bottom-0 min-[600px]:left-auto min-[600px]:w-auto">
-                  <div className="flex w-full flex-col justify-end gap-2 overflow-y-clip px-4 pt-4 pb-4 md:pb-6 [mask-image:linear-gradient(to_bottom,transparent_0%,black_32%)] md:gap-3 min-[600px]:w-[454px] md:h-[386px] xl:pb-8" style={narrow ? { height: bubbleH } : undefined}>
+                  <div className="flex w-full flex-col justify-end gap-2 overflow-y-clip px-4 pt-4 pb-4 md:pb-6 [mask-image:linear-gradient(to_bottom,transparent_0%,black_32%)] md:gap-3 min-[600px]:w-[454px] md:h-[386px] xl:pb-8" style={{ ...(narrow ? { height: bubbleH } : {}), visibility: mounted ? undefined : "hidden" }}>
                     {s.bubbles.map((b, j) => (
                       <BubbleView key={j} b={b} rank={shown - 1 - j} open={j < shown} />
                     ))}

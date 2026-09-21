@@ -41,7 +41,7 @@ export default function CalBooking({ lang }: { lang: string }) {
   useEffect(() => {
     const link = calLink(lang);
     if (!link) return;
-    loadCal();
+    /* the Cal.com embed script loads on the first click on a demo link; its loader queues the modal call until the script is ready */
     const onClick = (e: MouseEvent) => {
       const a = (e.target as HTMLElement | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
       if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -49,6 +49,7 @@ export default function CalBooking({ lang }: { lang: string }) {
       const p = BASE && u.pathname.startsWith(BASE) ? u.pathname.slice(BASE.length) : u.pathname;
       if (u.origin !== location.origin || !/^\/(nl\/|de\/)?demo\/?$/.test(p)) return;
       e.preventDefault();
+      loadCal();
       window.Cal("modal", { calLink: link, config: CAL_CONFIG });
     };
     document.addEventListener("click", onClick);
