@@ -39,8 +39,10 @@ for (const f of htmlFiles) {
   s = s.replace(/<script src="([^"]*\/_next\/static\/chunks\/[^"]+\.js)"(?![^>]*noModule)[^>]*><\/script>/g, (_, u) => { urls.push(u); return ""; });
   s = s.replace(/<link rel="preload" as="script"[^>]*>/g, "");
   const lateCss = late ? `${BASE}/fonts/late.css` : "";
-  // after the load event: attach the framework scripts and the secondary fonts stylesheet
-  const loader = `<script>(function(){var u=${JSON.stringify(urls)},c=${JSON.stringify(lateCss)};function go(){if(c){var l=document.createElement("link");l.rel="stylesheet";l.href=c;document.head.appendChild(l)}u.forEach(function(x){var e=document.createElement("script");e.src=x;e.async=true;document.body.appendChild(e)})}if(document.readyState==="complete")setTimeout(go,1200);else window.addEventListener("load",function(){setTimeout(go,1200)})})()</script>`;
+  // after the load event and after the browser has painted a frame (two animation frames), plus 1.2 s: attach the framework
+  // scripts and the secondary fonts stylesheet. Waiting for a painted frame keeps the scripts behind the first paint even when
+  // the browser is slow to produce it; the 6 s timer is the fallback for a tab that is not visible.
+  const loader = `<script>(function(){var u=${JSON.stringify(urls)},c=${JSON.stringify(lateCss)},d=0;function go(){if(d)return;d=1;if(c){var l=document.createElement("link");l.rel="stylesheet";l.href=c;document.head.appendChild(l)}u.forEach(function(x){var e=document.createElement("script");e.src=x;e.async=true;document.body.appendChild(e)})}function after(){var n=0;function f(){if(++n<2)requestAnimationFrame(f);else setTimeout(go,1200)}requestAnimationFrame(f);setTimeout(go,6000)}if(document.readyState==="complete")after();else window.addEventListener("load",after)})()</script>`;
   s = s.replace("</body>", loader + (lateCss ? `<noscript><link rel="stylesheet" href="${lateCss}"></noscript>` : "") + "</body>");
   fs.writeFileSync(f, s); d++;
 }
