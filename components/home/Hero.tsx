@@ -47,7 +47,7 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
      until then the first frame (poster) is on screen */
   const [ready, setReady] = useState(false);
   useEffect(() => {
-    let t = 0; const go = () => { t = window.setTimeout(() => setReady(true), 250); };
+    let t = 0; const go = () => { t = window.setTimeout(() => setReady(true), 1500); };
     if (document.readyState === "complete") go(); else window.addEventListener("load", go, { once: true });
     return () => { clearTimeout(t); window.removeEventListener("load", go); };
   }, []);

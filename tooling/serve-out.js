@@ -13,5 +13,8 @@ http.createServer((req, res) => {
   const ext = path.extname(p); const stat = fs.statSync(p);
   const range = req.headers.range;
   if (range && ext === '.mp4') { const [s, e] = range.replace('bytes=', '').split('-').map(Number); const end = e || stat.size - 1; res.writeHead(206, { 'Content-Type': types[ext], 'Content-Range': `bytes ${s}-${end}/${stat.size}`, 'Accept-Ranges': 'bytes', 'Content-Length': end - s + 1 }); return fs.createReadStream(p, { start: s, end }).pipe(res); }
-  res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream', 'Content-Length': stat.size }); fs.createReadStream(p).pipe(res);
+  // gzip text like GitHub Pages does, so local Lighthouse runs are comparable with the live site
+  const gz = /^\.(html|css|js|json|svg|xml|txt|webmanifest)$/.test(ext) && /gzip/.test(req.headers['accept-encoding'] || '');
+  if (gz) { res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream', 'Content-Encoding': 'gzip', 'Cache-Control': 'max-age=600' }); return fs.createReadStream(p).pipe(require('zlib').createGzip({ level: 6 })).pipe(res); }
+  res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream', 'Content-Length': stat.size, 'Cache-Control': 'max-age=600' }); fs.createReadStream(p).pipe(res);
 }).listen(port, () => console.log('serving', root, 'at http://localhost:' + port + base));
