@@ -95,7 +95,7 @@ export default function DemoPlayer({ d, lang }: { d: DemoSection; lang: string }
               <a className={BTN_PRIMARY + SM + " h-auto! py-2"} href={call.href}><CallLabel label={call.label} href={call.href} /></a>
             </div>
             <p className="text-label-sm text-white/70">{d.note}</p>
-            <audio ref={audio} src={SRC(lang)} preload="metadata" />
+            <audio ref={audio} src={SRC(lang)} preload="none" />
           </div>
           <div className="relative flex min-h-[320px] flex-1 flex-col gap-3 overflow-hidden xl:max-h-[420px]">
             <div ref={list} className="relative flex flex-col gap-3 overflow-y-auto pr-1 no-scrollbar" style={{ maskImage: "linear-gradient(to bottom, black 85%, transparent)" }}>

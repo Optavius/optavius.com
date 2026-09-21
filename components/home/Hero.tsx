@@ -38,6 +38,9 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
   const [shown, setShown] = useState(0);
   const [narrow, setNarrow] = useState(false);
   const [bubbleH, setBubbleH] = useState(300);
+  /* the next clip and its poster are fetched only once the first clip has been playing a while, so they never compete with the first paint */
+  const [warm, setWarm] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setWarm(true), 4000); return () => clearTimeout(t); }, []);
   const noteRef = useRef<HTMLParagraphElement>(null);
   useEffect(() => {
     const measure = () => { const n = noteRef.current; const hd = n?.closest("header"); if (!n || !hd) return; setBubbleH(Math.max(180, Math.round(hd.getBoundingClientRect().bottom - n.getBoundingClientRect().bottom - 6))); };
@@ -94,17 +97,20 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
               )}
             </div>
             {/* the clip's own first frame sits behind it (inline thumbnail first, then the real frame), so loading and crossfades never show a flat colour */}
-            <div className={"transition-opacity duration-500 absolute inset-0 " + (active === i ? "opacity-100" : "opacity-0 delay-200")} style={{ backgroundColor: "#2f2a25", backgroundImage: [s.poster && `url(${s.poster})`, s.lqip && `url(${s.lqip})`].filter(Boolean).join(", ") || undefined, backgroundSize: "cover", backgroundPosition: narrow ? "75% center" : "center" }}>
+            <div className={"transition-opacity duration-500 absolute inset-0 " + (active === i ? "opacity-100" : "opacity-0 delay-200")} style={{ backgroundColor: "#2f2a25", backgroundImage: [s.poster && (i === active || (warm && i === (active + 1) % slides.length)) && `url(${s.poster})`, s.lqip && `url(${s.lqip})`].filter(Boolean).join(", ") || undefined, backgroundSize: "cover", backgroundPosition: narrow ? "75% center" : "center" }}>
               <video
                 ref={(el) => { videoRefs.current[i] = el; }}
                 className={"block h-full w-full pointer-events-none absolute object-cover object-[75%_center] md:object-center" + (ZOOM[(s.video.match(/hero[0-9]/) || [""])[0]] || "")}
                 muted
                 playsInline
-                poster={s.poster || undefined}
+                poster={s.poster && (i === active || (warm && i === (active + 1) % slides.length)) ? s.poster : undefined}
                 autoPlay={i === active}
-                preload={i === active || i === (active + 1) % slides.length ? "auto" : "none"}
-                src={i === active || i === (active + 1) % slides.length || loaded.current.has(i) ? (narrow ? s.video.replace(/\.mp4$/, "-720.mp4") : s.video) + "#t=0.001" : undefined}
-              />
+                preload={i === active || (warm && i === (active + 1) % slides.length) ? "auto" : "none"}
+              >
+                {/* the browser picks one file: 720p on phones, 1080p elsewhere, never both */}
+                <source src={s.video.replace(/\.mp4$/, "-720.mp4") + "#t=0.001"} type="video/mp4" media="(max-width: 767px)" />
+                <source src={s.video + "#t=0.001"} type="video/mp4" />
+              </video>
               <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-black/10" />
             </div>
           </Fragment>

@@ -15,7 +15,7 @@ export const SIGN_IN = "https://app.optavius.com";
 
 export const G = asset("/optavius/gen");
 export const LOGOS = {
-  omc: { src: asset("/optavius/logo-omc.png"), alt: "OMC Amstelland" },
+  omc: { src: asset("/optavius/logo-omc.webp"), alt: "OMC Amstelland" },
   ntx: { src: asset("/optavius/logo-ntx.png"), alt: "North Texas Eye Specialists" },
   ntxWhite: asset("/optavius/logo-ntx-white.png"),
   cubitts: { src: asset("/optavius/logo-cubitts.svg"), alt: "Cubitts" },
