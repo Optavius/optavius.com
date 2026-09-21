@@ -43,6 +43,14 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
   /* the next clip and its poster are fetched only once the first clip has been playing a while, so they never compete with the first paint */
   const [warm, setWarm] = useState(false);
   useEffect(() => { const t = setTimeout(() => setWarm(true), 4000); return () => clearTimeout(t); }, []);
+  /* the first clip starts only after the page has loaded, so its download never competes with the stylesheet and the headline font;
+     until then the first frame (poster) is on screen */
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let t = 0; const go = () => { t = window.setTimeout(() => setReady(true), 250); };
+    if (document.readyState === "complete") go(); else window.addEventListener("load", go, { once: true });
+    return () => { clearTimeout(t); window.removeEventListener("load", go); };
+  }, []);
   const noteRef = useRef<HTMLParagraphElement>(null);
   useEffect(() => {
     const measure = () => { const n = noteRef.current; const hd = n?.closest("header"); if (!n || !hd) return; setBubbleH(Math.max(180, Math.round(hd.getBoundingClientRect().bottom - n.getBoundingClientRect().bottom - 6))); };
@@ -56,6 +64,7 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
   const L = (p: string) => (/^(https?:|mailto:|tel:|#)/.test(p) ? p : BASE + (lang === "en" ? p : `/${lang}${p}`));
 
   useEffect(() => {
+    if (!ready) return;
     loaded.current.add(active); loaded.current.add((active + 1) % slides.length);
     const v = videoRefs.current[active];
     if (v) { try { if (v.readyState === 0) v.load(); v.currentTime = 0; const p = v.play(); if (p) p.catch(() => {}); } catch {} }
@@ -63,7 +72,7 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
     const timers = BUBBLE_TIMES.map((t, i) => setTimeout(() => setShown(i + 1), t));
     const next = setTimeout(() => setActive((a) => (a + 1) % slides.length), SLIDE_MS);
     return () => { timers.forEach(clearTimeout); clearTimeout(next); };
-  }, [active, slides.length, narrow]);
+  }, [active, slides.length, narrow, ready]);
 
   return (
     <header className="relative isolate h-svh w-full md:h-[90svh] md:min-h-[820px]">
@@ -89,8 +98,8 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
           <Fragment key={i}>
             <div className="mx-auto w-full max-w-[1160px] px-container-margin relative z-10">
               {active === i && (
-                <div className="absolute bottom-0 left-0 w-full min-[600px]:right-0 min-[600px]:bottom-0 min-[600px]:left-auto min-[600px]:w-auto">
-                  <div className="flex w-full flex-col justify-end gap-2 overflow-y-clip px-4 pt-4 pb-4 md:pb-6 [mask-image:linear-gradient(to_bottom,transparent_0%,black_32%)] md:gap-3 min-[600px]:w-[454px] md:h-[386px] xl:pb-8" style={{ ...(narrow ? { height: bubbleH } : {}), visibility: mounted ? undefined : "hidden" }}>
+                <div className="absolute bottom-0 left-0 w-full min-[600px]:right-0 min-[600px]:bottom-0 min-[600px]:left-auto min-[600px]:w-auto" style={{ visibility: mounted ? undefined : "hidden" }}>
+                  <div className="flex w-full flex-col justify-end gap-2 overflow-y-clip px-4 pt-4 pb-4 md:pb-6 [mask-image:linear-gradient(to_bottom,transparent_0%,black_32%)] md:gap-3 min-[600px]:w-[454px] md:h-[386px] xl:pb-8" style={narrow ? { height: bubbleH } : undefined}>
                     {s.bubbles.map((b, j) => (
                       <BubbleView key={j} b={b} rank={shown - 1 - j} open={j < shown} />
                     ))}
@@ -106,8 +115,7 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
                 muted
                 playsInline
                 poster={s.poster && (i === active || (warm && i === (active + 1) % slides.length)) ? s.poster : undefined}
-                autoPlay={i === active}
-                preload={i === active || (warm && i === (active + 1) % slides.length) ? "auto" : "none"}
+                preload={ready && (i === active || (warm && i === (active + 1) % slides.length)) ? "auto" : "none"}
               >
                 {/* the browser picks one file: 720p on phones, 1080p elsewhere, never both */}
                 <source src={s.video.replace(/\.mp4$/, "-720.mp4") + "#t=0.001"} type="video/mp4" media="(max-width: 767px)" />

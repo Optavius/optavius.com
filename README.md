@@ -21,8 +21,11 @@ NEXT_PUBLIC_BASE_PATH="" NEXT_PUBLIC_SITE_URL="https://www.optavius.com" npm run
 NEXT_PUBLIC_BASE_PATH="" npm run preview        # http://localhost:3300
 ```
 
-`build:static` runs `next build` (writes `out/`) and then `tooling/post-export.js`, which sets the `lang` attribute on
-the Dutch and German pages.
+`build:static` runs `next build` (writes `out/`), then `tooling/post-export.js` (sets the `lang` attribute on the Dutch and
+German pages), `tooling/redirects.js` (redirect pages for the old site's URLs) and `tooling/purge-css.js` (drops the rules of
+the design-system stylesheet that no page or script uses; about 435 KB becomes 165 KB). A class that is only assembled at
+runtime by string concatenation must also appear somewhere as a full string literal, or the purge removes it; check a page
+with `node tooling/purge-check.js out/<page>/index.html`.
 
 ## Environment variables
 
