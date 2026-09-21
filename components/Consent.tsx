@@ -18,8 +18,14 @@ export default function Consent({ lang, ui, policyHref }: { lang: string; ui: { 
   useEffect(() => {
     let choice: string | null = null;
     try { choice = localStorage.getItem(KEY); } catch {}
-    if (choice === "granted") void startAnalytics();
-    else if (choice !== "denied") setOpen(true);
+    if (choice === "granted") { void startAnalytics(); return; }
+    if (choice === "denied") return;
+    /* the banner appears a moment after the page has settled (or on the first scroll), not on top of the first paint */
+    let t = 0; let shown = false; const show = () => { if (shown) return; shown = true; setOpen(true); };
+    const arm = () => { t = window.setTimeout(show, 2500); };
+    if (document.readyState === "complete") arm(); else window.addEventListener("load", arm, { once: true });
+    window.addEventListener("scroll", show, { once: true, passive: true });
+    return () => { clearTimeout(t); window.removeEventListener("load", arm); window.removeEventListener("scroll", show); };
   }, []);
   const decide = (granted: boolean) => {
     try { localStorage.setItem(KEY, granted ? "granted" : "denied"); } catch {}
