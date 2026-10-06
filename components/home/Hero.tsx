@@ -146,9 +146,11 @@ export default function Hero({
     if (!ready) return;
     loaded.current.add(active);
     loaded.current.add((active + 1) % slides.length);
-    /* only one clip may hold a decoder at a time: iOS/WebKit stalls when multiple videos are left playing concurrently */
+    /* only one clip may hold a decoder at a time: iOS/WebKit stalls when multiple videos are left playing concurrently.
+       pause() alone leaves the element's buffered data (and its decoder session) intact, so also load() it to force
+       a full reset; the slide that was just deactivated has a full cycle before it's needed again to re-buffer. */
     videoRefs.current.forEach((other, i) => {
-      if (i !== active && other && !other.paused) other.pause();
+      if (i !== active && other && !other.paused) { other.pause(); other.load(); }
     });
     const v = videoRefs.current[active];
     if (v) {
