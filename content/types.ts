@@ -127,7 +127,6 @@ export type Site = {
     title: string; lede: string; image: { src: string; alt: string };
     statement: { title: string; text: string };
     values: AccordionItem[];
-    founders: { title: string; lede: string; people: { name: string; role: string; text: string; image: string }[] };
         offices: { title: string; text: string; cities: string[] };
     cta: CTASection;
   };

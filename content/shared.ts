@@ -55,8 +55,6 @@ export const PHOTOS = {
   slitlamp: asset("/optavius/img-slitlamp.webp"),
   child: asset("/optavius/img-child.webp"),
   childexam: asset("/optavius/img-childexam.webp"),
-  yves: asset("/optavius/img-yves.webp"),
-  paul: asset("/optavius/img-paul.webp"),
   storyOmc: `${G}/story-omc.webp`,
   storyCubitts: `${G}/story-cubitts.webp`,
 };

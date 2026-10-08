@@ -355,7 +355,7 @@ const nl: Site = {
     },
     footer: {
       tagline: "AI voice agents voor specialistische zorg. Uw praktijk draait door. Ook als u er niet bent.",
-      about: "Optavius levert AI-spraakagenten voor specialistische praktijken: oogheelkunde, optometrie, dermatologie en dierenklinieken in de Verenigde Staten en Europa. De agent beantwoordt patiëntgesprekken, plant en verzet afspraken, geeft orderstatus en escaleert urgente klachten volgens het protocol van de praktijk. Opgericht door Yves Prevoo en Paul Sabou, met kantoren in Houston en Amsterdam.",
+      about: "Optavius levert AI-spraakagenten voor specialistische praktijken: oogheelkunde, optometrie, dermatologie en dierenklinieken in de Verenigde Staten en Europa. De agent beantwoordt patiëntgesprekken, plant en verzet afspraken, geeft orderstatus en escaleert urgente klachten volgens het protocol van de praktijk. Met kantoren in Houston en Amsterdam.",
       groups: [
         { title: "Product", items: [{ label: "Productoverzicht", href: "/product" }, { label: "Console", href: "/product/console" }, { label: "Ask Optavius", href: "/product/ask-optavius" }, { label: "Agents", href: "/product/agents" }, { label: "Koppelingen", href: "/product/integrations" }, { label: "Prijzen", href: "/pricing" }] },
         { title: "Specialismen", items: [{ label: "Alle specialismen", href: "/specialties" }, { label: "Oogheelkunde", href: "/specialties/ophthalmology" }, { label: "Optometrie", href: "/specialties/optometry" }, { label: "Dermatologie", href: "/specialties/dermatology" }, { label: "Diergeneeskunde", href: "/specialties/veterinary" }] },
@@ -697,14 +697,6 @@ const nl: Site = {
       { icon: "bolt", title: "Snel resultaat", text: "Live in dagen, niet in maanden. Een praktijk schakelt haar nummer door, keurt haar paden goed en ziet dezelfde week de eerste gesprekken in haar dashboard." },
       { icon: "chart", title: "Bewijs boven beloftes", text: "We meten alles en laten u de cijfers zien. Werkt iets niet, dan vertellen we het u en lossen we het op." },
     ],
-    founders: {
-      title: "Onze oprichters",
-      lede: "Optavius is opgericht door Yves Prevoo en Paul Sabou, die meer dan twintig jaar zorgtechnologie en gereguleerde medische hulpmiddelen meebrengen naar de balie.",
-      people: [
-        { name: "Yves Prevoo", role: "Oprichter en CEO", image: PHOTOS.yves, text: "Yves werkte meer dan twintig jaar in zorgtechnologie, in product, regelgeving en klinische operaties. Als lid van het oprichtersteam van Easee, het digitale oogtestbedrijf, hielp hij een van de eerste producten bouwen die CE-klasse IIa onder de EU MDR bereikten. Bij Optavius leidt hij de weg naar FDA- en CE-goedkeuring voor de AI-functies die de agent steeds zelfstandiger maken." },
-        { name: "Paul Sabou", role: "Medeoprichter en CTO", image: PHOTOS.paul, text: "Paul is serieondernemer en technisch leider. Als medeoprichter en CTO van BusyMachines, dat groeide tot meer dan vijftig mensen voor de overname, adviseerde hij zestig startups over technologie en strategie. Zijn werk omvat zorgdossiersystemen en gedistribueerde platforms. Bij Optavius is hij eigenaar van de architectuur en het product." },
-      ],
-    },
     offices: { title: "Onze kantoren", text: "Vanuit {cities} werken we met praktijken in de Verenigde Staten, Nederland en daarbuiten.", cities: ["Houston", "Amsterdam"] },
     cta: { ...cta, title: "Meer weten?", text: "Vertel ons over uw praktijk en we laten zien wat Optavius met uw oproepen zou doen." },
   },
@@ -728,7 +720,7 @@ const nl: Site = {
     culture: [
       { icon: "marker", title: "Amsterdam en Houston", text: "We werken vanuit Amsterdam en Houston en brengen de meeste tijd door bij klanten. Op afstand werken kan als het werk het toelaat." },
       { icon: "heart", title: "Klant nul", text: "We draaien Optavius op Optavius. Onze eigen financiën, sales ops en support draaien op de agents die we verkopen." },
-      { icon: "sparkles", title: "Klein team, grote hefboom", text: "Drie oprichters, een hands-on tech lead en agentische tooling. Je bent eigenaar van hele uitkomsten, niet van tickets." },
+      { icon: "sparkles", title: "Klein team, grote hefboom", text: "Een klein oprichtersteam en agentische tooling. Je bent eigenaar van hele uitkomsten, niet van tickets." },
       { icon: "users", title: "Klinische partners", text: "Designpartners in Nederland en Texas beoordelen wat we bouwen voordat het een patiënt bereikt." },
     ],
     interviewing: { title: "Solliciteren bij Optavius", paragraphs: ["We nemen aan op oordeelsvermogen en tempo. Je ontmoet de oprichters, werkt een echt probleem uit onze backlog uit en spreekt een klant.", "Gesprekken vinden plaats in Amsterdam, Houston of via een videocall. Hoe dan ook zie je hoe we werken voordat je beslist."] },

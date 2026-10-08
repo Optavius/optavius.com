@@ -355,7 +355,7 @@ const de: Site = {
     },
     footer: {
       tagline: "KI-Sprachagenten für Facharztpraxen. Ihre Praxis läuft. Auch wenn Sie nicht da sind.",
-      about: "Optavius bietet KI-Sprachagenten für Facharztpraxen: Augenheilkunde, Optometrie, Dermatologie und Tierkliniken in den USA und Europa. Der Agent beantwortet Patientenanrufe, bucht und verschiebt Termine, gibt Auskunft zum Bestellstatus und eskaliert dringende Beschwerden nach dem Protokoll der Praxis. Gegründet von Yves Prevoo und Paul Sabou, mit Büros in Houston und Amsterdam.",
+      about: "Optavius bietet KI-Sprachagenten für Facharztpraxen: Augenheilkunde, Optometrie, Dermatologie und Tierkliniken in den USA und Europa. Der Agent beantwortet Patientenanrufe, bucht und verschiebt Termine, gibt Auskunft zum Bestellstatus und eskaliert dringende Beschwerden nach dem Protokoll der Praxis. Mit Büros in Houston und Amsterdam.",
       groups: [
         { title: "Produkt", items: [{ label: "Produktübersicht", href: "/product" }, { label: "Konsole", href: "/product/console" }, { label: "Ask Optavius", href: "/product/ask-optavius" }, { label: "Agenten", href: "/product/agents" }, { label: "Integrationen", href: "/product/integrations" }, { label: "Preise", href: "/pricing" }] },
         { title: "Fachgebiete", items: [{ label: "Alle Fachgebiete", href: "/specialties" }, { label: "Augenheilkunde", href: "/specialties/ophthalmology" }, { label: "Optometrie", href: "/specialties/optometry" }, { label: "Dermatologie", href: "/specialties/dermatology" }, { label: "Tiermedizin", href: "/specialties/veterinary" }] },
@@ -695,14 +695,6 @@ const de: Site = {
       { icon: "bolt", title: "Schnell zum Nutzen", text: "Live in Tagen, nicht Monaten. Eine Praxis leitet ihre Nummer weiter, gibt ihre Pfade frei und sieht in derselben Woche die ersten Anrufe in ihrem Dashboard." },
       { icon: "chart", title: "Beweise statt Versprechen", text: "Wir messen alles und zeigen Ihnen die Zahlen. Wenn etwas nicht funktioniert, sagen wir es Ihnen und beheben es." },
     ],
-    founders: {
-      title: "Unsere Gründer",
-      lede: "Optavius wurde von Yves Prevoo und Paul Sabou gegründet, die mehr als zwanzig Jahre Gesundheitstechnologie und regulierte Medizinprodukte an den Empfang bringen.",
-      people: [
-        { name: "Yves Prevoo", role: "Gründer und CEO", image: PHOTOS.yves, text: "Yves hat mehr als zwanzig Jahre in der Gesundheitstechnologie gearbeitet, in Produkt, Regulatorik und klinischem Betrieb. Als Teil des Gründungsteams von Easee, dem digitalen Sehtest-Unternehmen, half er, eines der ersten Produkte mit CE-Klasse IIa unter der EU-MDR zu bauen. Bei Optavius führt er den Weg zur FDA- und CE-Zulassung der KI-Funktionen, die den Agenten schrittweise autonomer machen." },
-        { name: "Paul Sabou", role: "Mitgründer und CTO", image: PHOTOS.paul, text: "Paul ist Serienunternehmer und technischer Leiter. Als Mitgründer und CTO von BusyMachines, das vor der Übernahme auf mehr als fünfzig Mitarbeitende wuchs, beriet er sechzig Start-ups zu Technologie und Strategie. Seine Arbeit umfasst Patientenaktensysteme und verteilte Plattformen. Bei Optavius verantwortet er Architektur und Produkt." },
-      ],
-    },
     offices: { title: "Unsere Standorte", text: "Von {cities} aus arbeiten wir mit Praxen in den USA, den Niederlanden und darüber hinaus.", cities: ["Houston", "Amsterdam"] },
     cta: { ...cta, title: "Mehr erfahren?", text: "Erzählen Sie uns von Ihrer Praxis, und wir zeigen Ihnen, was Optavius mit Ihren Anrufen machen würde." },
   },
@@ -726,7 +718,7 @@ const de: Site = {
     culture: [
       { icon: "marker", title: "Amsterdam und Houston", text: "Wir arbeiten von Amsterdam und Houston aus und verbringen die meiste Zeit bei Kunden. Remote geht, wenn die Aufgabe es zulässt." },
       { icon: "heart", title: "Kunde null", text: "Wir betreiben Optavius mit Optavius. Unsere eigene Buchhaltung, Sales Ops und Support laufen auf den Agenten, die wir verkaufen." },
-      { icon: "sparkles", title: "Kleines Team, große Hebelwirkung", text: "Drei Gründer, ein hands-on Tech Lead und agentische Werkzeuge. Du verantwortest ganze Ergebnisse, keine Tickets." },
+      { icon: "sparkles", title: "Kleines Team, große Hebelwirkung", text: "Ein kleines Gründerteam und agentische Werkzeuge. Du verantwortest ganze Ergebnisse, keine Tickets." },
       { icon: "users", title: "Klinische Partner", text: "Designpartner in den Niederlanden und Texas prüfen, was wir bauen, bevor es einen Patienten erreicht." },
     ],
     interviewing: { title: "Bewerben bei Optavius", paragraphs: ["Wir stellen nach Urteilsvermögen und Tempo ein. Du triffst die Gründer, arbeitest ein echtes Problem aus unserem Backlog durch und sprichst mit einem Kunden.", "Gespräche finden in Amsterdam, Houston oder per Videocall statt. So oder so siehst du, wie wir arbeiten, bevor du dich entscheidest."] },

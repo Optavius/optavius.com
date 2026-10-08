@@ -381,7 +381,7 @@ const en: Site = {
     },
     footer: {
       tagline: "AI voice agents for specialty care. Your clinic, running. Even when you aren't.",
-      about: "Optavius provides AI voice agents for specialty care practices: ophthalmology, optometry, dermatology and veterinary clinics in the United States and Europe. The agent answers patient calls, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol. Founded by Yves Prevoo and Paul Sabou, with offices in Houston and Amsterdam.",
+      about: "Optavius provides AI voice agents for specialty care practices: ophthalmology, optometry, dermatology and veterinary clinics in the United States and Europe. The agent answers patient calls, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol. With offices in Houston and Amsterdam.",
       groups: [
         { title: "Product", items: [
           { label: "Product overview", href: "/product" }, { label: "Console", href: "/product/console" }, { label: "Ask Optavius", href: "/product/ask-optavius" }, { label: "Agents", href: "/product/agents" }, { label: "Integrations", href: "/product/integrations" }, { label: "Pricing", href: "/pricing" },
@@ -732,14 +732,6 @@ const en: Site = {
       { icon: "bolt", title: "Speed to value", text: "Live in days, not months. A practice forwards its number, approves its pathways and sees the first calls in its dashboard the same week." },
       { icon: "chart", title: "Proof over promises", text: "We measure everything and show you the numbers. If something isn't working, we tell you and fix it." },
     ],
-    founders: {
-      title: "Our founders",
-      lede: "Optavius was founded by Yves Prevoo and Paul Sabou, who bring more than twenty years of healthcare technology and regulated medical devices to the front desk.",
-      people: [
-        { name: "Yves Prevoo", role: "Founder and CEO", image: PHOTOS.yves, text: "Yves spent more than twenty years in healthcare technology across product, regulatory affairs and clinical operations. As part of the founding team at Easee, the digital eye-testing company, he helped build one of the first products to reach CE Class IIa under the EU MDR. At Optavius he leads the push toward FDA and CE approval for the AI functions that make the agent progressively more autonomous." },
-        { name: "Paul Sabou", role: "Co-founder and CTO", image: PHOTOS.paul, text: "Paul is a serial entrepreneur and technical leader. As co-founder and CTO of BusyMachines, which grew to more than fifty people before its acquisition, he advised sixty startups on technology and strategy. His work spans healthcare record systems and distributed platforms. At Optavius he owns the architecture and the product." },
-      ],
-    },
     offices: { title: "Our offices", text: "Based in {cities}, we work with practices in the United States, the Netherlands and beyond.", cities: ["Houston", "Amsterdam"] },
     cta: { ...cta, title: "Want to know more?", text: "Tell us about your practice and we'll show you what Optavius would do with your calls." },
   },
@@ -763,7 +755,7 @@ const en: Site = {
     culture: [
       { icon: "marker", title: "Amsterdam and Houston", text: "We work from Amsterdam and Houston and spend most of our time with customers. Remote works when the job allows it." },
       { icon: "heart", title: "Customer zero", text: "We run Optavius on Optavius. Our own finance, sales ops and support run on the agents we sell." },
-      { icon: "sparkles", title: "Small team, big leverage", text: "Three founders, a hands-on tech lead and agentic tooling. You'll own whole outcomes, not tickets." },
+      { icon: "sparkles", title: "Small team, big leverage", text: "A small founding team and agentic tooling. You'll own whole outcomes, not tickets." },
       { icon: "users", title: "Clinical partners", text: "Design partners in the Netherlands and Texas review what we build before it reaches a patient." },
     ],
     interviewing: { title: "Interviewing at Optavius", paragraphs: ["We hire for judgment and pace. You'll meet the founders, work through a real problem from our backlog and talk to a customer.", "Interviews take place in Amsterdam, Houston or on a call. Either way, you'll see how we work before you decide."] },

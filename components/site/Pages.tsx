@@ -268,21 +268,6 @@ export function AboutPage({ site, lang, path }: Ctx) {
         </div>
       </Section>
       <ValuesSection items={a.values} />
-      <Section theme="theme-tech" z={1}>
-        <CenterHead title={a.founders.title} lede={a.founders.lede} />
-        <div className="grid grid-cols-12 gap-grid-gutter gap-y-6">
-          {a.founders.people.map((p) => (
-            <div key={p.name} className="col-span-12 flex flex-col gap-6 rounded-3xl bg-gray-700 p-6 md:col-span-6 md:flex-row md:p-8">
-              <figure className="relative h-28 w-28 shrink-0 overflow-hidden rounded-2xl bg-gray-400"><Img alt={p.name} className="block h-full w-full object-cover" style={p.image.includes("paul") ? { transform: "scale(1.18)", objectPosition: "58% 62%" } : undefined} src={p.image} /></figure>
-              <div className="flex flex-col gap-2">
-                <h3 className="text-headline-sm text-white">{p.name}</h3>
-                <p className="text-label-md text-gray-200">{p.role}</p>
-                <p className="mt-2 text-body-sm text-gray-100">{p.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
       {false && (<Section theme="theme-base" z={4}>
         <LeftHead title="" />
         <div className="grid grid-cols-12 gap-grid-gutter gap-y-6">
