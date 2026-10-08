@@ -255,10 +255,12 @@ export default function Hero({
               )}
             </div>
             {/* the clip's own first frame sits behind it (inline thumbnail first, then the real frame), so loading and crossfades never show a flat colour */}
+            {/* inactive slides rest at 1%, not 0: iOS WebKit treats an opacity-0 video as invisible and refuses/pauses its play(),
+                and play() for the next clip runs while its slide is still at the start of the fade-in */}
             <div
               className={
                 "transition-opacity duration-500 absolute inset-0 " +
-                (active === i ? "opacity-100" : "opacity-0 delay-200")
+                (active === i ? "opacity-100" : "opacity-1 delay-200")
               }
               style={{
                 backgroundColor: "#2f2a25",
