@@ -346,7 +346,7 @@ const nl: Site = {
         { label: "Diergeneeskunde", text: "Elke eigenaar gehoord, elk dier ingepland.", href: "/specialties/veterinary" },
       ],
       companyItems: [
-        { label: "Over ons", text: "Wie Optavius bouwt, en waarom.", href: "/about" },
+        { label: "Over ons", text: "Wat Optavius doet, en waarom.", href: "/about" },
         { label: "Werken bij", text: "Help specialistische zorg elke oproep te beantwoorden.", href: "/careers" },
         { label: "Kennisbank", text: "Gidsen, vergelijkingen en klantverhalen.", href: "/resources" },
         { label: "Demo plannen", text: "Kies een moment met een oprichter.", href: "/demo" },
@@ -688,7 +688,7 @@ const nl: Site = {
 
   about: {
     meta: { title: "Over ons | Optavius", description: "Optavius vermindert wrijving in specialistische zorg: voor patiënten, voor medewerkers en voor artsen." },
-    title: "Wie we zijn\nen waarom we hier zijn.",
+    title: "Wat Optavius doet\nen waarom het ertoe doet.",
     lede: "Optavius levert AI-spraakagenten voor specialistische praktijken: oogheelkunde, optometrie, dermatologie en dierenklinieken in de Verenigde Staten en Europa. De agent beantwoordt patiëntgesprekken, plant en verzet afspraken, geeft orderstatus en escaleert urgente klachten volgens het protocol van de praktijk.",
     image: { src: PHOTOS.examroom, alt: "Onderzoekskamer van een oogkliniek" },
     statement: { title: "Optavius vermindert wrijving in specialistische zorg: voor patiënten, voor medewerkers en voor artsen.", text: "De voorkant van het patiënttraject is vaak het meest frustrerende deel. Lange wachttijden, wisselende intake en overbelaste medewerkers. We hebben Optavius gebouwd om dat op te lossen, te beginnen bij de telefoon." },
@@ -716,14 +716,14 @@ const nl: Site = {
     lede: "Bouw de agents die de telefoon opnemen voor specialistische zorg.",
     cta: { label: "Vacatures", href: "#open-roles" },
     image: { src: PHOTOS.story, alt: "Kliniekteam aan het werk" },
-    statement: "We zijn een klein team dat AI-agents bouwt die praktijken aannemen, aansturen en betalen als personeel. Ons werk zit tussen patiënten en artsen, dus we nemen veiligheid en bewijs serieus en we leveren elke week. Hou je van echte klanten, echte data en moeilijke problemen, kom dan met ons bouwen.",
+    statement: "Optavius bouwt AI-agents die praktijken aannemen, aansturen en betalen als personeel. Het werk zit tussen patiënten en artsen, dus we nemen veiligheid en bewijs serieus en we leveren elke week. Hou je van echte klanten, echte data en moeilijke problemen, kom dan met ons bouwen.",
     culture: [
       { icon: "marker", title: "Amsterdam en Houston", text: "We werken vanuit Amsterdam en Houston en brengen de meeste tijd door bij klanten. Op afstand werken kan als het werk het toelaat." },
       { icon: "heart", title: "Klant nul", text: "We draaien Optavius op Optavius. Onze eigen financiën, sales ops en support draaien op de agents die we verkopen." },
-      { icon: "sparkles", title: "Klein team, grote hefboom", text: "Een klein oprichtersteam en agentische tooling. Je bent eigenaar van hele uitkomsten, niet van tickets." },
+      { icon: "sparkles", title: "Vroeg en hands-on", text: "Stap vroeg in, met agentische tooling en vanaf dag één echte klanten. Je bent eigenaar van hele uitkomsten, niet van tickets." },
       { icon: "users", title: "Klinische partners", text: "Designpartners in Nederland en Texas beoordelen wat we bouwen voordat het een patiënt bereikt." },
     ],
-    interviewing: { title: "Solliciteren bij Optavius", paragraphs: ["We nemen aan op oordeelsvermogen en tempo. Je ontmoet de oprichters, werkt een echt probleem uit onze backlog uit en spreekt een klant.", "Gesprekken vinden plaats in Amsterdam, Houston of via een videocall. Hoe dan ook zie je hoe we werken voordat je beslist."] },
+    interviewing: { title: "Solliciteren bij Optavius", paragraphs: ["We nemen aan op oordeelsvermogen en tempo. Je werkt een echt probleem uit onze backlog uit en spreekt een klant.", "Gesprekken vinden plaats in Amsterdam, Houston of via een videocall. Hoe dan ook zie je hoe we werken voordat je beslist."] },
     roles: {
       title: "Vacatures", lede: "We zoeken mensen die iets willen bouwen waar praktijken elke dag op vertrouwen.",
       groups: [

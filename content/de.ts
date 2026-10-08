@@ -346,7 +346,7 @@ const de: Site = {
         { label: "Tiermedizin", text: "Jeder Halter gehört, jedes Tier gebucht.", href: "/specialties/veterinary" },
       ],
       companyItems: [
-        { label: "Über uns", text: "Wer Optavius baut, und warum.", href: "/about" },
+        { label: "Über uns", text: "Was Optavius tut, und warum.", href: "/about" },
         { label: "Karriere", text: "Helfen Sie Facharztpraxen, jeden Anruf zu beantworten.", href: "/careers" },
         { label: "Ressourcen", text: "Leitfäden, Vergleiche und Kundengeschichten.", href: "/resources" },
         { label: "Demo buchen", text: "Wählen Sie einen Termin mit einem Gründer.", href: "/demo" },
@@ -686,7 +686,7 @@ const de: Site = {
 
   about: {
     meta: { title: "Über uns | Optavius", description: "Optavius nimmt Reibung aus der fachärztlichen Versorgung: für Patienten, für Personal und für Ärzte." },
-    title: "Wer wir sind\nund warum wir hier sind.",
+    title: "Was Optavius tut\nund warum es zählt.",
     lede: "Optavius bietet KI-Sprachagenten für Facharztpraxen: Augenheilkunde, Optometrie, Dermatologie und Tierkliniken in den USA und Europa. Der Agent beantwortet Patientenanrufe, bucht und verschiebt Termine, gibt Auskunft zum Bestellstatus und eskaliert dringende Beschwerden nach dem Protokoll der Praxis.",
     image: { src: PHOTOS.examroom, alt: "Untersuchungsraum einer Augenklinik" },
     statement: { title: "Optavius nimmt Reibung aus der fachärztlichen Versorgung: für Patienten, für Personal und für Ärzte.", text: "Der Anfang des Patientenwegs ist oft der frustrierendste Teil. Lange Wartezeiten, uneinheitliche Aufnahme und überlastetes Personal. Wir haben Optavius gebaut, um das zu ändern, angefangen beim Telefon." },
@@ -714,14 +714,14 @@ const de: Site = {
     lede: "Baue die Agenten, die für Facharztpraxen das Telefon abnehmen.",
     cta: { label: "Offene Stellen", href: "#open-roles" },
     image: { src: PHOTOS.story, alt: "Praxisteam bei der Arbeit" },
-    statement: "Wir sind ein kleines Team, das KI-Agenten baut, die Praxen wie Personal einstellen, beaufsichtigen und bezahlen. Unsere Arbeit sitzt zwischen Patienten und Ärzten, deshalb nehmen wir Sicherheit und Beweise ernst und liefern jede Woche aus. Wenn du echte Kunden, echte Daten und harte Probleme magst, komm und baue mit uns.",
+    statement: "Optavius baut KI-Agenten, die Praxen wie Personal einstellen, beaufsichtigen und bezahlen. Die Arbeit sitzt zwischen Patienten und Ärzten, deshalb nehmen wir Sicherheit und Beweise ernst und liefern jede Woche aus. Wenn du echte Kunden, echte Daten und harte Probleme magst, komm und baue mit uns.",
     culture: [
       { icon: "marker", title: "Amsterdam und Houston", text: "Wir arbeiten von Amsterdam und Houston aus und verbringen die meiste Zeit bei Kunden. Remote geht, wenn die Aufgabe es zulässt." },
       { icon: "heart", title: "Kunde null", text: "Wir betreiben Optavius mit Optavius. Unsere eigene Buchhaltung, Sales Ops und Support laufen auf den Agenten, die wir verkaufen." },
-      { icon: "sparkles", title: "Kleines Team, große Hebelwirkung", text: "Ein kleines Gründerteam und agentische Werkzeuge. Du verantwortest ganze Ergebnisse, keine Tickets." },
+      { icon: "sparkles", title: "Früh und hands-on", text: "Steig früh ein, mit agentischen Werkzeugen und echten Kunden ab dem ersten Tag. Du verantwortest ganze Ergebnisse, keine Tickets." },
       { icon: "users", title: "Klinische Partner", text: "Designpartner in den Niederlanden und Texas prüfen, was wir bauen, bevor es einen Patienten erreicht." },
     ],
-    interviewing: { title: "Bewerben bei Optavius", paragraphs: ["Wir stellen nach Urteilsvermögen und Tempo ein. Du triffst die Gründer, arbeitest ein echtes Problem aus unserem Backlog durch und sprichst mit einem Kunden.", "Gespräche finden in Amsterdam, Houston oder per Videocall statt. So oder so siehst du, wie wir arbeiten, bevor du dich entscheidest."] },
+    interviewing: { title: "Bewerben bei Optavius", paragraphs: ["Wir stellen nach Urteilsvermögen und Tempo ein. Du arbeitest ein echtes Problem aus unserem Backlog durch und sprichst mit einem Kunden.", "Gespräche finden in Amsterdam, Houston oder per Videocall statt. So oder so siehst du, wie wir arbeiten, bevor du dich entscheidest."] },
     roles: {
       title: "Offene Stellen", lede: "Wir suchen Menschen, die etwas bauen wollen, auf das sich Praxen jeden Tag verlassen.",
       groups: [

@@ -372,7 +372,7 @@ const en: Site = {
         { label: "Veterinary", text: "Every owner heard, every pet booked.", href: "/specialties/veterinary" },
       ],
       companyItems: [
-        { label: "About", text: "Who builds Optavius, and why.", href: "/about" },
+        { label: "About", text: "What Optavius does, and why.", href: "/about" },
         { label: "Careers", text: "Help specialty care answer every call.", href: "/careers" },
         { label: "Resources", text: "Guides, comparisons and customer stories.", href: "/resources" },
         { label: "Book a demo", text: "Pick a time with a founder.", href: "/demo" },
@@ -723,7 +723,7 @@ const en: Site = {
 
   about: {
     meta: { title: "About | Optavius", description: "Optavius reduces friction in specialty care: for patients, for staff and for clinicians." },
-    title: "Who we are\nand why we're here.",
+    title: "What Optavius does\nand why it matters.",
     lede: "Optavius provides AI voice agents for specialty care practices: ophthalmology, optometry, dermatology and veterinary clinics in the United States and Europe. The agent answers patient calls, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol.",
     image: { src: PHOTOS.examroom, alt: "Eye clinic exam room" },
     statement: { title: "Optavius reduces friction in specialty care: for patients, for staff and for clinicians.", text: "The front end of the patient journey is often the most frustrating part. Long hold times, inconsistent intake and overwhelmed staff. We built Optavius to fix that, starting with the phone." },
@@ -751,14 +751,14 @@ const en: Site = {
     lede: "Build the agents that answer the phone for specialty care.",
     cta: { label: "Open roles", href: "#open-roles" },
     image: { src: PHOTOS.story, alt: "Clinic team at work" },
-    statement: "We're a small team building AI agents that practices hire, supervise and pay for like staff. Our work sits between patients and clinicians, so we take safety and proof seriously and we ship every week. If you like real customers, real data and hard problems, come and build with us.",
+    statement: "Optavius builds AI agents that practices hire, supervise and pay for like staff. The work sits between patients and clinicians, so we take safety and proof seriously and we ship every week. If you like real customers, real data and hard problems, come and build with us.",
     culture: [
       { icon: "marker", title: "Amsterdam and Houston", text: "We work from Amsterdam and Houston and spend most of our time with customers. Remote works when the job allows it." },
       { icon: "heart", title: "Customer zero", text: "We run Optavius on Optavius. Our own finance, sales ops and support run on the agents we sell." },
-      { icon: "sparkles", title: "Small team, big leverage", text: "A small founding team and agentic tooling. You'll own whole outcomes, not tickets." },
+      { icon: "sparkles", title: "Early and hands-on", text: "Join early, with agentic tooling and real customers from day one. You'll own whole outcomes, not tickets." },
       { icon: "users", title: "Clinical partners", text: "Design partners in the Netherlands and Texas review what we build before it reaches a patient." },
     ],
-    interviewing: { title: "Interviewing at Optavius", paragraphs: ["We hire for judgment and pace. You'll meet the founders, work through a real problem from our backlog and talk to a customer.", "Interviews take place in Amsterdam, Houston or on a call. Either way, you'll see how we work before you decide."] },
+    interviewing: { title: "Interviewing at Optavius", paragraphs: ["We hire for judgment and pace. You'll work through a real problem from our backlog and talk to a customer.", "Interviews take place in Amsterdam, Houston or on a call. Either way, you'll see how we work before you decide."] },
     roles: {
       title: "Open roles", lede: "We're looking for people who want to build something practices rely on every day.",
       groups: [
