@@ -25,6 +25,10 @@ export const CUSTOMER_LOGOS = (hrefs: [string, string, string]) => [
   { ...LOGOS.ntx, href: hrefs[1] },
   { ...LOGOS.cubitts, href: hrefs[2] },
 ];
+/* the home hero: the three fold clips merged into one file (see tooling/concat-hero.js), because iOS only reliably plays one
+   video per page; the phone variant is hero-720.mp4 */
+export const HERO_VIDEO = asset("/media/hero.mp4");
+
 export const VIDEOS = {
   frontdesk: { video: `${G}/hero-frontdesk-video.mp4`, poster: `${G}/hero-frontdesk.webp` },
   evening: { video: `${G}/hero-evening-video.mp4`, poster: `${G}/hero-evening.webp` },

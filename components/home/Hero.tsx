@@ -1,318 +1,142 @@
 "use client";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { preload } from "react-dom";
 import type { Bubble, Site, VideoQuote } from "@/content/types";
 import { AgentAvatar } from "../mockups/ui";
 import { BASE } from "@/lib/base";
+import { HERO_VIDEO } from "@/content/shared";
 
-const GLASS =
-  "rounded-[22px] p-4 border-glass-2xl bg-glass mask-t-from-50% mask-t-to-90% mask-size-[auto_200%] transition-[opacity,mask-position] duration-500 w-[75vw] max-w-[334px]";
-const BUBBLE_TIMES = [500, 2200, 3900, 5600, 7300];
-const SLIDE_MS = 9800;
-/* desktop only: zoom a clip from its left edge so the face clears the headline */
-const ZOOM: Record<string, string> = {};
-const BTN =
-  "inline-flex cursor-pointer items-center justify-between rounded-full outline-hidden disabled:cursor-not-allowed motion-safe:transition-[background-color,color,border-radius] focus-button ";
+const GLASS = "rounded-[22px] p-4 border-glass-2xl bg-glass mask-t-from-50% mask-t-to-90% mask-size-[auto_200%] transition-[opacity,mask-position] duration-500 w-[75vw] max-w-[334px]";
+/* The three conversations are one video file (the clips cross-fade inside the file, 0.5 s each), because iOS only reliably
+   plays a single video per page. These are the seconds at which each conversation starts in that file, the moments its
+   bubbles appear, and the file's total length. Regenerate the file with tooling/concat-hero.js when a clip changes. */
+const SEGMENTS = [0, 9.542, 18.834];
+const BUBBLE_TIMES = [0.5, 2.2, 3.9, 5.6, 7.3];
+const TOTAL = 28.417;
+const BTN = "inline-flex cursor-pointer items-center justify-between rounded-full outline-hidden disabled:cursor-not-allowed motion-safe:transition-[background-color,color,border-radius] focus-button ";
 
-function BubbleView({
-  b,
-  rank,
-  open,
-}: {
-  b: Bubble;
-  rank: number;
-  open: boolean;
-}) {
-  const state =
-    rank <= 1
-      ? "mask-position-[center_100%] opacity-100"
-      : rank === 2
-        ? "mask-position-[center_top] opacity-60"
-        : "mask-position-[center_top] opacity-25";
+function BubbleView({ b, rank, open }: { b: Bubble; rank: number; open: boolean }) {
+  const state = rank <= 1 ? "mask-position-[center_100%] opacity-100" : rank === 2 ? "mask-position-[center_top] opacity-60" : "mask-position-[center_top] opacity-25";
   return (
-    <div
-      className={"grid place-self-" + b.side}
-      style={{
-        gridTemplateRows: open ? "1fr" : "0fr",
-        transition: "grid-template-rows .7s cubic-bezier(.2,.8,.2,1)",
-      }}
-    >
-      <div className="min-h-0">
-        <div
-          className={
-            GLASS +
-            " flex flex-col gap-2 " +
-            state +
-            (open ? " hero-bubble-in" : " invisible")
-          }
-        >
-          <div className="flex items-center gap-2 text-label-md text-white/80">
-            {b.kind === "agent" ? (
-              <figure className="relative aspect-square size-4 overflow-hidden">
-                <AgentAvatar size={16} />
-              </figure>
-            ) : (
-              <figure className="relative flex aspect-square size-4 items-center justify-center overflow-hidden rounded-full bg-white/70 text-[9px] font-medium text-green-800">
-                {(b.name || "?").slice(0, 1)}
-              </figure>
-            )}
-            <span>{b.kind === "agent" ? "Optavius" : b.name}</span>
-          </div>
-          <div className="typography-body-product text-white">{b.text}</div>
+    <div className={"grid place-self-" + b.side} style={{ gridTemplateRows: open ? "1fr" : "0fr", transition: "grid-template-rows .7s cubic-bezier(.2,.8,.2,1)" }}>
+    <div className="min-h-0">
+      <div className={GLASS + " flex flex-col gap-2 " + state + (open ? " hero-bubble-in" : " invisible")}>
+        <div className="flex items-center gap-2 text-label-md text-white/80">
+          {b.kind === "agent" ? (
+            <figure className="relative aspect-square size-4 overflow-hidden"><AgentAvatar size={16} /></figure>
+          ) : (
+            <figure className="relative flex aspect-square size-4 items-center justify-center overflow-hidden rounded-full bg-white/70 text-[9px] font-medium text-green-800">{(b.name || "?").slice(0, 1)}</figure>
+          )}
+          <span>{b.kind === "agent" ? "Optavius" : b.name}</span>
         </div>
+        <div className="typography-body-product text-white">{b.text}</div>
       </div>
+    </div>
     </div>
   );
 }
 
-export default function Hero({
-  h,
-  lang,
-  quote,
-  tel,
-}: {
-  h: Site["home"]["hero"];
-  lang: string;
-  quote?: VideoQuote;
-  tel?: string;
-}) {
+export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"]; lang: string; quote?: VideoQuote; tel?: string }) {
   const [active, setActive] = useState(0);
   const [shown, setShown] = useState(0);
   const [narrow, setNarrow] = useState(false);
   const [bubbleH, setBubbleH] = useState(300);
   /* the bubble column gets its phone height from a measurement after mount; it stays invisible until then so the resize is not a layout shift */
   const [mounted, setMounted] = useState(false);
-  /* the next clip and its poster are fetched only once the first clip has been playing a while, so they never compete with the first paint */
-  const [warm, setWarm] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setWarm(true), 4000);
-    return () => clearTimeout(t);
-  }, []);
-  /* the first clip starts only after the page has loaded, so its download never competes with the stylesheet and the headline font;
+  /* the clip starts only after the page has loaded, so its download never competes with the stylesheet and the headline font;
      until then the first frame (poster) is on screen */
   const [ready, setReady] = useState(false);
   useEffect(() => {
-    let t = 0;
-    const go = () => {
-      t = window.setTimeout(() => setReady(true), 400);
-    };
-    if (document.readyState === "complete") go();
-    else window.addEventListener("load", go, { once: true });
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener("load", go);
-    };
+    let t = 0; const go = () => { t = window.setTimeout(() => setReady(true), 400); };
+    if (document.readyState === "complete") go(); else window.addEventListener("load", go, { once: true });
+    return () => { clearTimeout(t); window.removeEventListener("load", go); };
   }, []);
   const noteRef = useRef<HTMLParagraphElement>(null);
   useEffect(() => {
-    const measure = () => {
-      const n = noteRef.current;
-      const hd = n?.closest("header");
-      if (!n || !hd) return;
-      setBubbleH(
-        Math.max(
-          180,
-          Math.round(
-            hd.getBoundingClientRect().bottom -
-              n.getBoundingClientRect().bottom -
-              6,
-          ),
-        ),
-      );
-    };
-    measure();
-    setMounted(true);
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    const measure = () => { const n = noteRef.current; const hd = n?.closest("header"); if (!n || !hd) return; setBubbleH(Math.max(180, Math.round(hd.getBoundingClientRect().bottom - n.getBoundingClientRect().bottom - 6))); };
+    measure(); setMounted(true); window.addEventListener("resize", measure); return () => window.removeEventListener("resize", measure);
   }, []);
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const upd = () => setNarrow(mq.matches);
-    upd();
-    mq.addEventListener("change", upd);
-    return () => mq.removeEventListener("change", upd);
-  }, []);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const loaded = useRef<Set<number>>(new Set([0]));
+  useEffect(() => { const mq = window.matchMedia("(max-width: 767px)"); const upd = () => setNarrow(mq.matches); upd(); mq.addEventListener("change", upd); return () => mq.removeEventListener("change", upd); }, []);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const slides = h.slides;
-  if (slides[0]?.poster)
-    preload(slides[0].poster, { as: "image", fetchPriority: "high" });
-  const L = (p: string) =>
-    /^(https?:|mailto:|tel:|#)/.test(p)
-      ? p
-      : BASE + (lang === "en" ? p : `/${lang}${p}`);
+  const first = slides[0];
+  if (first?.poster) preload(first.poster, { as: "image", fetchPriority: "high" });
+  const L = (p: string) => (/^(https?:|mailto:|tel:|#)/.test(p) ? p : BASE + (lang === "en" ? p : `/${lang}${p}`));
 
+  /* start the video once the page has loaded */
   useEffect(() => {
     if (!ready) return;
-    loaded.current.add(active);
-    loaded.current.add((active + 1) % slides.length);
-    /* only one clip may hold a decoder at a time: iOS/WebKit stalls when multiple videos are left playing concurrently.
-       pause() alone leaves the element's buffered data (and its decoder session) intact, so also load() it to force
-       a full reset; the slide that was just deactivated has a full cycle before it's needed again to re-buffer. */
-    videoRefs.current.forEach((other, i) => {
-      if (i !== active && other && !other.paused) { other.pause(); other.load(); }
-    });
-    const v = videoRefs.current[active];
-    if (v) {
-      try {
-        if (v.readyState === 0) v.load();
-        v.currentTime = 0;
-        const p = v.play();
-        if (p) p.catch(() => {});
-      } catch {}
-    }
-    setShown(0);
-    const timers = BUBBLE_TIMES.map((t, i) =>
-      setTimeout(() => setShown(i + 1), t),
-    );
-    const next = setTimeout(
-      () => setActive((a) => (a + 1) % slides.length),
-      SLIDE_MS,
-    );
-    return () => {
-      timers.forEach(clearTimeout);
-      clearTimeout(next);
+    const v = videoRef.current;
+    if (v) { try { if (v.readyState === 0) v.load(); const p = v.play(); if (p) p.catch(() => {}); } catch {} }
+  }, [ready]);
+
+  /* the conversation and its bubbles follow the video's own clock, so they can never drift from the picture; if the video is
+     not allowed to play (battery saver, data saver), a wall clock takes over so the bubbles still tell the story over the poster */
+  useEffect(() => {
+    if (!ready) return;
+    let fallbackStart = 0; const armed = performance.now();
+    const tick = () => {
+      const v = videoRef.current; let t: number;
+      if (v && !v.paused && !v.ended && v.readyState >= 2) { t = v.currentTime; fallbackStart = 0; }
+      else { const now = performance.now(); if (now - armed < 2500) return; if (!fallbackStart) fallbackStart = now; t = ((now - fallbackStart) / 1000) % TOTAL; }
+      let seg = 0; for (let i = 1; i < SEGMENTS.length; i++) if (t >= SEGMENTS[i]) seg = i;
+      const local = t - SEGMENTS[seg]; let n = 0; for (const b of BUBBLE_TIMES) if (local >= b) n++;
+      setActive(seg); setShown(n);
     };
-  }, [active, slides.length, narrow, ready]);
+    const id = window.setInterval(tick, 120); tick();
+    return () => clearInterval(id);
+  }, [ready]);
 
   return (
     <header className="relative isolate h-svh w-full md:h-[90svh] md:min-h-[820px]">
       <div className="mt-20 h-[calc(100%-(var(--spacing)*20))] md:mt-30 md:h-[calc(100%-(var(--spacing)*30))] xl:mt-56 xl:h-[calc(100%-(var(--spacing)*56))]">
         <div className="mx-auto w-full max-w-[1160px] px-container-margin relative z-10 h-full">
-          <h1 className="mb-4 text-headline-xl whitespace-pre-wrap text-white md:mb-6">
-            {h.title}
-          </h1>
-          <p className="mb-6 max-w-[46ch] text-body-md text-white/90 md:mb-8 md:text-body-lg">
-            {h.subtitle}
-          </p>
+          <h1 className="mb-4 text-headline-xl whitespace-pre-wrap text-white md:mb-6">{h.title}</h1>
+          <p className="mb-6 max-w-[46ch] text-body-md text-white/90 md:mb-8 md:text-body-lg">{h.subtitle}</p>
           <div className="flex flex-wrap items-center gap-3">
-            <a
-              className={
-                BTN +
-                "bg-surface-primary-500 text-white hover:bg-surface-primary-300 active:bg-green-350 h-10 gap-1 px-4 text-label-md md:h-14 md:gap-2 md:px-8 md:text-body-sm flex-row-reverse"
-              }
-              href={L(h.primary.href)}
-            >
-              {h.primary.label}
-            </a>
-            <a
-              className={
-                BTN +
-                "bg-surface-tertiary-100 text-primary hover:bg-surface-tertiary-50 hover:text-brand-primary h-10 gap-1 px-4 text-label-md md:h-14 md:gap-2 md:px-8 md:text-body-sm flex-row-reverse"
-              }
-              href={L(h.secondary.href)}
-            >
-              {tel && h.secondary.href.startsWith("tel:") ? (
-                <span className="flex flex-col items-start leading-tight">
-                  <span>{h.secondary.label}</span>
-                  <span className="text-label-sm font-normal opacity-80">
-                    {tel}
-                  </span>
-                </span>
-              ) : (
-                h.secondary.label
-              )}
-            </a>
+            <a className={BTN + "bg-surface-primary-500 text-white hover:bg-surface-primary-300 active:bg-green-350 h-10 gap-1 px-4 text-label-md md:h-14 md:gap-2 md:px-8 md:text-body-sm flex-row-reverse"} href={L(h.primary.href)}>{h.primary.label}</a>
+            <a className={BTN + "bg-surface-tertiary-100 text-primary hover:bg-surface-tertiary-50 hover:text-brand-primary h-10 gap-1 px-4 text-label-md md:h-14 md:gap-2 md:px-8 md:text-body-sm flex-row-reverse"} href={L(h.secondary.href)}>{tel && h.secondary.href.startsWith("tel:") ? <span className="flex flex-col items-start leading-tight"><span>{h.secondary.label}</span><span className="text-label-sm font-normal opacity-80">{tel}</span></span> : h.secondary.label}</a>
           </div>
-          <p ref={noteRef} className="mt-3 text-label-sm text-white/70">
-            {h.note}
-          </p>
+          <p ref={noteRef} className="mt-3 text-label-sm text-white/70">{h.note}</p>
           {quote && (
             <figure className="mt-6 hidden max-w-[44ch] items-start gap-3 border-l-2 border-white/40 pl-4 md:flex">
               <div className="flex flex-col gap-1">
-                <blockquote className="text-body-sm text-white/90">
-                  “{quote.quote}”
-                </blockquote>
-                <figcaption className="text-label-sm text-white/70">
-                  {quote.name}, {quote.role}
-                </figcaption>
+                <blockquote className="text-body-sm text-white/90">“{quote.quote}”</blockquote>
+                <figcaption className="text-label-sm text-white/70">{quote.name}, {quote.role}</figcaption>
               </div>
             </figure>
           )}
         </div>
         {slides.map((s, i) => (
-          <Fragment key={i}>
-            <div className="mx-auto w-full max-w-[1160px] px-container-margin relative z-10">
-              {active === i && (
-                <div
-                  className="absolute bottom-0 left-0 w-full min-[600px]:right-0 min-[600px]:bottom-0 min-[600px]:left-auto min-[600px]:w-auto"
-                  style={{ visibility: mounted ? undefined : "hidden" }}
-                >
-                  <div
-                    className="flex w-full flex-col justify-end gap-2 overflow-y-clip px-4 pt-4 pb-4 md:pb-6 [mask-image:linear-gradient(to_bottom,transparent_0%,black_32%)] md:gap-3 min-[600px]:w-[454px] md:h-[386px] xl:pb-8"
-                    style={narrow ? { height: bubbleH } : undefined}
-                  >
-                    {s.bubbles.map((b, j) => (
-                      <BubbleView
-                        key={j}
-                        b={b}
-                        rank={shown - 1 - j}
-                        open={j < shown}
-                      />
-                    ))}
-                  </div>
+          <div key={i} className="mx-auto w-full max-w-[1160px] px-container-margin relative z-10">
+            {active === i && (
+              <div className="absolute bottom-0 left-0 w-full min-[600px]:right-0 min-[600px]:bottom-0 min-[600px]:left-auto min-[600px]:w-auto" style={{ visibility: mounted ? undefined : "hidden" }}>
+                <div className="flex w-full flex-col justify-end gap-2 overflow-y-clip px-4 pt-4 pb-4 md:pb-6 [mask-image:linear-gradient(to_bottom,transparent_0%,black_32%)] md:gap-3 min-[600px]:w-[454px] md:h-[386px] xl:pb-8" style={narrow ? { height: bubbleH } : undefined}>
+                  {s.bubbles.map((b, j) => (
+                    <BubbleView key={j} b={b} rank={shown - 1 - j} open={j < shown} />
+                  ))}
                 </div>
-              )}
-            </div>
-            {/* the clip's own first frame sits behind it (inline thumbnail first, then the real frame), so loading and crossfades never show a flat colour */}
-            {/* inactive slides rest at 1%, not 0: iOS WebKit treats an opacity-0 video as invisible and refuses/pauses its play(),
-                and play() for the next clip runs while its slide is still at the start of the fade-in */}
-            <div
-              className={
-                "transition-opacity duration-500 absolute inset-0 " +
-                (active === i ? "opacity-100" : "opacity-1 delay-200")
-              }
-              style={{
-                backgroundColor: "#2f2a25",
-                backgroundImage:
-                  [
-                    s.poster &&
-                      (i === active ||
-                        (warm && i === (active + 1) % slides.length)) &&
-                      `url(${s.poster})`,
-                    s.lqip && `url(${s.lqip})`,
-                  ]
-                    .filter(Boolean)
-                    .join(", ") || undefined,
-                backgroundSize: "cover",
-                backgroundPosition: narrow ? "75% center" : "center",
-              }}
-            >
-              <video
-                ref={(el) => {
-                  videoRefs.current[i] = el;
-                }}
-                className={
-                  "block h-full w-full pointer-events-none absolute object-cover object-[75%_center] md:object-center" +
-                  (ZOOM[(s.video.match(/hero[0-9]/) || [""])[0]] || "")
-                }
-                muted
-                playsInline
-                poster={
-                  s.poster &&
-                  (i === active || (warm && i === (active + 1) % slides.length))
-                    ? s.poster
-                    : undefined
-                }
-                preload={
-                  ready &&
-                  (i === active || (warm && i === (active + 1) % slides.length))
-                    ? "auto"
-                    : "none"
-                }
-              >
-                {/* the browser picks one file: 720p on phones, 1080p elsewhere, never both */}
-                <source
-                  src={s.video.replace(/\.mp4$/, "-720.mp4") + "#t=0.001"}
-                  type="video/mp4"
-                  media="(max-width: 767px)"
-                />
-                <source src={s.video + "#t=0.001"} type="video/mp4" />
-              </video>
-              <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-black/10" />
-            </div>
-          </Fragment>
+              </div>
+            )}
+          </div>
         ))}
+        {/* the first frame sits behind the video (inline thumbnail first, then the real frame), so loading never shows a flat colour */}
+        <div className="absolute inset-0" style={{ backgroundColor: "#2f2a25", backgroundImage: [first?.poster && `url(${first.poster})`, first?.lqip && `url(${first.lqip})`].filter(Boolean).join(", ") || undefined, backgroundSize: "cover", backgroundPosition: narrow ? "75% center" : "center" }}>
+          <video
+            ref={videoRef}
+            className="block h-full w-full pointer-events-none absolute object-cover object-[75%_center] md:object-center"
+            muted
+            loop
+            playsInline
+            poster={first?.poster}
+            preload={ready ? "auto" : "none"}
+          >
+            {/* the browser picks one file: 720p on phones, 1080p elsewhere, never both */}
+            <source src={HERO_VIDEO.replace(/\.mp4$/, "-720.mp4") + "#t=0.001"} type="video/mp4" media="(max-width: 767px)" />
+            <source src={HERO_VIDEO + "#t=0.001"} type="video/mp4" />
+          </video>
+          <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-black/10" />
+        </div>
       </div>
     </header>
   );

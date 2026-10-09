@@ -94,10 +94,14 @@ change when the base path changes.
 
 ## Hero video
 
-`components/home/Hero.tsx` plays three clips in turn (9.8 s each) with the chat bubbles timed in `BUBBLE_TIMES`.
-Phones get the 720p variant, the next clip is preloaded during the current one, and each clip's first frame sits behind it
-(inline thumbnail plus poster JPEG) so nothing flat ever shows. When replacing a clip, keep it 9.8 s, keep the person in
-the right third of the frame, and regenerate the poster and the inline thumbnail (see `tooling/README.md`).
+`components/home/Hero.tsx` plays one video, `public/media/hero.mp4` (`hero-720.mp4` on phones): the three conversation
+clips merged with a 0.5 s cross-fade by `tooling/concat-hero.js`. One file, because iOS only reliably plays a single
+video per page whatever the player does. The chat bubbles follow the video's own clock (`SEGMENTS`, `BUBBLE_TIMES`,
+`TOTAL` in the component), so they can never drift from the picture; if autoplay is refused, the bubbles run on a wall
+clock over the poster. The first frame sits behind the video (inline thumbnail plus poster JPEG) so nothing flat ever
+shows. When replacing a clip, keep it 9.792 s at 24 fps, keep the person in the right third of the frame, regenerate the
+merged files with `tooling/concat-hero.js`, and regenerate the poster and inline thumbnail of the first clip
+(see `tooling/README.md`).
 
 ## Third parties
 
