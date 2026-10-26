@@ -78,7 +78,7 @@ export type Site = {
       companyItems: { label: string; text: string; href: string }[];
       language: string; menu: string; close: string;
     };
-    footer: { groups: { title: string; items: Link[] }[]; legal: Link[]; copyright: string; tagline: string; about: string };
+    footer: { groups: { title: string; items: Link[] }[]; legal: Link[]; copyright: string; tagline: string; about: string; askAi: { label: string; prompt: string } };
     consent: { text: string; accept: string; decline: string; policy: string };
     common: { bookDemo: string; callDemo: string; demoNote: string; learnMore: string; readStory: string; readMore: string; discoverMore: string; fullStory: string; getStarted: string; contactSales: string; mostPopular: string; perMonth: string; playVideo: string; pauseVideo: string; customerStories: string; allSpecialties: string; openRoles: string; search: string; skip: string; bannerText?: string };
   };

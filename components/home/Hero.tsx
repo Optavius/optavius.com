@@ -123,6 +123,7 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
         {/* the first frame sits behind the video (inline thumbnail first, then the real frame), so loading never shows a flat colour */}
         <div className="absolute inset-0" style={{ backgroundColor: "#2f2a25", backgroundImage: [first?.poster && `url(${first.poster})`, first?.lqip && `url(${first.lqip})`].filter(Boolean).join(", ") || undefined, backgroundSize: "cover", backgroundPosition: narrow ? "75% center" : "center" }}>
           <video
+            id="hero-video"
             ref={videoRef}
             className="block h-full w-full pointer-events-none absolute object-cover object-[75%_center] md:object-center"
             muted
@@ -135,6 +136,9 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
             <source src={HERO_VIDEO.replace(/\.mp4$/, "-720.mp4") + "#t=0.001"} type="video/mp4" media="(max-width: 767px)" />
             <source src={HERO_VIDEO + "#t=0.001"} type="video/mp4" />
           </video>
+          {/* starts the video right after the load event and the first painted frame, without waiting for the framework scripts
+              (which attach 1.2 s after load) and hydration; the React effect above then finds it already playing */}
+          <script dangerouslySetInnerHTML={{ __html: `(function(){var v=document.getElementById("hero-video");if(!v)return;var d=0;function go(){if(d)return;d=1;v.preload="auto";try{var p=v.play();if(p&&p.catch)p.catch(function(){})}catch(e){}}function after(){requestAnimationFrame(function(){requestAnimationFrame(go)})}if(document.readyState==="complete")after();else window.addEventListener("load",after)})()` }} />
           <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-black/10" />
         </div>
       </div>

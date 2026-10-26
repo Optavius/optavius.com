@@ -109,6 +109,9 @@ merged files with `tooling/concat-hero.js`, and regenerate the poster and inline
   colours and the forced light theme are in `components/CalBooking.tsx`.
 - **Fonts**: GT America (Standard and Mono) from Grilli Type needs a web licence for the domain before launch; Fraunces
   (logo) is open source.
+- **Ask AI for a summary**: the footer row links to ChatGPT, Claude, Perplexity, Google AI Mode, Grok and Copilot with a
+  prefilled prompt that names the current page (`ui.footer.askAi` per language; targets and marks in `components/Footer.tsx`
+  and `components/AiLogos.tsx`).
 - **Analytics**: PostHog (EU) loads only after the visitor accepts the banner in `components/Consent.tsx`; the choice is
   stored in localStorage, never in a cookie. The Cookie Policy (`content/policies.ts`) describes exactly this.
 

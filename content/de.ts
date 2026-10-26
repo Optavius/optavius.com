@@ -364,6 +364,7 @@ const de: Site = {
       ],
       legal: [{ label: "Datenschutz", href: "/privacy" }, { label: "AGB", href: "/terms" }, { label: "Cookie-Richtlinie", href: "/cookies" }],
       copyright: "© 2026 Optavius",
+      askAi: {"label":"KI um eine Zusammenfassung dieser Seite bitten","prompt":"Lies {url} und gib mir eine kurze Zusammenfassung dieser Seite: was Optavius anbietet, für wen und die wichtigsten Fakten. Bitte nur wenige Sätze."},
     },
     consent: {"text":"Wir nutzen ein Analysetool (PostHog, in der EU gehostet), um zu sehen, welche Seiten Besuchern helfen. Es läuft nur, wenn Sie zustimmen. Keine Werbe-Cookies.","accept":"Analysen akzeptieren","decline":"Ablehnen","policy":"Cookie-Richtlinie"},
     common: {

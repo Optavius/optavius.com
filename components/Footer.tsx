@@ -1,12 +1,27 @@
 import { Logo } from "./Logo";
 import type { Site } from "@/content/types";
 import { href as lhref, type Lang } from "@/lib/i18n";
+import { SITE_URL } from "@/lib/base";
+import { AiLogo, AI_NAMES, type AiName } from "./AiLogos";
+
+/* where "ask AI for a summary of this page" sends the visitor, with the page's own prompt prefilled */
+const AI_TARGETS: Record<AiName, (q: string) => string> = {
+  ChatGPT: (q) => "https://chatgpt.com/?q=" + q + "&hints=search",
+  Claude: (q) => "https://claude.ai/new?q=" + q,
+  Perplexity: (q) => "https://www.perplexity.ai/search?q=" + q,
+  Gemini: (q) => "https://www.google.com/search?udm=50&q=" + q,
+  Grok: (q) => "https://grok.com/?q=" + q,
+  Copilot: (q) => "https://copilot.microsoft.com/?q=" + q,
+};
+const AI_LABEL: Record<AiName, string> = { ChatGPT: "ChatGPT", Claude: "Claude", Perplexity: "Perplexity", Gemini: "Google AI Mode (Gemini)", Grok: "Grok", Copilot: "Microsoft Copilot" };
 
 const LINK = "cursor-pointer focus-text text-label-md text-secondary transition-colors hover:text-brand-primary active:text-primary";
 
 export default function Footer({ site, lang, path }: { site: Site; lang: Lang; path: string }) {
   const f = site.ui.footer;
   const H = (p: string) => lhref(lang, p);
+  const pageUrl = SITE_URL + H(path) + (H(path).endsWith("/") ? "" : "/");
+  const q = encodeURIComponent(f.askAi.prompt.replace("{url}", pageUrl));
   return (
     <footer className="bg-secondary theme-tech:text-gray-100">
       <div className="mx-auto w-full max-w-[1160px] px-container-margin flex h-full flex-col justify-between gap-12 md:gap-14 xl:gap-20">
@@ -35,7 +50,19 @@ export default function Footer({ site, lang, path }: { site: Site; lang: Lang; p
         </div>
         <div className="mb-6 flex flex-col justify-between gap-10 text-label-md text-gray-350 md:flex-row md:items-end md:pb-6 theme-tech:text-gray-100">
           <div className="flex w-full flex-col gap-6">
-                        <div className="flex w-full items-center gap-4">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+              <span className="text-label-md text-primary">{f.askAi.label}</span>
+              <ul className="flex items-center gap-3">
+                {AI_NAMES.map((n) => (
+                  <li key={n}>
+                    <a aria-label={f.askAi.label + ": " + AI_LABEL[n]} title={AI_LABEL[n]} className="flex h-5 w-5 items-center justify-center focus-text text-secondary transition-colors hover:text-brand-primary md:h-6 md:w-6" href={AI_TARGETS[n](q)} rel="noopener noreferrer" target="_blank">
+                      <AiLogo name={n} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex w-full items-center gap-4">
               <div className="hidden md:block">{f.copyright}</div>
               <nav>
                 <ul className="flex items-center gap-4">

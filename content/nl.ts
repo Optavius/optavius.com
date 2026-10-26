@@ -364,6 +364,7 @@ const nl: Site = {
       ],
       legal: [{ label: "Privacybeleid", href: "/privacy" }, { label: "Algemene voorwaarden", href: "/terms" }, { label: "Cookiebeleid", href: "/cookies" }],
       copyright: "© 2026 Optavius",
+      askAi: {"label":"Vraag AI om een samenvatting van deze pagina","prompt":"Lees {url} en geef me een korte samenvatting van deze pagina: wat Optavius biedt, voor wie, en de belangrijkste feiten. Houd het bij een paar zinnen."},
     },
     consent: {"text":"We gebruiken één analysetool (PostHog, gehost in de EU) om te zien welke pagina's bezoekers helpen. Die draait alleen als u akkoord gaat. Geen advertentiecookies.","accept":"Analyse accepteren","decline":"Weigeren","policy":"Cookiebeleid"},
     common: {

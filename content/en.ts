@@ -394,6 +394,7 @@ const en: Site = {
       ],
       legal: [{ label: "Privacy Policy", href: "/privacy" }, { label: "Terms & Conditions", href: "/terms" }, { label: "Cookie Policy", href: "/cookies" }],
       copyright: "© 2026 Optavius",
+      askAi: {"label":"Ask AI for a summary of this page","prompt":"Read {url} and give me a short summary of this page: what Optavius offers, for whom, and the key facts. Keep it to a few sentences."},
     },
     consent: {"text":"We use one analytics tool (PostHog, hosted in the EU) to see which pages help visitors. It runs only if you agree. No advertising cookies.","accept":"Accept analytics","decline":"Decline","policy":"Cookie policy"},
     common: {
