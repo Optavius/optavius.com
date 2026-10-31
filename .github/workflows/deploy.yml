@@ -6,6 +6,9 @@ on:
   # Lets you redeploy after changing NEXT_PUBLIC_* variables (e.g. when the
   # custom domain goes live) without pushing an empty commit.
   workflow_dispatch:
+  # Daily rebuild so articles published in RankAI appear under /resources (RankAI publishes around 01:00 UTC)
+  schedule:
+    - cron: "30 3 * * *"
 
 permissions:
   contents: read
@@ -30,6 +33,12 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # Pull articles published in RankAI into content/rankai-articles.json (keeps the committed file if RankAI is down)
+      - name: Sync RankAI articles
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+        run: node tooling/rankai-sync.js
 
       # build:static, not next build: it also runs tooling/post-export.js,
       # which rewrites lang="en" to nl/de on the localized pages.

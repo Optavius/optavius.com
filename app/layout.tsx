@@ -23,6 +23,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className="gtamerica_6d0b17ea-module__xVsKFa__variable gtamericamono_7f09841-module__x8mR4a__variable"
       style={{ "--sticky-navigation-height": "72px" } as React.CSSProperties}
     >
+      <head>
+        {/* RankAI technical SEO and AI-search fixes (titles, descriptions, Open Graph, schema, alt text), managed in RankAI */}
+        <script src="https://rankai.ai/apply.js" data-rankai-id="cmvv092qk0002snhidr2yczcf" crossOrigin="anonymous" defer />
+      </head>
       <body className="flex min-h-screen flex-col text-primary antialiased">{children}</body>
     </html>
   );

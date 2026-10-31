@@ -19,9 +19,14 @@ import { AccordionSection, FaqSection, ValuesSection, BigQuoteSection, CTABlock,
 import { BTN_PRIMARY, BTN_SECONDARY, CenterHead, CONTAINER, LeftHead, SM, Section, imgStyle, logoWhite } from "@/components/tpl/ui";
 import { ArrowUp, Icon } from "@/components/tpl/Icons";
 import articlesJson from "@/content/articles.json";
+import rankaiJson from "@/content/rankai-articles.json";
 
-type Article = { slug: string; kind: string; kindLabel: string; title: string; description: string; readTime: number; body: string };
-const ARTICLES = articlesJson as Record<string, Article[]>;
+type Article = { slug: string; kind: string; kindLabel: string; title: string; description: string; readTime: number; body: string; html?: string; image?: string | null; publishedDate?: string | null };
+type RankaiArticle = { slug: string; title: string; description: string; publishedDate: string | null; featuredImageUrl: string | null; readTime: number; html: string };
+// Articles published in RankAI (English only, newest first; pulled at deploy time by tooling/rankai-sync.js) come before the hand-written ones
+const RANKAI: Article[] = (rankaiJson as RankaiArticle[]).map((a) => ({ slug: a.slug, kind: "blog", kindLabel: "Blog", title: a.title, description: a.description, readTime: a.readTime, body: "", html: a.html, image: a.featuredImageUrl, publishedDate: a.publishedDate }));
+const OWN = articlesJson as Record<string, Article[]>;
+const ARTICLES: Record<string, Article[]> = { ...OWN, en: [...RANKAI, ...OWN.en.filter((a) => !RANKAI.some((r) => r.slug === a.slug))] };
 type Ctx = { site: Site; lang: Lang; path: string };
 
 /* ---------- Home ---------- */
@@ -328,12 +333,13 @@ export function ArticlePage({ site, lang, path, article }: Ctx & { article: Arti
           <p className="mb-4 text-label-md text-secondary">{article.kindLabel} · {article.readTime} {site.resources.readTime}</p>
           <h1 className="max-w-[24ch] text-headline-lg text-black">{article.title}</h1>
           <p className="mt-6 max-w-prose text-body-md text-gray-400">{article.description}</p>
+          {article.image && <img className="rankai-hero" src={article.image} alt="" />}
         </div>
       </section>
       <section className="pt-6 pb-8 md:pb-16 xl:pb-18">
         <div className={CONTAINER}>
           <div className="grid grid-cols-12 gap-grid-gutter">
-            <div className="col-span-12 md:col-span-9 md:col-start-2 xl:col-span-8"><Markdown body={article.body} /></div>
+            <div className="col-span-12 md:col-span-9 md:col-start-2 xl:col-span-8">{article.html ? <div className="rankai-article" dangerouslySetInnerHTML={{ __html: article.html }} /> : <Markdown body={article.body} />}</div>
           </div>
         </div>
       </section>
