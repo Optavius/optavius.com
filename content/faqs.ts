@@ -62,22 +62,6 @@ export const FAQS: Record<string, Record<string, FaqSet>> = {
       { q: "Does it work for a multi-store chain?", a: "Yes. Each store has its own hours, staff and calendar, and the agent knows which is which." },
       { q: "Will it sound like our store?", a: "You approve the greeting, the tone and the scripts. It says your store name and follows your rules." },
     ] },
-    "/specialties/dermatology": { title: T.en, items: [
-      { q: "How does it triage a changing mole or a sudden rash?", a: "It asks the questions on your urgent-lesion list, offers an urgent slot or routes to on-call by your protocol, and sends a summary to your team." },
-      { q: "Can it separate medical and cosmetic bookings?", a: "Yes. It books the right visit type, provider and slot length for each, and applies your deposit or cancellation rules for cosmetic visits." },
-      { q: "Does it handle prescription refill requests?", a: "It takes the request, checks the patient's details and passes it to your team for approval. It never issues a prescription itself." },
-      { q: "Can it fill cancelled slots?", a: "Yes. When a slot opens, the waitlist agent works down your list until it is filled." },
-      { q: "What about pre-visit instructions?", a: "It sends preparation instructions and forms by text or email and confirms the patient is ready before the visit." },
-      { q: "Is it compliant with health data rules?", a: "HIPAA in the US, GDPR in Europe, with data stored in your region and every call logged and auditable." },
-    ] },
-    "/specialties/veterinary": { title: T.en, items: [
-      { q: "What happens when an owner calls with an emergency?", a: "The agent follows your emergency protocol: it tells the owner what to do now, routes to the on-call vet or emergency clinic, and sends your team a summary." },
-      { q: "Can it book different appointment types?", a: "Yes. Vaccinations, check-ups, surgery consults and grooming, with the right length and the right vet, for dogs, cats and other animals you specify." },
-      { q: "Does it handle medication and food refills?", a: "It takes refill requests, checks the animal's record and passes them to your team for approval, then tells the owner when to pick up." },
-      { q: "Can it answer after hours?", a: "Yes. Routine questions and bookings are handled all night, and emergencies are routed by your protocol." },
-      { q: "Does it send reminders?", a: "Yes. Vaccination and check-up reminders by call or text, and it books when the owner says yes." },
-      { q: "Will it know our vets and their schedules?", a: "Yes. It reads your calendar and books each vet according to their own hours and rules." },
-    ] },
   },
   nl: {
     "/product": { title: T.nl, items: [
@@ -136,22 +120,6 @@ export const FAQS: Record<string, Record<string, FaqSet>> = {
       { q: "Werkt het voor een keten met meerdere winkels?", a: "Ja. Elke winkel heeft eigen tijden, medewerkers en agenda, en de agent weet welke welke is." },
       { q: "Klinkt het als onze winkel?", a: "U keurt de begroeting, de toon en de scripts goed. Het noemt uw winkelnaam en volgt uw regels." },
     ] },
-    "/specialties/dermatology": { title: T.nl, items: [
-      { q: "Hoe gaat het om met een veranderende moedervlek of plotselinge uitslag?", a: "Het stelt de vragen van uw lijst met urgente huidafwijkingen, biedt een spoedplek of schakelt door volgens uw protocol, en stuurt een samenvatting naar uw team." },
-      { q: "Kan het medische en cosmetische afspraken scheiden?", a: "Ja. Het plant voor elk het juiste type, de juiste behandelaar en duur, en past uw aanbetalings- of annuleringsregels voor cosmetische afspraken toe." },
-      { q: "Handelt het herhaalrecepten af?", a: "Het neemt het verzoek aan, controleert de gegevens van de patiënt en legt het ter goedkeuring bij uw team. Het schrijft zelf nooit een recept uit." },
-      { q: "Kan het geannuleerde plekken opvullen?", a: "Ja. Als er een plek vrijkomt, werkt de wachtlijst-agent uw lijst af tot hij gevuld is." },
-      { q: "En instructies vóór het bezoek?", a: "Het stuurt voorbereidingsinstructies en formulieren per sms of e-mail en bevestigt vóór het bezoek dat de patiënt er klaar voor is." },
-      { q: "Voldoet het aan de regels voor gezondheidsgegevens?", a: "AVG in Europa, HIPAA in de VS, met gegevens in uw regio en elk gesprek vastgelegd en controleerbaar." },
-    ] },
-    "/specialties/veterinary": { title: T.nl, items: [
-      { q: "Wat gebeurt er als een eigenaar belt met een noodgeval?", a: "De agent volgt uw noodprotocol: vertelt de eigenaar wat nu te doen, schakelt door naar de dienstdoende dierenarts of spoedkliniek, en stuurt uw team een samenvatting." },
-      { q: "Kan het verschillende soorten afspraken plannen?", a: "Ja. Vaccinaties, controles, operatieconsulten en trimmen, met de juiste duur en de juiste dierenarts, voor honden, katten en andere dieren die u opgeeft." },
-      { q: "Handelt het herhaalmedicatie en voer af?", a: "Het neemt verzoeken aan, controleert het dossier van het dier en legt ze ter goedkeuring bij uw team, en vertelt de eigenaar wanneer het klaarstaat." },
-      { q: "Neemt het buiten openingstijden op?", a: "Ja. Routinevragen en afspraken worden de hele nacht afgehandeld, en noodgevallen worden volgens uw protocol doorgeschakeld." },
-      { q: "Stuurt het herinneringen?", a: "Ja. Vaccinatie- en controleherinneringen per telefoon of sms, en het plant meteen in als de eigenaar ja zegt." },
-      { q: "Kent het onze dierenartsen en hun roosters?", a: "Ja. Het leest uw agenda en plant elke dierenarts volgens eigen tijden en regels." },
-    ] },
   },
   de: {
     "/product": { title: T.de, items: [
@@ -209,22 +177,6 @@ export const FAQS: Record<string, Record<string, FaqSet>> = {
       { q: "Nimmt er außerhalb der Öffnungszeiten an?", a: "Ja, die ganze Nacht und das ganze Wochenende. Anrufer buchen, bestellen nach oder hinterlassen ein Anliegen, und Ihr Team findet es im Morgenbriefing." },
       { q: "Funktioniert er für eine Kette mit mehreren Filialen?", a: "Ja. Jede Filiale hat eigene Zeiten, Mitarbeiter und Kalender, und der Agent weiß, welche welche ist." },
       { q: "Klingt er wie unser Geschäft?", a: "Sie geben Begrüßung, Ton und Skripte frei. Er nennt Ihren Geschäftsnamen und folgt Ihren Regeln." },
-    ] },
-    "/specialties/dermatology": { title: T.de, items: [
-      { q: "Wie geht er mit einem veränderten Muttermal oder plötzlichem Ausschlag um?", a: "Er stellt die Fragen Ihrer Liste dringender Hautbefunde, bietet einen Notfalltermin oder leitet nach Ihrem Protokoll weiter und schickt Ihrem Team eine Zusammenfassung." },
-      { q: "Kann er medizinische und kosmetische Termine trennen?", a: "Ja. Er bucht für beide die richtige Terminart, den richtigen Behandler und die richtige Dauer und wendet Ihre Anzahlungs- oder Stornoregeln für kosmetische Termine an." },
-      { q: "Bearbeitet er Rezeptanfragen?", a: "Er nimmt die Anfrage entgegen, prüft die Patientendaten und gibt sie zur Freigabe an Ihr Team. Er stellt selbst nie ein Rezept aus." },
-      { q: "Kann er abgesagte Termine nachbesetzen?", a: "Ja. Wird ein Termin frei, arbeitet der Wartelistenagent Ihre Liste ab, bis er besetzt ist." },
-      { q: "Und Hinweise vor dem Besuch?", a: "Er sendet Vorbereitungshinweise und Formulare per SMS oder E-Mail und bestätigt vor dem Besuch, dass der Patient bereit ist." },
-      { q: "Erfüllt er die Regeln für Gesundheitsdaten?", a: "DSGVO in Europa, HIPAA in den USA, mit Daten in Ihrer Region und jedem Anruf protokolliert und prüfbar." },
-    ] },
-    "/specialties/veterinary": { title: T.de, items: [
-      { q: "Was passiert, wenn ein Halter mit einem Notfall anruft?", a: "Der Agent folgt Ihrem Notfallprotokoll: sagt dem Halter, was jetzt zu tun ist, leitet an den diensthabenden Tierarzt oder die Notfallklinik weiter und schickt Ihrem Team eine Zusammenfassung." },
-      { q: "Kann er verschiedene Terminarten buchen?", a: "Ja. Impfungen, Kontrollen, OP-Beratungen und Fellpflege, mit der richtigen Dauer und dem richtigen Tierarzt, für Hunde, Katzen und andere Tiere, die Sie angeben." },
-      { q: "Bearbeitet er Medikamenten- und Futternachbestellungen?", a: "Er nimmt Anfragen entgegen, prüft die Akte des Tieres und gibt sie zur Freigabe an Ihr Team, dann sagt er dem Halter, wann es abholbereit ist." },
-      { q: "Nimmt er außerhalb der Öffnungszeiten an?", a: "Ja. Routinefragen und Buchungen werden die ganze Nacht erledigt, Notfälle nach Ihrem Protokoll weitergeleitet." },
-      { q: "Verschickt er Erinnerungen?", a: "Ja. Impf- und Kontrollerinnerungen per Anruf oder SMS, und er bucht sofort, wenn der Halter zusagt." },
-      { q: "Kennt er unsere Tierärzte und ihre Dienstpläne?", a: "Ja. Er liest Ihren Kalender und bucht jeden Tierarzt nach eigenen Zeiten und Regeln." },
     ] },
   },
 };

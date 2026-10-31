@@ -11,18 +11,18 @@ const rows = fs.readFileSync("docs/redirect-map.csv", "utf8").split(/\r?\n/).sli
 const COPIES = { "/sitemap-index.xml": "/sitemap.xml", "/sitemap-0.xml": "/sitemap.xml", "/sitemap-markdown.xml": "/sitemap.xml", "/.well-known/llm.md": "/llms.txt", "/og-image.jpg": "/og/en.png" };
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 const page = (from, to, lang) => {
-  const url = SITE + BASE + to; const nl = lang === "nl";
-  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><title>${esc(nl ? "Pagina verplaatst" : "Page moved")}: ${esc(url)}</title>
+  const url = SITE + BASE + to; const nl = lang === "nl"; const de = lang === "de";
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><title>${esc(nl ? "Pagina verplaatst" : de ? "Seite verschoben" : "Page moved")}: ${esc(url)}</title>
 <meta http-equiv="refresh" content="0; url=${esc(url)}"><link rel="canonical" href="${esc(url)}"><meta name="viewport" content="width=device-width, initial-scale=1">
 <script>location.replace(${JSON.stringify(url)});</script></head>
-<body style="font:16px/1.5 system-ui,sans-serif;padding:40px;color:#222"><p>${nl ? "Deze pagina is verplaatst naar" : "This page has moved to"} <a href="${esc(url)}">${esc(url)}</a>.</p></body></html>\n`;
+<body style="font:16px/1.5 system-ui,sans-serif;padding:40px;color:#222"><p>${nl ? "Deze pagina is verplaatst naar" : de ? "Diese Seite ist umgezogen nach" : "This page has moved to"} <a href="${esc(url)}">${esc(url)}</a>.</p></body></html>\n`;
 };
 let n = 0, c = 0;
 for (const [from, to, action] of rows) {
   if (!/^redirect/.test(action) || from === to) continue;
   if (COPIES[from]) { const src = path.join(OUT, COPIES[from]); if (!fs.existsSync(src)) { console.warn("missing", src); continue; } const dest = path.join(OUT, from); fs.mkdirSync(path.dirname(dest), { recursive: true }); fs.copyFileSync(src, dest); c++; continue; }
-  const lang = from.startsWith("/nl/") || from === "/nl" ? "nl" : "en";
-  const dest = path.join(OUT, from + ".html"); // GitHub Pages serves /features from features.html without adding a redirect hop
+  const lang = from.startsWith("/nl/") || from === "/nl" ? "nl" : from.startsWith("/de/") || from === "/de" ? "de" : "en";
+  const dest = from.endsWith("/") ? path.join(OUT, from, "index.html") : path.join(OUT, from + ".html"); // GitHub Pages serves /features from features.html without adding a redirect hop
   if (fs.existsSync(path.join(OUT, from, "index.html"))) { console.warn("skip, page exists:", from); continue; }
   fs.mkdirSync(path.dirname(dest), { recursive: true }); fs.writeFileSync(dest, page(from, to, lang)); n++;
 }

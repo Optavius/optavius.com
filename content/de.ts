@@ -157,105 +157,6 @@ const specialties: SpecialtyPage[] = [
       { mock: "agent-recall", title: "Recall und Erinnerungen", text: "Findet jeden Kunden, der einen Sehtest braucht, und bucht ihn." },
     ],
   }),
-  specialty({
-    slug: "dermatology", name: "Dermatologie", short: "Dermatologie",
-    subtitle: "Kürzere Wartezeiten. Vollere Kalender. Ruhigere Empfänge.",
-    description: "KI-Sprachagenten für Hautarztpraxen. Jeden Anruf beantworten, Beratungen und Kontrollen buchen und dringende Hautbefunde nach Protokoll weiterleiten.",
-    media: VIDEOS.dermatology,
-    overlay: [
-      { side: "start", kind: "user", name: "Anrufer", text: "Ich hätte gern einen Muttermal-Check. Mein Hausarzt hat letzte Woche überwiesen." },
-      { side: "end", kind: "agent", text: "Die Überweisung liegt vor. Dr. Lindqvist hat am Donnerstag um 10:20 Uhr Zeit. Soll ich buchen?" },
-    ],
-    cardsTitle: "Bewährt für die häufigsten Anrufe in der Dermatologie",
-    tabs: [
-      { label: "Patienten", cards: [
-        { title: "Terminbuchung", text: "Hautkrebsvorsorge, Akne- und Ekzemkontrollen sowie ästhetische Beratungen, mit passender Dauer." },
-        { title: "Dringende Befunde", text: "Sich schnell verändernde Hautstellen, starke Reaktionen und Probleme nach Eingriffen folgen Ihrem Protokoll." },
-        { title: "Vorbereitung auf Eingriffe", text: "Was abzusetzen, was mitzubringen und wie vorzubereiten ist, aus Ihren freigegebenen Skripten." },
-        { title: "Rezepte und Folgerezepte", text: "Anfragen erfasst und an die richtige Ärztin oder den richtigen Arzt geleitet." },
-        { title: "Überweisungen und Versicherung", text: "Anforderungen an Überweisungen, akzeptierte Kassen und Terminkosten." },
-        { title: "Öffnungszeiten und Standorte", text: "Öffnungszeiten, Anfahrt und Parken für jede Praxis." },
-      ] },
-      frontdeskTab([
-        { title: "Überlauf und außerhalb der Sprechzeiten", text: "Anrufe erreichen Optavius, wenn der Empfang besetzt oder geschlossen ist." },
-        { title: "Warme Weiterleitung", text: "Komplexe Anrufer erreichen das Team mit Transkript und Zusammenfassung." },
-        { title: "Erinnerungen und Recalls", text: "Jährliche Hautchecks und Kontrollen ohne Anrufliste gebucht." },
-        { title: "No-Show-Rückgewinnung", text: "Versäumte Termine innerhalb von zwei Stunden zurückgerufen." },
-        { title: "Warteliste füllen", text: "Freigewordene Termine der Warteliste angeboten, bis sie besetzt sind." },
-        { title: "Gesprächszusammenfassungen", text: "Jedes Gespräch transkribiert und in die Akte geschrieben." },
-      ]),
-      managerTab("Termine werden in ModMed, Nextech, Epic oder Ihr System geschrieben."),
-    ],
-    journeyTitle: "Bessere Ergebnisse entlang des gesamten Patientenwegs",
-    journey: [
-      { title: "Die Wartezeit bis zum ersten Termin verkürzen", text: "Überweisungen gelesen, Patienten angerufen und der richtige Termin gebucht." },
-      { title: "Eskalieren, was zählt", text: "Dringende Hautbefunde folgen Ihrem Protokoll und erreichen die richtige Person." },
-      { title: "Die Behandlungsräume voll halten", text: "Recalls, Erinnerungen, No-Show-Rückgewinnung und Wartelistenfüllung." },
-      { title: "Dem Empfang seine Zeit zurückgeben", text: "Routinefragen ohne Personal beantwortet." },
-      { title: "Berichtet wie ein Teammitglied", text: "Jeder Anruf und jedes Ergebnis auf einem Dashboard." },
-    ],
-    photo: PHOTOS.examroom, photoAlt: "Modernes Behandlungszimmer",
-    quote: { quote: "Patienten sagen uns, das Telefon sei endlich einfach. Unser Team sagt dasselbe.", name: "Ahmed", role: "Praxisinhaber, North Texas Eye Specialists" },
-    agents: [
-      { mock: "agent-frontdesk", title: "Empfang", text: "Beantwortet, bucht und verschiebt, rund um die Uhr." },
-      { mock: "agent-referral", title: "Überweisungsaufnahme", text: "Liest Überweisungen, fragt Fehlendes nach und bereitet die Buchung vor." },
-      { mock: "agent-recall", title: "Recall und Erinnerungen", text: "Findet jeden Patienten, der eine Kontrolle braucht, und bucht ihn." },
-      { mock: "agent-noshow", title: "No-Show-Rückgewinnung", text: "Bucht versäumte Termine neu und berichtet, was zurückgewonnen wurde." },
-    ],
-  }),
-  specialty({
-    slug: "veterinary", name: "Tiermedizin", short: "Tiermedizin",
-    subtitle: "Jeder Halter gehört. Jedes Tier gebucht.",
-    description: "KI-Sprachagenten für Tierarztpraxen. Jeden Anruf beantworten, Sprechstunden und Impfungen buchen und Notfälle an Ihr Team leiten.",
-    media: VIDEOS.veterinary,
-    overlay: [
-      { side: "start", kind: "user", name: "Anrufer", text: "Milo braucht seine Auffrischungsimpfung und kratzt sich viel am Ohr." },
-      { side: "end", kind: "agent", text: "Machen wir beides in einem Besuch. Dr. Mensah hat morgen um 16:10 Uhr Zeit. Soll ich buchen?" },
-    ],
-    cardsTitle: "Bewährt für die häufigsten Anrufe in der Tierarztpraxis",
-    tabs: [
-      { label: "Tierhalter", cards: [
-        { title: "Terminbuchung", text: "Sprechstunden, Impfungen, Zahnbehandlungen und OP-Nachkontrollen, beim richtigen Tierarzt und in der richtigen Dauer." },
-        { title: "Notfälle", text: "Vergiftung, Atemnot und Verletzungen folgen Ihrem Protokoll und erreichen sofort den diensthabenden Tierarzt." },
-        { title: "Futter- und Medikamentenbestellungen", text: "Folgerezepte und Diätfutter erfasst und bestätigt." },
-        { title: "Preise und Versicherung", text: "Was ein Besuch kostet, mit welchen Versicherern Sie arbeiten und welche Zahlungsarten es gibt." },
-        { title: "Vorbereitung", text: "Nüchtern vor der OP, was mitzubringen ist und wie das Tier ruhig bleibt." },
-        { title: "Öffnungszeiten und Standorte", text: "Öffnungszeiten, Anfahrt und Parken für jede Praxis." },
-      ] },
-      frontdeskTab([
-        { title: "Überlauf und außerhalb der Sprechzeiten", text: "Abende, Wochenenden und volle Vormittage ohne Mailbox beantwortet." },
-        { title: "Warme Weiterleitung", text: "Besorgte Halter erreichen einen Menschen mit Transkript und Zusammenfassung." },
-        { title: "Erinnerungen und Recalls", text: "Impfungen, Entwurmungen und Jahreschecks automatisch gebucht." },
-        { title: "No-Show-Rückgewinnung", text: "Versäumte Termine zurückgerufen und neu gebucht." },
-        { title: "Warteliste füllen", text: "Freigewordene Termine der Warteliste angeboten, bis sie besetzt sind." },
-        { title: "Gesprächszusammenfassungen", text: "Jedes Gespräch transkribiert und in die Patientenakte geschrieben." },
-      ]),
-      { label: "Praxismanager", cards: [
-        { title: "Ein Standard pro Praxis", text: "Gleiche Begrüßung und Regeln in der gesamten Gruppe." },
-        { title: "Live-Dashboard", text: "Annahmequote, Buchungen und Eskalationen pro Praxis." },
-        { title: "Prüfpfad", text: "Jede Entscheidung mit ihrer Protokollversion protokolliert." },
-        { title: "Klinische Governance", text: "Protokolle von Ihrer leitenden Tierärztin oder Ihrem leitenden Tierarzt freigegeben, bevor sie live gehen." },
-        { title: "PVS-Anbindung", text: "Termine werden in Ihr Praxisverwaltungssystem geschrieben." },
-        { title: "Mehrsprachig", text: "Deutsch, Englisch, Niederländisch und Spanisch, pro Praxis." },
-      ] },
-    ],
-    journeyTitle: "Bessere Ergebnisse für Tiere, Halter und Ihr Team",
-    journey: [
-      { title: "Jeden Halter sofort beantworten", text: "Keine Warteschleife, keine Mailbox, auch nicht um 7 Uhr am Montagmorgen." },
-      { title: "Echte Notfälle eskalieren", text: "Ihr Protokoll entscheidet, was den diensthabenden Tierarzt erreicht, und wie schnell." },
-      { title: "Den Kalender voll halten", text: "Recalls, Erinnerungen und No-Show-Rückgewinnung schützen jeden Termin." },
-      { title: "Den Empfang entlasten", text: "Routinefragen ohne Personal beantwortet." },
-      { title: "Jede Praxis auf einen Blick", text: "Ein Dashboard für Anrufe und Buchungen über alle Standorte." },
-    ],
-    photo: PHOTOS.frontdesk, photoAlt: "Empfang einer Praxis",
-    quote: { quote: "Die Einführung ging schnell. Wir haben die Nummer an einem Dienstag weitergeleitet und am Donnerstag keine Anrufe mehr verpasst.", name: "Ahmed", role: "Praxisinhaber, North Texas Eye Specialists" },
-    agents: [
-      { mock: "agent-frontdesk", title: "Empfang", text: "Beantwortet, bucht und verschiebt, rund um die Uhr." },
-      { mock: "agent-urgent", title: "Notfall-Routing", text: "Wendet Ihr Protokoll an und erreicht den diensthabenden Tierarzt." },
-      { mock: "agent-recall", title: "Recall und Erinnerungen", text: "Impfungen und Checks ohne Anrufliste gebucht." },
-      { mock: "agent-noshow", title: "No-Show-Rückgewinnung", text: "Bucht versäumte Termine neu und berichtet, was zurückgewonnen wurde." },
-    ],
-  }),
 ];
 
 const stories: Story[] = [
@@ -323,7 +224,7 @@ const related = (exclude: string) =>
 
 const de: Site = {
   lang: "de",
-  meta: { ...en.meta, description: "KI-Sprachagenten für Augenheilkunde und Facharztpraxen. Jeder Patientenanruf beantwortet, jeder Termin gebucht, rund um die Uhr." },
+  meta: { ...en.meta, description: "KI-Sprachagenten für Augenheilkunde und Augenoptik. Jeder Patientenanruf beantwortet, jeder Termin gebucht, rund um die Uhr." },
   ui: {
     nav: {
       product: "Produkt", specialties: "Fachgebiete", customers: "Kunden", company: "Unternehmen", signIn: "Anmelden", cta: bookDemo,
@@ -342,23 +243,21 @@ const de: Site = {
       specialtyItems: [
         { label: "Augenheilkunde", text: "Jeder Anruf beantwortet, jedes Warnsymptom eskaliert.", href: "/specialties/ophthalmology" },
         { label: "Optometrie", text: "Sehtests gebucht, Bestellungen beantwortet, Linsen nachbestellt.", href: "/specialties/optometry" },
-        { label: "Dermatologie", text: "Kürzere Wartezeiten und vollere Kalender.", href: "/specialties/dermatology" },
-        { label: "Tiermedizin", text: "Jeder Halter gehört, jedes Tier gebucht.", href: "/specialties/veterinary" },
       ],
       companyItems: [
         { label: "Über uns", text: "Was Optavius tut, und warum.", href: "/about" },
-        { label: "Karriere", text: "Helfen Sie Facharztpraxen, jeden Anruf zu beantworten.", href: "/careers" },
+        { label: "Karriere", text: "Helfen Sie Augenarztpraxen, jeden Anruf zu beantworten.", href: "/careers" },
         { label: "Ressourcen", text: "Leitfäden, Vergleiche und Kundengeschichten.", href: "/resources" },
         { label: "Demo buchen", text: "Wählen Sie einen Termin mit einem Gründer.", href: "/demo" },
       ],
       language: "Sprache", menu: "Menü", close: "Schließen",
     },
     footer: {
-      tagline: "KI-Sprachagenten für Facharztpraxen. Ihre Praxis läuft. Auch wenn Sie nicht da sind.",
-      about: "Optavius bietet KI-Sprachagenten für Facharztpraxen: Augenheilkunde, Optometrie, Dermatologie und Tierkliniken in den USA und Europa. Der Agent beantwortet Patientenanrufe, bucht und verschiebt Termine, gibt Auskunft zum Bestellstatus und eskaliert dringende Beschwerden nach dem Protokoll der Praxis. Mit Büros in Houston und Amsterdam.",
+      tagline: "KI-Sprachagenten für die Augenheilkunde. Ihre Praxis läuft. Auch wenn Sie nicht da sind.",
+      about: "Optavius bietet KI-Sprachagenten für die Augenheilkunde: Augenkliniken, Optometriepraxen und Augenoptiker in den USA und Europa. Der Agent beantwortet Patientenanrufe, bucht und verschiebt Termine, gibt Auskunft zum Bestellstatus und eskaliert dringende Beschwerden nach dem Protokoll der Praxis. Mit Büros in Houston und Amsterdam.",
       groups: [
         { title: "Produkt", items: [{ label: "Produktübersicht", href: "/product" }, { label: "Konsole", href: "/product/console" }, { label: "Ask Optavius", href: "/product/ask-optavius" }, { label: "Agenten", href: "/product/agents" }, { label: "Integrationen", href: "/product/integrations" }, { label: "Preise", href: "/pricing" }] },
-        { title: "Fachgebiete", items: [{ label: "Alle Fachgebiete", href: "/specialties" }, { label: "Augenheilkunde", href: "/specialties/ophthalmology" }, { label: "Optometrie", href: "/specialties/optometry" }, { label: "Dermatologie", href: "/specialties/dermatology" }, { label: "Tiermedizin", href: "/specialties/veterinary" }] },
+        { title: "Fachgebiete", items: [{ label: "Alle Fachgebiete", href: "/specialties" }, { label: "Augenheilkunde", href: "/specialties/ophthalmology" }, { label: "Optometrie", href: "/specialties/optometry" }] },
         { title: "Kunden", items: [{ label: "Kundengeschichten", href: "/customers" }, { label: "OMC Amstelland", href: "/customers/omc-amstelland" }, { label: "North Texas Eye Specialists", href: "/customers/north-texas-eye-specialists" }, { label: "Cubitts", href: "/customers/cubitts" }] },
         { title: "Unternehmen", items: [{ label: "Über uns", href: "/about" }, { label: "Sicherheit und Compliance", href: "/safety-compliance" }, { label: "Ressourcen", href: "/resources" }, { label: "Karriere", href: "/careers" }, { label: "Demo buchen", href: "/demo" }, { label: "Anmelden", href: SIGN_IN, external: true }] },
       ],
@@ -494,7 +393,7 @@ const de: Site = {
         { icon: "calendar", title: "Bucht direkt in Ihren Kalender", text: "Die richtige Untersuchungsart, der richtige Arzt, die richtige Termindauer, per SMS bestätigt." },
         { icon: "shield", title: "Eskaliert, was zählt", text: "Blitze, Floater, plötzlicher Sehverlust: Ihr Protokoll entscheidet, und der Bereitschaftsdienst bekommt in Sekunden eine Zusammenfassung." },
       ] },
-      { key: "eyecare", title: "Der einzige Sprachagent, der eigens für die Augenheilkunde gebaut wurde", lede: "Zuerst ausschließlich für Optometrie und Augenheilkunde entwickelt, jetzt auch für Dermatologie und Tiermedizin. Trainiert auf mehr als 10.000 Fachbegriffe der Augenheilkunde.", mediaSide: "left", media: { kind: "mock", name: "eye" }, features: [
+      { key: "eyecare", title: "Der einzige Sprachagent, der eigens für die Augenheilkunde gebaut wurde", lede: "Ausschließlich für Optometrie und Augenheilkunde entwickelt. Trainiert auf mehr als 10.000 Fachbegriffe der Augenheilkunde.", mediaSide: "left", media: { kind: "mock", name: "eye" }, features: [
         { icon: "eye", title: "Spricht Ihr Fachgebiet", text: "Kennt den Unterschied zwischen einer Kataraktberatung und einer Kontaktlinsenanpassung, und bucht beides korrekt." },
         { icon: "checklist", title: "Folgt Ihren Pfaden", text: "Warnsymptomlisten, Terminregeln und Skripte, von Ihrer klinischen Leitung freigegeben." },
         { icon: "reverse", title: "Lernt aus jeder Korrektur", text: "Markieren Sie einen Anruf per Klick als falsch. Die Korrektur wird getestet, bevor sie live geht." },
@@ -664,9 +563,9 @@ const de: Site = {
   },
 
   specialties: {
-    meta: { title: "Fachgebiete | Optavius", description: "KI-Sprachagenten für Augenheilkunde, Optometrie, Dermatologie und Tierarztpraxen." },
-    title: "Ihr Sprachagent für Facharztpraxen.",
-    lede: "Gebaut für die Anrufe, die Ihr Fachgebiet wirklich bekommt. Augenheilkunde, Optometrie, Dermatologie und Tiermedizin.",
+    meta: { title: "Fachgebiete | Optavius", description: "KI-Sprachagenten für Augenheilkunde und Optometrie." },
+    title: "Ihr Sprachagent für die Augenheilkunde.",
+    lede: "Gebaut für die Anrufe, die Ihre Praxis wirklich bekommt. Augenheilkunde und Optometrie.",
     logos: { title: "", logos },
     quote: { logo: logos[0].src, logoAlt: "OMC Amstelland", quote: "Es kennt den Unterschied zwischen einer Kontaktlinsenberatung und einer Nachbestellung. Unser Empfang hat endlich Zeit für den Patienten, der vor ihm steht.", name: "Feike", role: "Praxismanager, OMC Amstelland", link: { label: "Ganze Geschichte", href: "/customers/omc-amstelland" } },
     cta,
@@ -679,7 +578,7 @@ const de: Site = {
     heroImage: { src: PHOTOS.story, alt: "Eye clinic team", logo: logos[0].src, logoAlt: "OMC Amstelland" },
     storiesTitle: "Das sind ihre Geschichten",
     featuredTitle: "Ausgewählte Geschichten",
-    gridTitle: "Vorreiter in\nFacharztpraxen",
+    gridTitle: "Vorreiter in\nder Augenheilkunde",
     stories,
     moreTitle: "Weitere Kundengeschichten",
     cta,
@@ -688,7 +587,7 @@ const de: Site = {
   about: {
     meta: { title: "Über uns | Optavius", description: "Optavius nimmt Reibung aus der fachärztlichen Versorgung: für Patienten, für Personal und für Ärzte." },
     title: "Was Optavius tut\nund warum es zählt.",
-    lede: "Optavius bietet KI-Sprachagenten für Facharztpraxen: Augenheilkunde, Optometrie, Dermatologie und Tierkliniken in den USA und Europa. Der Agent beantwortet Patientenanrufe, bucht und verschiebt Termine, gibt Auskunft zum Bestellstatus und eskaliert dringende Beschwerden nach dem Protokoll der Praxis.",
+    lede: "Optavius bietet KI-Sprachagenten für die Augenheilkunde: Augenkliniken, Optometriepraxen und Augenoptiker in den USA und Europa. Der Agent beantwortet Patientenanrufe, bucht und verschiebt Termine, gibt Auskunft zum Bestellstatus und eskaliert dringende Beschwerden nach dem Protokoll der Praxis.",
     image: { src: PHOTOS.examroom, alt: "Untersuchungsraum einer Augenklinik" },
     statement: { title: "Optavius nimmt Reibung aus der fachärztlichen Versorgung: für Patienten, für Personal und für Ärzte.", text: "Der Anfang des Patientenwegs ist oft der frustrierendste Teil. Lange Wartezeiten, uneinheitliche Aufnahme und überlastetes Personal. Wir haben Optavius gebaut, um das zu ändern, angefangen beim Telefon." },
     values: [
@@ -701,7 +600,7 @@ const de: Site = {
   },
 
   resources: {
-    meta: { title: "Ressourcen | Optavius", description: "Leitfäden, Vergleiche und Kundengeschichten zu KI-Sprachagenten für Facharztpraxen." },
+    meta: { title: "Ressourcen | Optavius", description: "Leitfäden, Vergleiche und Kundengeschichten zu KI-Sprachagenten für die Augenheilkunde." },
     title: "Ressourcen",
     filters: [{ key: "all", label: "Empfohlen" }, { key: "learn", label: "Leitfäden" }, { key: "compare", label: "Vergleiche" }, { key: "case", label: "Kundengeschichten" }, { key: "blog", label: "Blog" }],
     readTime: "Min. Lesezeit",
@@ -710,9 +609,9 @@ const de: Site = {
   },
 
   careers: {
-    meta: { title: "Karriere | Optavius", description: "Helfen Sie Facharztpraxen, jeden Anruf zu beantworten. Offene Stellen bei Optavius." },
+    meta: { title: "Karriere | Optavius", description: "Helfen Sie Augenarztpraxen, jeden Anruf zu beantworten. Offene Stellen bei Optavius." },
     title: "Hallo, wir sind Optavius.\nWir freuen uns auf dich.",
-    lede: "Baue die Agenten, die für Facharztpraxen das Telefon abnehmen.",
+    lede: "Baue die Agenten, die für Augenarztpraxen das Telefon abnehmen.",
     cta: { label: "Offene Stellen", href: "#open-roles" },
     image: { src: PHOTOS.story, alt: "Praxisteam bei der Arbeit" },
     statement: "Optavius baut KI-Agenten, die Praxen wie Personal einstellen, beaufsichtigen und bezahlen. Die Arbeit sitzt zwischen Patienten und Ärzten, deshalb nehmen wir Sicherheit und Beweise ernst und liefern jede Woche aus. Wenn du echte Kunden, echte Daten und harte Probleme magst, komm und baue mit uns.",
@@ -728,7 +627,7 @@ const de: Site = {
       groups: [
         { name: "Vertrieb", roles: [
           { title: "Founding Account Executive, USA", location: "Houston, TX", href: "mailto:" + EMAIL + "?subject=Account%20executive" },
-          { title: "Customer Success, Facharztpraxen", location: "Amsterdam", href: "mailto:" + EMAIL + "?subject=Customer%20success" },
+          { title: "Customer Success, Augenheilkunde", location: "Amsterdam", href: "mailto:" + EMAIL + "?subject=Customer%20success" },
         ] },
       ],
     },

@@ -1,6 +1,6 @@
 # Optavius
 
-> Optavius builds AI voice agents for specialty care practices: ophthalmology, optometry, dermatology and veterinary. The agent answers every patient call, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol. Pricing follows results, starting from $299 per month. Offices in Houston and Amsterdam. Site in English, Dutch and German.
+> Optavius builds AI voice agents for eye-care practices: ophthalmology clinics, optometry practices and optical retailers. The agent answers every patient call, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol. Pricing follows results, starting from $299 per month. Offices in Houston and Amsterdam. Site in English, Dutch and German.
 
 ## Product
 
@@ -15,8 +15,6 @@
 
 - [Ophthalmology](https://www.optavius.com/specialties/ophthalmology)
 - [Optometry](https://www.optavius.com/specialties/optometry)
-- [Dermatology](https://www.optavius.com/specialties/dermatology)
-- [Veterinary](https://www.optavius.com/specialties/veterinary)
 
 ## Customers
 

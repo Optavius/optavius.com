@@ -161,112 +161,6 @@ const specialties: SpecialtyPage[] = [
       { mock: "agent-recall", title: "Recall and reminders", text: "Finds every patient due for an exam and books them." },
     ],
   }),
-  specialty({
-    slug: "dermatology", name: "Dermatology", short: "dermatology",
-    subtitle: "Shorter waits. Fuller schedules. Calmer front desks.",
-    description: "AI voice agents for dermatology practices. Answer every call, book consultations and follow-ups and route urgent skin concerns by protocol.",
-    media: VIDEOS.dermatology,
-    overlay: [
-      { side: "start", kind: "user", name: "Caller", text: "I'd like a mole check. My GP sent a referral last week." },
-      { side: "end", kind: "agent", text: "I have the referral. Dr. Lindqvist has an opening Thursday at 10:20. Shall I book it?" },
-    ],
-    cardsTitle: "Trusted for dermatology's most common calls",
-    tabs: [
-      { label: "Patients", cards: [
-        { title: "Consultation booking", text: "Skin checks, acne and eczema follow-ups and cosmetic consultations, booked with the right duration." },
-        { title: "Urgent concerns", text: "Rapidly changing lesions, severe reactions and post-procedure problems follow your protocol." },
-        { title: "Procedure preparation", text: "What to stop, what to bring and how to prepare, from your approved scripts." },
-        { title: "Prescriptions and refills", text: "Refill requests captured and routed to the right clinician." },
-        { title: "Referrals and insurance", text: "Referral requirements, accepted plans and visit costs." },
-        { title: "Hours and locations", text: "Opening hours, directions and parking for every site." },
-      ] },
-      { label: "Front desk", cards: [
-        { title: "Overflow and after hours", text: "Calls reach Optavius when the desk is busy or closed." },
-        { title: "Warm transfers", text: "Complex callers reach staff with the transcript and a summary." },
-        { title: "Reminders and recalls", text: "Annual skin checks and follow-ups booked without a call list." },
-        { title: "No-show recovery", text: "Missed appointments called back within two hours." },
-        { title: "Waitlist fills", text: "Cancelled slots offered to the waitlist until filled." },
-        { title: "Call summaries", text: "Every call transcribed and written to the record." },
-      ] },
-      { label: "Practice managers", cards: [
-        { title: "One standard per location", text: "Same rules and tone at every site." },
-        { title: "Live dashboard", text: "Answer rate, bookings and escalations per site." },
-        { title: "Audit trail", text: "Every decision logged with its pathway version." },
-        { title: "Clinical governance", text: "Pathways approved by your medical lead before go-live." },
-        { title: "EHR sync", text: "Bookings written to ModMed, Nextech, Epic or your system." },
-        { title: "Multi-language", text: "English, Dutch, German and Spanish, per location." },
-      ] },
-    ],
-    journeyTitle: "Better outcomes across the whole patient journey",
-    journey: [
-      { title: "Cut the wait to first visit", text: "Referrals read, patients called and the right slot booked." },
-      { title: "Escalate what matters", text: "Urgent skin concerns follow your protocol and reach the right person." },
-      { title: "Keep procedure rooms full", text: "Recalls, reminders, no-show recovery and waitlist fills." },
-      { title: "Give the front desk its time back", text: "Routine questions answered without staff." },
-      { title: "Report like a team member", text: "Every call and outcome on one dashboard." },
-    ],
-    photo: PHOTOS.examroom, photoAlt: "Modern consultation room",
-    quote: { quote: "Patients tell us the phone is finally easy. Our team tells us the same.", name: "Ahmed", role: "Practice owner, North Texas Eye Specialists" },
-    agents: [
-      { mock: "agent-frontdesk", title: "Front desk", text: "Answers, books and reschedules, 24/7." },
-      { mock: "agent-referral", title: "Referral intake", text: "Reads referrals, chases what's missing and prepares the booking." },
-      { mock: "agent-recall", title: "Recall and reminders", text: "Finds every patient due for a check and books them." },
-      { mock: "agent-noshow", title: "No-show recovery", text: "Rebooks missed visits and reports what it recovered." },
-    ],
-  }),
-  specialty({
-    slug: "veterinary", name: "Veterinary", short: "veterinary care",
-    subtitle: "Every owner heard. Every pet booked.",
-    description: "AI voice agents for veterinary clinics. Answer every call, book consultations and vaccinations and route emergencies to your team.",
-    media: VIDEOS.veterinary,
-    overlay: [
-      { side: "start", kind: "user", name: "Caller", text: "Milo's due for his booster and he's been scratching his ear a lot." },
-      { side: "end", kind: "agent", text: "Let's do both in one visit. Dr. Mensah has 4:10 PM tomorrow. Shall I book it?" },
-    ],
-    cardsTitle: "Trusted for veterinary's most common calls",
-    tabs: [
-      { label: "Owners", cards: [
-        { title: "Appointment booking", text: "Consultations, vaccinations, dental and surgery follow-ups, with the right vet and duration." },
-        { title: "Emergencies", text: "Poisoning, breathing trouble and trauma follow your protocol and reach the on-call vet at once." },
-        { title: "Food and medication orders", text: "Repeat prescriptions and diet orders captured and confirmed." },
-        { title: "Pricing and insurance", text: "What a visit costs, which insurers you work with and payment options." },
-        { title: "Preparation", text: "Fasting before surgery, what to bring and how to keep a pet calm." },
-        { title: "Hours and locations", text: "Opening hours, directions and parking for every clinic." },
-      ] },
-      { label: "Front desk", cards: [
-        { title: "Overflow and after hours", text: "Evenings, weekends and busy mornings answered without voicemail." },
-        { title: "Warm transfers", text: "Worried owners reach a person with the transcript and a summary." },
-        { title: "Reminders and recalls", text: "Boosters, worming and annual checks booked automatically." },
-        { title: "No-show recovery", text: "Missed appointments called back and rebooked." },
-        { title: "Waitlist fills", text: "Cancelled slots offered to the waitlist until filled." },
-        { title: "Call summaries", text: "Every call transcribed and written to the patient file." },
-      ] },
-      { label: "Practice managers", cards: [
-        { title: "One standard per clinic", text: "Same greeting and rules across the group." },
-        { title: "Live dashboard", text: "Answer rate, bookings and escalations per clinic." },
-        { title: "Audit trail", text: "Every decision logged with its pathway version." },
-        { title: "Clinical governance", text: "Protocols approved by your lead vet before go-live." },
-        { title: "PMS sync", text: "Bookings written to your practice management system." },
-        { title: "Multi-language", text: "English, Dutch, German and Spanish, per clinic." },
-      ] },
-    ],
-    journeyTitle: "Better outcomes for pets, owners and your team",
-    journey: [
-      { title: "Answer every owner at once", text: "No hold music, no voicemail, even at 7 AM on a Monday." },
-      { title: "Escalate real emergencies", text: "Your protocol decides what reaches the on-call vet, and how fast." },
-      { title: "Keep the schedule full", text: "Recalls, reminders and no-show recovery protect every slot." },
-      { title: "Free the front desk", text: "Routine questions answered without staff." },
-      { title: "See every clinic at a glance", text: "One dashboard for calls and bookings across sites." },
-    ],
-    photo: PHOTOS.frontdesk, photoAlt: "Clinic front desk",
-    quote: { quote: "Implementation was fast. We forwarded the number on a Tuesday and stopped missing calls on Thursday.", name: "Ahmed", role: "Practice owner, North Texas Eye Specialists" },
-    agents: [
-      { mock: "agent-frontdesk", title: "Front desk", text: "Answers, books and reschedules, 24/7." },
-      { mock: "agent-urgent", title: "Emergency routing", text: "Applies your protocol and reaches the on-call vet." },
-      { mock: "agent-recall", title: "Recall and reminders", text: "Boosters and checks booked without a call list." },
-      { mock: "agent-noshow", title: "No-show recovery", text: "Rebooks missed visits and reports what it recovered." },
-    ],
-  }),
 ];
 
 /* ---------- customer stories ---------- */
@@ -368,26 +262,24 @@ const en: Site = {
       specialtyItems: [
         { label: "Ophthalmology", text: "Every call answered, every urgent symptom escalated.", href: "/specialties/ophthalmology" },
         { label: "Optometry", text: "Exams booked, orders answered, lenses reordered.", href: "/specialties/optometry" },
-        { label: "Dermatology", text: "Shorter waits and fuller schedules.", href: "/specialties/dermatology" },
-        { label: "Veterinary", text: "Every owner heard, every pet booked.", href: "/specialties/veterinary" },
       ],
       companyItems: [
         { label: "About", text: "What Optavius does, and why.", href: "/about" },
-        { label: "Careers", text: "Help specialty care answer every call.", href: "/careers" },
+        { label: "Careers", text: "Help eye care answer every call.", href: "/careers" },
         { label: "Resources", text: "Guides, comparisons and customer stories.", href: "/resources" },
         { label: "Book a demo", text: "Pick a time with a founder.", href: "/demo" },
       ],
       language: "Language", menu: "Menu", close: "Close",
     },
     footer: {
-      tagline: "AI voice agents for specialty care. Your clinic, running. Even when you aren't.",
-      about: "Optavius provides AI voice agents for specialty care practices: ophthalmology, optometry, dermatology and veterinary clinics in the United States and Europe. The agent answers patient calls, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol. With offices in Houston and Amsterdam.",
+      tagline: "AI voice agents for eye care. Your clinic, running. Even when you aren't.",
+      about: "Optavius provides AI voice agents for eye-care practices: ophthalmology clinics, optometry practices and optical retailers in the United States and Europe. The agent answers patient calls, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol. With offices in Houston and Amsterdam.",
       groups: [
         { title: "Product", items: [
           { label: "Product overview", href: "/product" }, { label: "Console", href: "/product/console" }, { label: "Ask Optavius", href: "/product/ask-optavius" }, { label: "Agents", href: "/product/agents" }, { label: "Integrations", href: "/product/integrations" }, { label: "Pricing", href: "/pricing" },
         ] },
         { title: "Specialties", items: [
-          { label: "All specialties", href: "/specialties" }, { label: "Ophthalmology", href: "/specialties/ophthalmology" }, { label: "Optometry", href: "/specialties/optometry" }, { label: "Dermatology", href: "/specialties/dermatology" }, { label: "Veterinary", href: "/specialties/veterinary" },
+          { label: "All specialties", href: "/specialties" }, { label: "Ophthalmology", href: "/specialties/ophthalmology" }, { label: "Optometry", href: "/specialties/optometry" },
         ] },
         { title: "Customers", items: [{ label: "Customer stories", href: "/customers" }, { label: "OMC Amstelland", href: "/customers/omc-amstelland" }, { label: "North Texas Eye Specialists", href: "/customers/north-texas-eye-specialists" }, { label: "Cubitts", href: "/customers/cubitts" }] },
         { title: "Company", items: [{ label: "About", href: "/about" }, { label: "Safety & Compliance", href: "/safety-compliance" }, { label: "Resources", href: "/resources" }, { label: "Careers", href: "/careers" }, { label: "Book a demo", href: "/demo" }, { label: "Sign in", href: SIGN_IN, external: true }] },
@@ -524,7 +416,7 @@ const en: Site = {
         { icon: "calendar", title: "Books straight into your calendar", text: "The right exam type, the right provider, the right slot length, confirmed by text." },
         { icon: "shield", title: "Escalates what matters", text: "Flashes, floaters, sudden vision loss: your protocol decides, and on-call staff get a summary in seconds." },
       ] },
-      { key: "eyecare", title: "The only voice agent purpose-built for eye care", lede: "Built exclusively for optometry and ophthalmology first, now also for dermatology and veterinary care. Trained on more than 10,000 eye-care terms.", mediaSide: "left", media: { kind: "mock", name: "eye" }, features: [
+      { key: "eyecare", title: "The only voice agent purpose-built for eye care", lede: "Built exclusively for optometry and ophthalmology. Trained on more than 10,000 eye-care terms.", mediaSide: "left", media: { kind: "mock", name: "eye" }, features: [
         { icon: "eye", title: "Speaks your specialty", text: "Knows a cataract evaluation from a contact lens fitting, and books each one correctly." },
         { icon: "checklist", title: "Follows your pathways", text: "Red-flag lists, scheduling rules and scripts approved by your clinical lead." },
         { icon: "reverse", title: "Learns from every correction", text: "Mark any call as wrong in one click. The fix is tested before it goes live." },
@@ -701,9 +593,9 @@ const en: Site = {
   },
 
   specialties: {
-    meta: { title: "Specialties | Optavius", description: "AI voice agents for ophthalmology, optometry, dermatology and veterinary practices." },
-    title: "Your voice agent for specialty care.",
-    lede: "Built for the calls your specialty actually gets. Ophthalmology, optometry, dermatology and veterinary.",
+    meta: { title: "Specialties | Optavius", description: "AI voice agents for ophthalmology and optometry practices." },
+    title: "Your voice agent for eye care.",
+    lede: "Built for the calls your practice actually gets. Ophthalmology and optometry.",
     logos: { title: "", logos },
     quote: { logo: logos[0].src, logoAlt: "OMC Amstelland", quote: "It knows the difference between a contact lens consult and a reorder. Our front desk finally has time for the patient standing in front of them.", name: "Feike", role: "Practice manager, OMC Amstelland", link: { label: "Full story", href: "/customers/omc-amstelland" } },
     cta,
@@ -716,18 +608,18 @@ const en: Site = {
     heroImage: { src: PHOTOS.story, alt: "Eye clinic team", logo: logos[0].src, logoAlt: "OMC Amstelland" },
     storiesTitle: "These are their stories",
     featuredTitle: "Featured stories",
-    gridTitle: "Leaders in\nspecialty care",
+    gridTitle: "Leaders in\neye care",
     stories,
     moreTitle: "More customer stories",
     cta,
   },
 
   about: {
-    meta: { title: "About | Optavius", description: "Optavius reduces friction in specialty care: for patients, for staff and for clinicians." },
+    meta: { title: "About | Optavius", description: "Optavius reduces friction in eye care: for patients, for staff and for clinicians." },
     title: "What Optavius does\nand why it matters.",
-    lede: "Optavius provides AI voice agents for specialty care practices: ophthalmology, optometry, dermatology and veterinary clinics in the United States and Europe. The agent answers patient calls, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol.",
+    lede: "Optavius provides AI voice agents for eye-care practices: ophthalmology clinics, optometry practices and optical retailers in the United States and Europe. The agent answers patient calls, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol.",
     image: { src: PHOTOS.examroom, alt: "Eye clinic exam room" },
-    statement: { title: "Optavius reduces friction in specialty care: for patients, for staff and for clinicians.", text: "The front end of the patient journey is often the most frustrating part. Long hold times, inconsistent intake and overwhelmed staff. We built Optavius to fix that, starting with the phone." },
+    statement: { title: "Optavius reduces friction in eye care: for patients, for staff and for clinicians.", text: "The front end of the patient journey is often the most frustrating part. Long hold times, inconsistent intake and overwhelmed staff. We built Optavius to fix that, starting with the phone." },
     values: [
       { icon: "shield", title: "Safety first", text: "Every feature, every pathway and every decision is designed with patient safety as the priority. Optavius makes no diagnoses and never overrides clinical judgment. That's a design principle, not a disclaimer." },
       { icon: "bolt", title: "Speed to value", text: "Live in days, not months. A practice forwards its number, approves its pathways and sees the first calls in its dashboard the same week." },
@@ -738,7 +630,7 @@ const en: Site = {
   },
 
   resources: {
-    meta: { title: "Resources | Optavius", description: "Guides, comparisons and customer stories on AI voice agents for specialty care." },
+    meta: { title: "Resources | Optavius", description: "Guides, comparisons and customer stories on AI voice agents for eye care." },
     title: "Resources",
     filters: [{ key: "all", label: "Featured" }, { key: "learn", label: "Guides" }, { key: "compare", label: "Comparisons" }, { key: "case", label: "Customer stories" }, { key: "blog", label: "Blog" }],
     readTime: "min read",
@@ -747,9 +639,9 @@ const en: Site = {
   },
 
   careers: {
-    meta: { title: "Careers | Optavius", description: "Help specialty care answer every call. Open roles at Optavius." },
+    meta: { title: "Careers | Optavius", description: "Help eye care answer every call. Open roles at Optavius." },
     title: "Hi, we're Optavius.\nWe'd love for you to join us.",
-    lede: "Build the agents that answer the phone for specialty care.",
+    lede: "Build the agents that answer the phone for eye care.",
     cta: { label: "Open roles", href: "#open-roles" },
     image: { src: PHOTOS.story, alt: "Clinic team at work" },
     statement: "Optavius builds AI agents that practices hire, supervise and pay for like staff. The work sits between patients and clinicians, so we take safety and proof seriously and we ship every week. If you like real customers, real data and hard problems, come and build with us.",
@@ -765,7 +657,7 @@ const en: Site = {
       groups: [
         { name: "Go to market", roles: [
           { title: "Founding account executive, US", location: "Houston, TX", href: "mailto:" + EMAIL + "?subject=Account%20executive" },
-          { title: "Customer success, specialty care", location: "Amsterdam", href: "mailto:" + EMAIL + "?subject=Customer%20success" },
+          { title: "Customer success, eye care", location: "Amsterdam", href: "mailto:" + EMAIL + "?subject=Customer%20success" },
         ] },
       ],
     },

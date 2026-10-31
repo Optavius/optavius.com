@@ -1,5 +1,5 @@
 const { chromium } = require('playwright');
-const pages = ['/', '/product', '/product/console', '/product/ask-optavius', '/product/agents', '/product/integrations', '/pricing', '/specialties', '/specialties/ophthalmology', '/specialties/optometry', '/specialties/dermatology', '/specialties/veterinary', '/customers', '/customers/omc-amstelland', '/customers/north-texas-eye-specialists', '/customers/cubitts', '/about', '/resources', '/resources/omc-amstelland', '/careers', '/demo', '/privacy', '/terms', '/nl', '/nl/pricing', '/nl/specialties/veterinary', '/de', '/de/customers/cubitts'];
+const pages = ['/', '/product', '/product/console', '/product/ask-optavius', '/product/agents', '/product/integrations', '/pricing', '/specialties', '/specialties/ophthalmology', '/specialties/optometry', '/customers', '/customers/omc-amstelland', '/customers/north-texas-eye-specialists', '/customers/cubitts', '/about', '/resources', '/resources/omc-amstelland', '/careers', '/demo', '/privacy', '/terms', '/nl', '/nl/pricing', '/nl/specialties/veterinary', '/de', '/de/customers/cubitts'];
 (async () => {
   const b = await chromium.launch(); const ctx = await b.newContext({ viewport: { width: 1280, height: 900 } }); let bad = 0;
   for (const p of pages) {

@@ -157,105 +157,6 @@ const specialties: SpecialtyPage[] = [
       { mock: "agent-recall", title: "Oproepen en herinneringen", text: "Vindt elke klant die aan een meting toe is en plant hem in." },
     ],
   }),
-  specialty({
-    slug: "dermatology", name: "Dermatologie", short: "dermatologie",
-    subtitle: "Kortere wachttijden. Vollere agenda's. Rustigere balies.",
-    description: "AI voice agents voor dermatologiepraktijken. Beantwoord elke oproep, plan consulten en controles en routeer urgente huidklachten volgens protocol.",
-    media: VIDEOS.dermatology,
-    overlay: [
-      { side: "start", kind: "user", name: "Beller", text: "Ik wil graag een moedervlekcontrole. Mijn huisarts heeft vorige week verwezen." },
-      { side: "end", kind: "agent", text: "Ik heb de verwijzing. Dr. Lindqvist heeft donderdag om 10:20 plek. Zal ik dat boeken?" },
-    ],
-    cardsTitle: "Vertrouwd voor de meest voorkomende oproepen in de dermatologie",
-    tabs: [
-      { label: "Patiënten", cards: [
-        { title: "Consult inplannen", text: "Huidcontroles, acne- en eczeemcontroles en cosmetische consulten, met de juiste duur." },
-        { title: "Urgente klachten", text: "Snel veranderende plekjes, heftige reacties en problemen na een ingreep volgen uw protocol." },
-        { title: "Voorbereiding op een ingreep", text: "Wat te stoppen, wat mee te nemen en hoe voor te bereiden, uit uw goedgekeurde scripts." },
-        { title: "Recepten en herhalingen", text: "Herhaalverzoeken vastgelegd en naar de juiste arts gestuurd." },
-        { title: "Verwijzingen en verzekering", text: "Eisen aan een verwijzing, geaccepteerde polissen en kosten van een consult." },
-        { title: "Openingstijden en locaties", text: "Openingstijden, route en parkeren voor elke vestiging." },
-      ] },
-      frontdeskTab([
-        { title: "Overloop en buiten kantooruren", text: "Oproepen bereiken Optavius als de balie bezet of gesloten is." },
-        { title: "Warme doorverbinding", text: "Complexe bellers bereiken een medewerker met transcript en samenvatting." },
-        { title: "Herinneringen en oproepen", text: "Jaarlijkse huidcontroles en vervolgafspraken ingepland zonder bellijst." },
-        { title: "No-show herstel", text: "Gemiste afspraken binnen twee uur teruggebeld." },
-        { title: "Wachtlijst vullen", text: "Vrijgekomen plekken aangeboden aan de wachtlijst tot ze gevuld zijn." },
-        { title: "Gesprekssamenvattingen", text: "Elk gesprek getranscribeerd en in het dossier geschreven." },
-      ]),
-      managerTab("Afspraken geschreven naar ModMed, Nextech, Epic of uw systeem."),
-    ],
-    journeyTitle: "Betere uitkomsten in het hele patiënttraject",
-    journey: [
-      { title: "Verkort de wachttijd tot het eerste consult", text: "Verwijzingen gelezen, patiënten gebeld en de juiste plek ingepland." },
-      { title: "Escaleer wat ertoe doet", text: "Urgente huidklachten volgen uw protocol en bereiken de juiste persoon." },
-      { title: "Houd de behandelkamers vol", text: "Oproepen, herinneringen, no-show herstel en wachtlijstvulling." },
-      { title: "Geef de balie haar tijd terug", text: "Routinevragen beantwoord zonder medewerker." },
-      { title: "Rapporteert als een teamlid", text: "Elke oproep en uitkomst op één dashboard." },
-    ],
-    photo: PHOTOS.examroom, photoAlt: "Moderne spreekkamer",
-    quote: { quote: "Patiënten zeggen dat de telefoon eindelijk makkelijk is. Ons team zegt hetzelfde.", name: "Ahmed", role: "Praktijkeigenaar, North Texas Eye Specialists" },
-    agents: [
-      { mock: "agent-frontdesk", title: "Balie", text: "Beantwoordt, plant en verzet, 24/7." },
-      { mock: "agent-referral", title: "Verwijzingsintake", text: "Leest verwijzingen, vraagt na wat ontbreekt en bereidt de afspraak voor." },
-      { mock: "agent-recall", title: "Oproepen en herinneringen", text: "Vindt elke patiënt die aan een controle toe is en plant hem in." },
-      { mock: "agent-noshow", title: "No-show herstel", text: "Plant gemiste consulten opnieuw in en rapporteert wat het terugwon." },
-    ],
-  }),
-  specialty({
-    slug: "veterinary", name: "Diergeneeskunde", short: "diergeneeskunde",
-    subtitle: "Elke eigenaar gehoord. Elk dier ingepland.",
-    description: "AI voice agents voor dierenklinieken. Beantwoord elke oproep, plan consulten en vaccinaties en routeer spoedgevallen naar uw team.",
-    media: VIDEOS.veterinary,
-    overlay: [
-      { side: "start", kind: "user", name: "Beller", text: "Milo is toe aan zijn booster en hij krabt veel aan zijn oor." },
-      { side: "end", kind: "agent", text: "Laten we beide in één bezoek doen. Dr. Mensah heeft morgen om 16:10 plek. Zal ik dat boeken?" },
-    ],
-    cardsTitle: "Vertrouwd voor de meest voorkomende oproepen in de dierenkliniek",
-    tabs: [
-      { label: "Eigenaren", cards: [
-        { title: "Afspraken inplannen", text: "Consulten, vaccinaties, gebitsreiniging en controles na een operatie, bij de juiste dierenarts." },
-        { title: "Spoedgevallen", text: "Vergiftiging, benauwdheid en trauma volgen uw protocol en bereiken direct de dienstdoende dierenarts." },
-        { title: "Voer en medicatie bestellen", text: "Herhaalrecepten en dieetvoer vastgelegd en bevestigd." },
-        { title: "Prijzen en verzekering", text: "Wat een consult kost, met welke verzekeraars u werkt en hoe er betaald kan worden." },
-        { title: "Voorbereiding", text: "Nuchter voor een operatie, wat mee te nemen en hoe een dier rustig te houden." },
-        { title: "Openingstijden en locaties", text: "Openingstijden, route en parkeren voor elke kliniek." },
-      ] },
-      frontdeskTab([
-        { title: "Overloop en buiten kantooruren", text: "Avonden, weekenden en drukke ochtenden beantwoord zonder voicemail." },
-        { title: "Warme doorverbinding", text: "Bezorgde eigenaren bereiken een medewerker met transcript en samenvatting." },
-        { title: "Herinneringen en oproepen", text: "Boosters, ontwormen en jaarlijkse controles automatisch ingepland." },
-        { title: "No-show herstel", text: "Gemiste afspraken teruggebeld en opnieuw ingepland." },
-        { title: "Wachtlijst vullen", text: "Vrijgekomen plekken aangeboden aan de wachtlijst tot ze gevuld zijn." },
-        { title: "Gesprekssamenvattingen", text: "Elk gesprek getranscribeerd en in het patiëntdossier geschreven." },
-      ]),
-      { label: "Praktijkmanagers", cards: [
-        { title: "Eén standaard per kliniek", text: "Dezelfde begroeting en regels in de hele groep." },
-        { title: "Live dashboard", text: "Beantwoordpercentage, afspraken en escalaties per kliniek." },
-        { title: "Audittrail", text: "Elke beslissing gelogd met haar protocolversie." },
-        { title: "Medische governance", text: "Protocollen goedgekeurd door uw hoofddierenarts voordat ze live gaan." },
-        { title: "PMS-koppeling", text: "Afspraken geschreven naar uw praktijkmanagementsysteem." },
-        { title: "Meertalig", text: "Nederlands, Engels, Duits en Spaans, per kliniek." },
-      ] },
-    ],
-    journeyTitle: "Betere uitkomsten voor dieren, eigenaren en uw team",
-    journey: [
-      { title: "Beantwoord elke eigenaar direct", text: "Geen wachtmuziek, geen voicemail, ook niet om 7 uur op maandagochtend." },
-      { title: "Escaleer echte spoedgevallen", text: "Uw protocol bepaalt wat de dienstdoende dierenarts bereikt, en hoe snel." },
-      { title: "Houd de agenda vol", text: "Oproepen, herinneringen en no-show herstel beschermen elke plek." },
-      { title: "Ontlast de balie", text: "Routinevragen beantwoord zonder medewerker." },
-      { title: "Zie elke kliniek in één oogopslag", text: "Eén dashboard voor oproepen en afspraken over alle vestigingen." },
-    ],
-    photo: PHOTOS.frontdesk, photoAlt: "Balie van een kliniek",
-    quote: { quote: "De implementatie ging snel. We hebben op dinsdag het nummer doorgeschakeld en misten op donderdag geen oproepen meer.", name: "Ahmed", role: "Praktijkeigenaar, North Texas Eye Specialists" },
-    agents: [
-      { mock: "agent-frontdesk", title: "Balie", text: "Beantwoordt, plant en verzet, 24/7." },
-      { mock: "agent-urgent", title: "Spoedroutering", text: "Past uw protocol toe en bereikt de dienstdoende dierenarts." },
-      { mock: "agent-recall", title: "Oproepen en herinneringen", text: "Boosters en controles ingepland zonder bellijst." },
-      { mock: "agent-noshow", title: "No-show herstel", text: "Plant gemiste consulten opnieuw in en rapporteert wat het terugwon." },
-    ],
-  }),
 ];
 
 const stories: Story[] = [
@@ -323,7 +224,7 @@ const related = (exclude: string) =>
 
 const nl: Site = {
   lang: "nl",
-  meta: { ...en.meta, tel: TEL, telDisplay: TEL_DISPLAY, description: "AI voice agents voor oogzorg en specialistische praktijken. Elke patiëntoproep beantwoord, elke afspraak ingepland, 24/7." },
+  meta: { ...en.meta, tel: TEL, telDisplay: TEL_DISPLAY, description: "AI voice agents voor oogzorg. Elke patiëntoproep beantwoord, elke afspraak ingepland, 24/7." },
   ui: {
     nav: {
       product: "Product", specialties: "Specialismen", customers: "Klanten", company: "Bedrijf", signIn: "Inloggen", cta: bookDemo,
@@ -342,23 +243,21 @@ const nl: Site = {
       specialtyItems: [
         { label: "Oogheelkunde", text: "Elke oproep beantwoord, elk spoedsymptoom geëscaleerd.", href: "/specialties/ophthalmology" },
         { label: "Optometrie", text: "Metingen ingepland, bestellingen beantwoord, lenzen nabesteld.", href: "/specialties/optometry" },
-        { label: "Dermatologie", text: "Kortere wachttijden en vollere agenda's.", href: "/specialties/dermatology" },
-        { label: "Diergeneeskunde", text: "Elke eigenaar gehoord, elk dier ingepland.", href: "/specialties/veterinary" },
       ],
       companyItems: [
         { label: "Over ons", text: "Wat Optavius doet, en waarom.", href: "/about" },
-        { label: "Werken bij", text: "Help specialistische zorg elke oproep te beantwoorden.", href: "/careers" },
+        { label: "Werken bij", text: "Help oogzorg elke oproep te beantwoorden.", href: "/careers" },
         { label: "Kennisbank", text: "Gidsen, vergelijkingen en klantverhalen.", href: "/resources" },
         { label: "Demo plannen", text: "Kies een moment met een oprichter.", href: "/demo" },
       ],
       language: "Taal", menu: "Menu", close: "Sluiten",
     },
     footer: {
-      tagline: "AI voice agents voor specialistische zorg. Uw praktijk draait door. Ook als u er niet bent.",
-      about: "Optavius levert AI-spraakagenten voor specialistische praktijken: oogheelkunde, optometrie, dermatologie en dierenklinieken in de Verenigde Staten en Europa. De agent beantwoordt patiëntgesprekken, plant en verzet afspraken, geeft orderstatus en escaleert urgente klachten volgens het protocol van de praktijk. Met kantoren in Houston en Amsterdam.",
+      tagline: "AI voice agents voor oogzorg. Uw praktijk draait door. Ook als u er niet bent.",
+      about: "Optavius levert AI-spraakagenten voor oogzorgpraktijken: oogklinieken, optometriepraktijken en opticiens in de Verenigde Staten en Europa. De agent beantwoordt patiëntgesprekken, plant en verzet afspraken, geeft orderstatus en escaleert urgente klachten volgens het protocol van de praktijk. Met kantoren in Houston en Amsterdam.",
       groups: [
         { title: "Product", items: [{ label: "Productoverzicht", href: "/product" }, { label: "Console", href: "/product/console" }, { label: "Ask Optavius", href: "/product/ask-optavius" }, { label: "Agents", href: "/product/agents" }, { label: "Koppelingen", href: "/product/integrations" }, { label: "Prijzen", href: "/pricing" }] },
-        { title: "Specialismen", items: [{ label: "Alle specialismen", href: "/specialties" }, { label: "Oogheelkunde", href: "/specialties/ophthalmology" }, { label: "Optometrie", href: "/specialties/optometry" }, { label: "Dermatologie", href: "/specialties/dermatology" }, { label: "Diergeneeskunde", href: "/specialties/veterinary" }] },
+        { title: "Specialismen", items: [{ label: "Alle specialismen", href: "/specialties" }, { label: "Oogheelkunde", href: "/specialties/ophthalmology" }, { label: "Optometrie", href: "/specialties/optometry" }] },
         { title: "Klanten", items: [{ label: "Klantverhalen", href: "/customers" }, { label: "OMC Amstelland", href: "/customers/omc-amstelland" }, { label: "North Texas Eye Specialists", href: "/customers/north-texas-eye-specialists" }, { label: "Cubitts", href: "/customers/cubitts" }] },
         { title: "Bedrijf", items: [{ label: "Over ons", href: "/about" }, { label: "Veiligheid en compliance", href: "/safety-compliance" }, { label: "Kennisbank", href: "/resources" }, { label: "Werken bij", href: "/careers" }, { label: "Demo aanvragen", href: "/demo" }, { label: "Inloggen", href: SIGN_IN, external: true }] },
       ],
@@ -496,7 +395,7 @@ const nl: Site = {
         { icon: "calendar", title: "Plant direct in uw agenda", text: "Het juiste type meting, de juiste arts, de juiste tijdsduur, bevestigd per sms." },
         { icon: "shield", title: "Escaleert wat ertoe doet", text: "Flitsen, floaters, plotseling gezichtsverlies: uw protocol beslist, en de dienstdoende arts krijgt in seconden een samenvatting." },
       ] },
-      { key: "eyecare", title: "De enige voice agent die speciaal voor oogzorg is gebouwd", lede: "Eerst exclusief gebouwd voor optometrie en oogheelkunde, nu ook voor dermatologie en diergeneeskunde. Getraind op meer dan 10.000 oogzorgtermen.", mediaSide: "left", media: { kind: "mock", name: "eye" }, features: [
+      { key: "eyecare", title: "De enige voice agent die speciaal voor oogzorg is gebouwd", lede: "Exclusief gebouwd voor optometrie en oogheelkunde. Getraind op meer dan 10.000 oogzorgtermen.", mediaSide: "left", media: { kind: "mock", name: "eye" }, features: [
         { icon: "eye", title: "Spreekt uw specialisme", text: "Kent het verschil tussen een cataractconsult en een contactlensaanmeting, en plant elk correct in." },
         { icon: "checklist", title: "Volgt uw paden", text: "Alarmsymptomenlijsten, planningsregels en scripts, goedgekeurd door uw medisch verantwoordelijke." },
         { icon: "reverse", title: "Leert van elke correctie", text: "Markeer een gesprek als fout met één klik. De fix wordt getest voordat hij live gaat." },
@@ -666,9 +565,9 @@ const nl: Site = {
   },
 
   specialties: {
-    meta: { title: "Specialismen | Optavius", description: "AI voice agents voor oogheelkunde, optometrie, dermatologie en dierenklinieken." },
-    title: "Uw voice agent voor specialistische zorg.",
-    lede: "Gebouwd voor de oproepen die uw specialisme echt krijgt. Oogheelkunde, optometrie, dermatologie en diergeneeskunde.",
+    meta: { title: "Specialismen | Optavius", description: "AI voice agents voor oogheelkunde en optometrie." },
+    title: "Uw voice agent voor oogzorg.",
+    lede: "Gebouwd voor de oproepen die uw praktijk echt krijgt. Oogheelkunde en optometrie.",
     logos: { title: "", logos },
     quote: { logo: logos[0].src, logoAlt: "OMC Amstelland", quote: "Het kent het verschil tussen een contactlensconsult en een nabestelling. Onze balie heeft eindelijk tijd voor de patiënt die voor hen staat.", name: "Feike", role: "Praktijkmanager, OMC Amstelland", link: { label: "Volledig verhaal", href: "/customers/omc-amstelland" } },
     cta,
@@ -681,18 +580,18 @@ const nl: Site = {
     heroImage: { src: PHOTOS.story, alt: "Eye clinic team", logo: logos[0].src, logoAlt: "OMC Amstelland" },
     storiesTitle: "Dit zijn hun verhalen",
     featuredTitle: "Uitgelichte verhalen",
-    gridTitle: "Voorlopers in\nspecialistische zorg",
+    gridTitle: "Voorlopers in\noogzorg",
     stories,
     moreTitle: "Meer klantverhalen",
     cta,
   },
 
   about: {
-    meta: { title: "Over ons | Optavius", description: "Optavius vermindert wrijving in specialistische zorg: voor patiënten, voor medewerkers en voor artsen." },
+    meta: { title: "Over ons | Optavius", description: "Optavius vermindert wrijving in oogzorg: voor patiënten, voor medewerkers en voor artsen." },
     title: "Wat Optavius doet\nen waarom het ertoe doet.",
-    lede: "Optavius levert AI-spraakagenten voor specialistische praktijken: oogheelkunde, optometrie, dermatologie en dierenklinieken in de Verenigde Staten en Europa. De agent beantwoordt patiëntgesprekken, plant en verzet afspraken, geeft orderstatus en escaleert urgente klachten volgens het protocol van de praktijk.",
+    lede: "Optavius levert AI-spraakagenten voor oogzorgpraktijken: oogklinieken, optometriepraktijken en opticiens in de Verenigde Staten en Europa. De agent beantwoordt patiëntgesprekken, plant en verzet afspraken, geeft orderstatus en escaleert urgente klachten volgens het protocol van de praktijk.",
     image: { src: PHOTOS.examroom, alt: "Onderzoekskamer van een oogkliniek" },
-    statement: { title: "Optavius vermindert wrijving in specialistische zorg: voor patiënten, voor medewerkers en voor artsen.", text: "De voorkant van het patiënttraject is vaak het meest frustrerende deel. Lange wachttijden, wisselende intake en overbelaste medewerkers. We hebben Optavius gebouwd om dat op te lossen, te beginnen bij de telefoon." },
+    statement: { title: "Optavius vermindert wrijving in oogzorg: voor patiënten, voor medewerkers en voor artsen.", text: "De voorkant van het patiënttraject is vaak het meest frustrerende deel. Lange wachttijden, wisselende intake en overbelaste medewerkers. We hebben Optavius gebouwd om dat op te lossen, te beginnen bij de telefoon." },
     values: [
       { icon: "shield", title: "Veiligheid eerst", text: "Elke functie, elk pad en elke beslissing is ontworpen met patiëntveiligheid als prioriteit. Optavius stelt geen diagnoses en gaat nooit tegen een medisch oordeel in. Dat is een ontwerpprincipe, geen disclaimer." },
       { icon: "bolt", title: "Snel resultaat", text: "Live in dagen, niet in maanden. Een praktijk schakelt haar nummer door, keurt haar paden goed en ziet dezelfde week de eerste gesprekken in haar dashboard." },
@@ -703,7 +602,7 @@ const nl: Site = {
   },
 
   resources: {
-    meta: { title: "Kennisbank | Optavius", description: "Gidsen, vergelijkingen en klantverhalen over AI voice agents voor specialistische zorg." },
+    meta: { title: "Kennisbank | Optavius", description: "Gidsen, vergelijkingen en klantverhalen over AI voice agents voor oogzorg." },
     title: "Kennisbank",
     filters: [{ key: "all", label: "Uitgelicht" }, { key: "learn", label: "Gidsen" }, { key: "compare", label: "Vergelijkingen" }, { key: "case", label: "Klantverhalen" }, { key: "blog", label: "Blog" }],
     readTime: "min leestijd",
@@ -712,9 +611,9 @@ const nl: Site = {
   },
 
   careers: {
-    meta: { title: "Werken bij | Optavius", description: "Help specialistische zorg elke oproep te beantwoorden. Vacatures bij Optavius." },
+    meta: { title: "Werken bij | Optavius", description: "Help oogzorg elke oproep te beantwoorden. Vacatures bij Optavius." },
     title: "Hoi, wij zijn Optavius.\nWe zien je graag komen.",
-    lede: "Bouw de agents die de telefoon opnemen voor specialistische zorg.",
+    lede: "Bouw de agents die de telefoon opnemen voor oogzorg.",
     cta: { label: "Vacatures", href: "#open-roles" },
     image: { src: PHOTOS.story, alt: "Kliniekteam aan het werk" },
     statement: "Optavius bouwt AI-agents die praktijken aannemen, aansturen en betalen als personeel. Het werk zit tussen patiënten en artsen, dus we nemen veiligheid en bewijs serieus en we leveren elke week. Hou je van echte klanten, echte data en moeilijke problemen, kom dan met ons bouwen.",
@@ -730,7 +629,7 @@ const nl: Site = {
       groups: [
         { name: "Commercieel", roles: [
           { title: "Founding account executive, VS", location: "Houston, TX", href: "mailto:" + EMAIL + "?subject=Account%20executive" },
-          { title: "Customer success, specialistische zorg", location: "Amsterdam", href: "mailto:" + EMAIL + "?subject=Customer%20success" },
+          { title: "Customer success, oogzorg", location: "Amsterdam", href: "mailto:" + EMAIL + "?subject=Customer%20success" },
         ] },
       ],
     },

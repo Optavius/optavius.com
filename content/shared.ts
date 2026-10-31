@@ -41,8 +41,6 @@ export const VIDEOS = {
   product: { video: `${G}/product-frontdesk-video.mp4`, poster: `${G}/product-frontdesk.webp` },
   ophthalmology: { video: `${G}/spec2-ophthalmology-video.mp4`, poster: `${G}/spec2-ophthalmology.webp` },
   optometry: { video: `${G}/spec2-optometry-video.mp4`, poster: `${G}/spec2-optometry.webp` },
-  dermatology: { video: `${G}/spec2-dermatology-video.mp4`, poster: `${G}/spec2-dermatology.webp` },
-  veterinary: { video: `${G}/spec2-veterinary-video.mp4`, poster: `${G}/spec2-veterinary.webp` },
 };
 export const PEOPLE = {
   feike: { poster: `${G}/feike.webp` },

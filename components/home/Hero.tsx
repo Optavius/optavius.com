@@ -138,7 +138,7 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
           </video>
           {/* starts the video right after the load event and the first painted frame, without waiting for the framework scripts
               (which attach 1.2 s after load) and hydration; the React effect above then finds it already playing */}
-          <script dangerouslySetInnerHTML={{ __html: `(function(){var v=document.getElementById("hero-video");if(!v)return;var d=0;function go(){if(d)return;d=1;v.preload="auto";try{var p=v.play();if(p&&p.catch)p.catch(function(){})}catch(e){}}function after(){requestAnimationFrame(function(){requestAnimationFrame(go)})}if(document.readyState==="complete")after();else window.addEventListener("load",after)})()` }} />
+          <script dangerouslySetInnerHTML={{ __html: `(function(){var v=document.getElementById("hero-video");if(!v)return;var d=0;function go(){if(d)return;d=1;v.preload="auto";try{var p=v.play();if(p&&p.catch)p.catch(function(){})}catch(e){}}function after(){requestAnimationFrame(function(){requestAnimationFrame(go)})}if(document.readyState==="complete")after();else window.addEventListener("load",after);/* iOS Low Power Mode refuses autoplay; the first touch or scroll is allowed to start it */function kick(){if(v.paused){try{var p=v.play();if(p&&p.catch)p.catch(function(){})}catch(e){}}}["touchstart","pointerdown","scroll","keydown"].forEach(function(e){window.addEventListener(e,kick,{passive:true})})})()` }} />
           <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-black/10" />
         </div>
       </div>

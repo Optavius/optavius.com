@@ -1,6 +1,6 @@
 # Optavius website
 
-Marketing site for Optavius (AI voice agents for specialty care) in English, Dutch and German. Built with Next.js 16
+Marketing site for Optavius (AI voice agents for eye care) in English, Dutch and German. Built with Next.js 16
 (App Router), React and TypeScript and exported as **static HTML**: there is no server runtime, no API and no database.
 Any static host can serve the `out/` folder.
 
