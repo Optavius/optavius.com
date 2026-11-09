@@ -11,7 +11,8 @@ const rows = fs.readFileSync("docs/redirect-map.csv", "utf8").split(/\r?\n/).sli
 const COPIES = { "/sitemap-index.xml": "/sitemap.xml", "/sitemap-0.xml": "/sitemap.xml", "/sitemap-markdown.xml": "/sitemap.xml", "/.well-known/llm.md": "/llms.txt", "/og-image.jpg": "/og/en.png" };
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 const page = (from, to, lang) => {
-  const url = SITE + BASE + (/.[a-z]+$/.test(to) || to.endsWith("/") ? to : to + "/"); // the page form, so the hop lands on the final address const nl = lang === "nl"; const de = lang === "de";
+  // the page form of the target, so the hop lands on the final address
+  const url = SITE + BASE + (/.[a-z]+$/.test(to) || to.endsWith("/") ? to : to + "/"); const nl = lang === "nl"; const de = lang === "de";
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><title>${esc(nl ? "Pagina verplaatst" : de ? "Seite verschoben" : "Page moved")}: ${esc(url)}</title>
 <meta http-equiv="refresh" content="0; url=${esc(url)}"><link rel="canonical" href="${esc(url)}"><meta name="viewport" content="width=device-width, initial-scale=1">
 <script>location.replace(${JSON.stringify(url)});</script></head>
