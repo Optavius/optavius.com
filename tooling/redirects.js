@@ -12,7 +12,7 @@ const COPIES = { "/sitemap-index.xml": "/sitemap.xml", "/sitemap-0.xml": "/sitem
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 const page = (from, to, lang) => {
   // the page form of the target, so the hop lands on the final address
-  const url = SITE + BASE + (/.[a-z]+$/.test(to) || to.endsWith("/") ? to : to + "/"); const nl = lang === "nl"; const de = lang === "de";
+  const url = SITE + BASE + (/.[a-z0-9]+$/.test(to) || to.endsWith("/") ? to : to + "/"); const nl = lang === "nl"; const de = lang === "de";
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><title>${esc(nl ? "Pagina verplaatst" : de ? "Seite verschoben" : "Page moved")}: ${esc(url)}</title>
 <meta http-equiv="refresh" content="0; url=${esc(url)}"><link rel="canonical" href="${esc(url)}"><meta name="viewport" content="width=device-width, initial-scale=1">
 <script>location.replace(${JSON.stringify(url)});</script></head>
