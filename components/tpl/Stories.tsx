@@ -1,12 +1,12 @@
 import Img from "./Img";
+import { href as lhref, type Lang } from "@/lib/i18n";
 import { Fragment } from "react";
 import type { Story } from "@/content/types";
 import Carousel from "@/components/Carousel";
 import { BTN, CONTAINER, LeftHead, Section, imgStyle, logoWhite } from "./ui";
 import { Chevron } from "./Icons";
-import { BASE } from "@/lib/base";
 
-const L = (lang: string, path: string) => BASE + (lang === "en" ? path : `/${lang}${path}`);
+const L = (lang: string, path: string) => lhref(lang as Lang, path);
 
 /** Grid of story cards (customers S03 / case study S02). */
 export function StoryCards({ stories, lang, title, filters }: { stories: Story[]; lang: string; title?: string; filters?: { label: string; active?: boolean }[] }) {

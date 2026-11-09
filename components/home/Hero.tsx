@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { preload } from "react-dom";
 import type { Bubble, Site, VideoQuote } from "@/content/types";
 import { AgentAvatar } from "../mockups/ui";
-import { BASE } from "@/lib/base";
+import { href as lhref, type Lang } from "@/lib/i18n";
 import { HERO_VIDEO } from "@/content/shared";
 
 const GLASS = "rounded-[22px] p-4 border-glass-2xl bg-glass mask-t-from-50% mask-t-to-90% mask-size-[auto_200%] transition-[opacity,mask-position] duration-500 w-[75vw] max-w-[334px]";
@@ -61,7 +61,7 @@ export default function Hero({ h, lang, quote, tel }: { h: Site["home"]["hero"];
   const slides = h.slides;
   const first = slides[0];
   if (first?.poster) preload(first.poster, { as: "image", fetchPriority: "high" });
-  const L = (p: string) => (/^(https?:|mailto:|tel:|#)/.test(p) ? p : BASE + (lang === "en" ? p : `/${lang}${p}`));
+  const L = (p: string) => lhref(lang as Lang, p);
 
   /* start the video once the page has loaded */
   useEffect(() => {

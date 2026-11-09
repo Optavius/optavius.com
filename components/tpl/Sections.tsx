@@ -1,4 +1,5 @@
 import Img from "./Img";
+import { href as lhref, type Lang } from "@/lib/i18n";
 import { Fragment } from "react";
 import type { Bubble, CardsSection, CTASection, FeatureSplit, HeroSection, LogoStrip, ProofSection, QuoteBand, RelatedCard, StepsSection, TilesSection, TrustSection, VideoQuote, BigQuote, AccordionItem } from "@/content/types";
 import Carousel from "@/components/Carousel";
@@ -6,9 +7,8 @@ import Mock from "@/components/mockups/Mock";
 import { AgentAvatar } from "@/components/mockups/ui";
 import { BTN_PRIMARY, BTN_SECONDARY, BTN_OUTLINE, CenterHead, CONTAINER, FeatureItem, HEAD_GRID, LeftHead, LG, MediaFill, SM, Section, VideoBox, imgStyle, logoWhite, CallLabel } from "./ui";
 import { ArrowUp, Chevron, Icon } from "./Icons";
-import { BASE } from "@/lib/base";
 
-const L = (lang: string, path: string) => (/^(https?:|mailto:|tel:|#)/.test(path) ? path : BASE + (lang === "en" ? path : `/${lang}${path === "/" ? "" : path}`));
+const L = (lang: string, path: string) => lhref(lang as Lang, path);
 
 /* ---------- Hero with big media (product / specialty pages) ---------- */
 function HeroBubbles({ bubbles }: { bubbles: Bubble[] }) {

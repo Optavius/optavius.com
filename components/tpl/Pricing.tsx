@@ -1,10 +1,10 @@
 import type { Site } from "@/content/types";
+import { href as lhref, type Lang } from "@/lib/i18n";
 import { BTN_OUTLINE, BTN_PRIMARY, CallLabel, CenterHead, Section } from "./ui";
 import { Chevron, Icon } from "./Icons";
 import Calculator from "./Calculator";
-import { BASE } from "@/lib/base";
 
-const L = (lang: string, path: string) => (/^(https?:|mailto:|tel:|#)/.test(path) ? path : BASE + (lang === "en" ? path : `/${lang}${path}`));
+const L = (lang: string, path: string) => lhref(lang as Lang, path);
 
 export default function PricingPage({ p, lang }: { p: Site["pricing"]; lang: string }) {
   return (

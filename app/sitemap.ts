@@ -23,8 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const p of paths) {
       const path = p ? `/${p}` : "";
       const languages: Record<string, string> = {};
-      for (const l of LOCALES) languages[l] = `${BASE}${l === "en" ? "" : `/${l}`}${path || "/"}`;
-      out.push({ url: `${BASE}${prefix}${path || "/"}`, lastModified: now, changeFrequency: p.startsWith("resources/") ? "monthly" : "weekly", priority: p === "" ? 1 : p.startsWith("resources/") ? 0.5 : p === "careers" ? 0.4 : 0.8, alternates: { languages } });
+      for (const l of LOCALES) languages[l] = `${BASE}${l === "en" ? "" : `/${l}`}${path}/`;
+      out.push({ url: `${BASE}${prefix}${path}/`, lastModified: now, changeFrequency: p.startsWith("resources/") ? "monthly" : "weekly", priority: p === "" ? 1 : p.startsWith("resources/") ? 0.5 : p === "careers" ? 0.4 : 0.8, alternates: { languages } });
     }
   }
   return out;

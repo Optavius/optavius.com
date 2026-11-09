@@ -59,9 +59,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const seg = path.split("/").filter(Boolean);
   const m = metaFor(path, lang, site);
   const languages: Record<string, string> = {};
-  for (const l of LOCALES) languages[l] = `${SITE_URL}${l === "en" ? path || "/" : `/${l}${path === "/" ? "" : path}`}`;
+  for (const l of LOCALES) languages[l] = `${SITE_URL}${l === "en" ? "" : `/${l}`}${path === "/" ? "/" : path + "/"}`;
   languages["x-default"] = languages.en;
-  const canonical = `${SITE_URL}${lang === "en" ? path : `/${lang}${path === "/" ? "" : path}`}`;
+  const canonical = languages[lang];
   const key = path === "/" ? "home" : path.replace(/^\//, "");
   const og = existsSync(join(process.cwd(), "public/og", lang, key + ".png")) ? `${SITE_URL}/og/${lang}/${key}.png` : `${SITE_URL}/og/${lang}.png`;
   const locale = lang === "nl" ? "nl_NL" : lang === "de" ? "de_DE" : "en_US";
@@ -76,7 +76,7 @@ const BASE = SITE_URL;
 /** Structured data: the organisation on every page, the FAQ on pricing, the service on product pages. */
 function jsonLd(path: string, lang: string, site: ReturnType<typeof getSite>) {
   const org = { "@type": "Organization", "@id": `${BASE}/#org`, name: "Optavius", url: BASE, logo: `${BASE}/og/${lang}.png`, contactPoint: [{ "@type": "ContactPoint", telephone: "+1-937-729-2674", contactType: "sales", areaServed: "US", availableLanguage: ["en"] }, { "@type": "ContactPoint", telephone: "+31-97-006-532689", contactType: "sales", areaServed: "NL", availableLanguage: ["nl", "en"] }], sameAs: ["https://www.linkedin.com/company/optavius"], description: "Optavius provides AI voice agents for eye-care practices: ophthalmology clinics, optometry practices and optical retailers in the United States and Europe. The agent answers patient calls, books and moves appointments, gives order status and escalates urgent symptoms by the practice's own protocol.", address: [{ "@type": "PostalAddress", addressLocality: "Houston", addressRegion: "TX", addressCountry: "US" }, { "@type": "PostalAddress", addressLocality: "Amsterdam", addressCountry: "NL" }], areaServed: ["US", "NL", "DE", "EU"] };
-  const pageUrl = `${BASE}${lang === "en" ? "" : "/" + lang}${path === "/" ? "/" : path}`;
+  const pageUrl = `${BASE}${lang === "en" ? "" : "/" + lang}${path === "/" ? "/" : path + "/"}`;
   const meta = metaFor(path, lang, site);
   const website = { "@type": "WebSite", "@id": `${BASE}/#website`, url: BASE, name: "Optavius", publisher: { "@id": `${BASE}/#org` }, inLanguage: ["en", "nl", "de"] };
   const webpage: Record<string, unknown> = { "@type": "WebPage", "@id": pageUrl, url: pageUrl, name: meta.title, description: meta.description, inLanguage: lang, isPartOf: { "@id": `${BASE}/#website` }, about: { "@id": `${BASE}/#org` } };
@@ -93,7 +93,7 @@ function jsonLd(path: string, lang: string, site: ReturnType<typeof getSite>) {
     return seg[i];
   };
   if (seg.length) { webpage.breadcrumb = { "@id": `${pageUrl}#breadcrumb` }; }
-  if (seg.length) graph.push({ "@type": "BreadcrumbList", "@id": `${pageUrl}#breadcrumb`, itemListElement: [{ "@type": "ListItem", position: 1, name: "Optavius", item: `${BASE}${prefix}/` }, ...seg.map((_, i) => ({ "@type": "ListItem", position: i + 2, name: label(i), item: `${BASE}${prefix}/${seg.slice(0, i + 1).join("/")}` }))] });
+  if (seg.length) graph.push({ "@type": "BreadcrumbList", "@id": `${pageUrl}#breadcrumb`, itemListElement: [{ "@type": "ListItem", position: 1, name: "Optavius", item: `${BASE}${prefix}/` }, ...seg.map((_, i) => ({ "@type": "ListItem", position: i + 2, name: label(i), item: `${BASE}${prefix}/${seg.slice(0, i + 1).join("/")}/` }))] });
   if (seg[0] === "resources" && seg[1]) { const a = (ARTICLES[lang] || ARTICLES.en).find((x) => x.slug === seg[1]); if (a) graph.push({ "@type": "Article", headline: a.title, description: a.description, inLanguage: lang, datePublished: a.publishedDate || "2026-09-01", dateModified: a.publishedDate || "2026-09-11", author: { "@id": `${BASE}/#org` }, publisher: { "@id": `${BASE}/#org` }, mainEntityOfPage: `${BASE}${prefix}${path}`, image: `${BASE}/og/${lang}.png` }); }
   const faq = FAQS[lang]?.[path];
   if (faq) graph.push({ "@type": "FAQPage", mainEntity: faq.items.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) });
